@@ -5,18 +5,18 @@ export function SubtaskContent({ subtask }: { subtask: Subtask }) {
     switch (subtask.content_type) {
         case "TEXT":
             return (
-                <div className="whitespace-pre-wrap text-base leading-relaxed text-foreground/90">
+                <div className="whitespace-pre-wrap text-[15px] leading-[1.7] text-[#3a3a3a]">
                     {subtask.content}
                 </div>
             )
 
         case "IMAGE":
             return (
-                <div className="overflow-hidden rounded-lg">
+                <div className="overflow-hidden rounded-xl border border-[#ECECEC] bg-white">
                     <img
                         src={subtask.content}
-                        alt="image placeholder"
-                        className="w-full rounded-lg object-cover"
+                        alt=""
+                        className="w-full object-cover"
                         loading="lazy"
                     />
                 </div>
@@ -30,14 +30,14 @@ export function SubtaskContent({ subtask }: { subtask: Subtask }) {
                         href={subtask.content}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-primary underline underline-offset-4 hover:opacity-80"
+                        className="inline-block break-all text-sm text-[#1a1a1a] underline decoration-[#9a9a9a] decoration-1 underline-offset-4 transition-colors hover:decoration-[#1a1a1a]"
                     >
                         {subtask.content}
                     </a>
                 )
             }
             return (
-                <div className="aspect-video w-full overflow-hidden rounded-lg">
+                <div className="aspect-video w-full overflow-hidden rounded-xl border border-[#ECECEC] bg-black">
                     <iframe
                         src={`https://www.youtube.com/embed/${videoId}`}
                         title="Video"
@@ -51,17 +51,23 @@ export function SubtaskContent({ subtask }: { subtask: Subtask }) {
 
         case "SOURCE_REFERENCE":
             return (
-                <div className="rounded-lg border border-border/50 bg-muted/30 p-4">
+                <figure className="rounded-xl border border-[#ECECEC] bg-white p-5 sm:p-6">
+                    <div className="mb-3 flex items-center gap-2">
+                        <span className="h-px w-6 bg-[#ECECEC]" />
+                        <span className="text-[10px] uppercase tracking-[0.12em] text-[#9a9a9a]">
+                            Source
+                        </span>
+                    </div>
                     <div
-                        className="prose prose-invert max-w-none text-sm leading-relaxed text-foreground/80"
+                        className="prose prose-sm max-w-none text-[14px] leading-[1.7] text-[#3a3a3a] [&_a]:text-[#1a1a1a] [&_a]:underline [&_a]:underline-offset-4"
                         dangerouslySetInnerHTML={{ __html: subtask.content }}
                     />
-                </div>
+                </figure>
             )
 
         default:
             return (
-                <div className="text-muted-foreground">{subtask.content}</div>
+                <div className="text-sm text-[#9a9a9a]">{subtask.content}</div>
             )
     }
 }

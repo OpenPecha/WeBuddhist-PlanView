@@ -5,8 +5,6 @@ import api from "@/lib/api"
 import type { PlanDay } from "@/types/plan"
 import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Button } from "@/components/ui/button"
-import { Skeleton } from "@/components/ui/skeleton"
 import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon } from "lucide-react"
 import { useState } from "react"
 import { PlanViewerSkeleton } from "./micro-components/loader"
@@ -23,20 +21,17 @@ export const fetchPlanDay = async (
 
 export function PlanViewer() {
   const { planId, date } = useParams<{ planId: string; date: string }>()
-  const {
-    data,
-    isLoading,
-    error,
-  } = useQuery<PlanDay>({
+  const { data, isLoading, error } = useQuery<PlanDay>({
     queryKey: ["planDay", planId, date],
     queryFn: () => fetchPlanDay(planId!, date!),
     enabled: !!planId && !!date,
+    retry: false,
     refetchOnWindowFocus: false,
   })
   const [calendarOpen, setCalendarOpen] = useState(false)
   const navigate = useNavigate()
   const currentDate = date ? parseISO(date) : new Date()
-  const formattedDate = format(currentDate, "MMMM d")
+  const formattedDate = format(currentDate, "MMMM d, yyyy")
 
   function navigateToDate(newDate: string) {
     navigate(`/${planId}/${newDate}`)
@@ -47,97 +42,118 @@ export function PlanViewer() {
     : []
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
-      <header className="mb-8 flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
-        <div className="space-y-1">
-          {isLoading ? (
-            <>
-              <Skeleton className="h-8 w-48" />
-              <Skeleton className="h-5 w-32" />
-            </>
-          ) : data ? (
-            <>
-              <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-                {data.plan_title}
-              </h1>
-              <p className="text-sm text-muted-foreground">
-                Day {data.day_number} of {data.total_days}
-              </p>
-            </>
-          ) : null}
-        </div>
+    <main className="min-h-svh w-full bg-[#FAFAFA]">
+      <div className="mx-auto max-w-[720px] px-5 py-10 sm:px-8 sm:py-16">
+        <header className="mb-12 p-2 sticky top-0 bg-[#FAFAFA] flex flex-col gap-8 after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-8 after:bg-linear-to-b after:from-[#FAFAFA] after:to-transparent">
+          <div className="flex  items-start justify-between gap-4">
+            <div className="min-w-0 flex-1 space-y-2">
+              {isLoading ? (
+                <>
+                  <div className="h-8 w-56 animate-pulse rounded-md bg-[#ECECEC]" />
+                  <div className="h-4 w-24 animate-pulse rounded-md bg-[#ECECEC]" />
+                </>
+              ) : data ? (
+                <>
+                  <h1 className="font-serif text-2xl leading-tight tracking-[-0.02em] text-[#1a1a1a] sm:text-[28px]">
+                    {data.plan_title}
+                  </h1>
+                  <p className="text-sm tabular-nums text-[#9a9a9a]">
+                    Day {data.day_number} of {data.total_days}
+                  </p>
+                </>
+              ) : null}
+            </div>
+            {!error && data && (
+              <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
+                <PopoverTrigger asChild>
+                  <button className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-[#ECECEC] bg-white px-4 py-2 text-sm text-[#1a1a1a] transition-colors hover:bg-[#F2F2F2]">
+                    <span className="tabular-nums">{formattedDate}</span>
+                    <ChevronDownIcon className="size-3.5 text-[#9a9a9a] transition-transform group-data-[state=open]:rotate-180" />
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent
+                  className="w-auto rounded-2xl border-[#ECECEC] p-0 shadow-sm"
+                  align="end"
+                >
+                  <Calendar
+                    mode="single"
+                    selected={currentDate}
+                    defaultMonth={currentDate}
+                    disabled={(d) => {
+                      if (!data) return false
+                      const start = parseISO(data.start_date)
+                      const end = parseISO(data.end_date)
+                      return d < start || d > end
+                    }}
+                    onSelect={(selectedDate) => {
+                      if (selectedDate) {
+                        navigateToDate(format(selectedDate, "yyyy-MM-dd"))
+                        setCalendarOpen(false)
+                      }
+                    }}
+                  />
+                </PopoverContent>
+              </Popover>
+            )}
+          </div>
+        </header>
 
-        <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
-          <PopoverTrigger asChild>
-            <Button variant="outline" className="gap-2">
-              {formattedDate}
-              <ChevronDownIcon className="size-4 text-muted-foreground" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto p-0" align="end">
-            <Calendar
-              mode="single"
-              selected={currentDate}
-              defaultMonth={currentDate}
-              disabled={(d) => {
-                if (!data) return false
-                const start = parseISO(data.start_date)
-                const end = parseISO(data.end_date)
-                return d < start || d > end
-              }}
-              onSelect={(selectedDate) => {
-                if (selectedDate) {
-                  navigateToDate(format(selectedDate, "yyyy-MM-dd"))
-                  setCalendarOpen(false)
-                }
-              }}
-            />
-          </PopoverContent>
-        </Popover>
-      </header>
+        {isLoading ? (
+          <PlanViewerSkeleton />
+        ) : error ? (
+          <ErrorState error={error} />
+        ) : data ? (
+          <div className="space-y-12 sm:space-y-16">
+            {sortedTasks.map((task, idx) => (
+              <TaskSection key={task.id} task={task} index={idx + 1} />
+            ))}
+          </div>
+        ) : null}
 
-      <div className="mb-8 h-px bg-border/50" />
-
-      {isLoading ? (
-        <PlanViewerSkeleton />
-      ) : error ? (
-        <ErrorState error={error} />
-      ) : data ? (
-        <div className="space-y-4">
-          {sortedTasks.map((task) => (
-            <TaskSection key={task.id} task={task} />
-          ))}
-        </div>
-      ) : null}
-
-      <div className="mt-10 h-px bg-border/50" />
-
-      <nav className="mt-6 flex items-center justify-between">
-        {data?.previous_date ? (
-          <Button
-            variant="ghost"
-            className="gap-2"
-            onClick={() => navigateToDate(data.previous_date!)}
-          >
-            <ChevronLeftIcon className="size-4" />
-            {format(parseISO(data.previous_date), "MMM d")}
-          </Button>
-        ) : (
-          <div />
+        {data && (data.previous_date || data.next_date) && (
+          <>
+            <div className="mt-16 h-px w-full bg-[#ECECEC]" />
+            <nav className="mt-6 flex items-center justify-between gap-3">
+              {data.previous_date ? (
+                <button
+                  onClick={() => navigateToDate(data.previous_date!)}
+                  className="group inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-[#707070] transition-colors hover:bg-white hover:text-[#1a1a1a]"
+                >
+                  <ChevronLeftIcon className="size-4 transition-transform group-hover:-translate-x-0.5" />
+                  <span className="flex flex-col items-start leading-tight">
+                    <span className="text-[11px] uppercase tracking-wider text-[#9a9a9a]">
+                      Previous
+                    </span>
+                    <span className="tabular-nums">
+                      {format(parseISO(data.previous_date), "MMM d")}
+                    </span>
+                  </span>
+                </button>
+              ) : (
+                <div />
+              )}
+              {data.next_date ? (
+                <button
+                  onClick={() => navigateToDate(data.next_date!)}
+                  className="group inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-[#707070] transition-colors hover:bg-white hover:text-[#1a1a1a]"
+                >
+                  <span className="flex flex-col items-end leading-tight">
+                    <span className="text-[11px] uppercase tracking-wider text-[#9a9a9a]">
+                      Next
+                    </span>
+                    <span className="tabular-nums">
+                      {format(parseISO(data.next_date), "MMM d")}
+                    </span>
+                  </span>
+                  <ChevronRightIcon className="size-4 transition-transform group-hover:translate-x-0.5" />
+                </button>
+              ) : (
+                <div />
+              )}
+            </nav>
+          </>
         )}
-        {data?.next_date ? (
-          <Button
-            variant="ghost"
-            className="gap-2"
-            onClick={() => navigateToDate(data.next_date!)}
-          >
-            {format(parseISO(data.next_date), "MMM d")}
-            <ChevronRightIcon className="size-4" />
-          </Button>
-        ) : (
-          <div />
-        )}
-      </nav>
-    </div>
+      </div>
+    </main>
   )
 }

@@ -49,7 +49,7 @@ export function PlanViewer() {
     <main className="min-h-svh w-full bg-[#FAFAFA]">
       <div className="mx-auto max-w-[720px] px-5 py-10 sm:px-8 sm:py-16">
         <header className="mb-12 p-2 sticky top-0 bg-[#FAFAFA] flex flex-col gap-8 after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-8 after:bg-linear-to-b after:from-[#FAFAFA] after:to-transparent">
-          <div className="flex  items-start justify-between gap-4">
+          <div className="flex items-start justify-between gap-4">
             <div className="min-w-0 flex-1 space-y-2">
               {isLoading ? (
                 <>
@@ -58,7 +58,7 @@ export function PlanViewer() {
                 </>
               ) : data ? (
                 <>
-                  <h1 className="font-serif text-2xl leading-tight tracking-[-0.02em] text-[#1a1a1a] sm:text-[28px]">
+                  <h1 className="font-serif text-2xl text-[#3D3D3A]">
                     {data.plan_title}
                   </h1>
                   <p className="text-sm tabular-nums text-[#9a9a9a]">

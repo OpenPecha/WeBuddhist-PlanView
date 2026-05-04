@@ -14,7 +14,7 @@ export function TaskSection({ task, index }: { task: Task; index?: number }) {
                         {String(index).padStart(2, "0")}
                     </span>
                 )}
-                <h2 className="font-serif text-xl tracking-[-0.01em] text-[#1a1a1a] sm:text-[22px]">
+                <h2 className="font-serif text-xl tracking-[-0.01em] text-[#3D3D3A] sm:text-[22px]">
                     {task.title}
                 </h2>
             </div>

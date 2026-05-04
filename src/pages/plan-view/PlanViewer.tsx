@@ -13,24 +13,28 @@ import { ErrorState } from "./micro-components/Error"
 
 export const fetchPlanDay = async (
   planId: string,
-  date: string
+  date?: string
 ): Promise<PlanDay> => {
-  const { data } = await api.get<PlanDay>(`/api/v1/plans/${planId}/${date}`)
+  const { data } = await api.get<PlanDay>(`/api/v1/plans/${planId}/daily`, {
+    params: date ? { date } : undefined,
+  })
   return data
 }
 
 export function PlanViewer() {
-  const { planId, date } = useParams<{ planId: string; date: string }>()
+  const { planId, date } = useParams<{ planId: string; date?: string }>()
+  const navigate = useNavigate()
   const { data, isLoading, error } = useQuery<PlanDay>({
     queryKey: ["planDay", planId, date],
-    queryFn: () => fetchPlanDay(planId!, date!),
-    enabled: !!planId && !!date,
+    queryFn: () => fetchPlanDay(planId!, date),
+    enabled: !!planId,
     retry: false,
     refetchOnWindowFocus: false,
   })
   const [calendarOpen, setCalendarOpen] = useState(false)
-  const navigate = useNavigate()
-  const currentDate = date ? parseISO(date) : new Date()
+
+  const resolvedDate = date ?? data?.date
+  const currentDate = resolvedDate ? parseISO(resolvedDate) : new Date()
   const formattedDate = format(currentDate, "MMMM d, yyyy")
 
   function navigateToDate(newDate: string) {

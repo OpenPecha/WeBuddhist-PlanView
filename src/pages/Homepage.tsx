@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Copy, Check } from "lucide-react"
 
 const SAMPLE_URL =
-    "https://your-domain.com/plan-id/date"
+    "https://your-domain.com/plan-id"
 
 const Homepage = () => {
     const [copied, setCopied] = useState(false)
@@ -56,8 +56,8 @@ const Homepage = () => {
                     <ol className="flex flex-col gap-4">
                         {[
                             "Get your plan ID from We Buddhist after creating a plan",
-                            "Pick the date you want to view in YYYY-MM-DD format",
-                            "Open the URL — your day's tasks, sessions, and notes load instantly",
+                            "Open the URL — it loads the first day automatically, or add /YYYY-MM-DD for a specific date",
+                            "Browse your day's tasks, sessions, and notes instantly",
                             "Share the link with anyone — it's read-only and works without an account",
                         ].map((step, i) => (
                             <li key={i} className="flex gap-4">

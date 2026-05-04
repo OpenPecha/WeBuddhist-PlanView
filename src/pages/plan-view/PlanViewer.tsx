@@ -23,7 +23,6 @@ export const fetchPlanDay = async (
 
 export function PlanViewer() {
   const { planId, date } = useParams<{ planId: string; date: string }>()
-  const navigate = useNavigate()
   const {
     data,
     isLoading,
@@ -35,7 +34,7 @@ export function PlanViewer() {
     refetchOnWindowFocus: false,
   })
   const [calendarOpen, setCalendarOpen] = useState(false)
-
+  const navigate = useNavigate()
   const currentDate = date ? parseISO(date) : new Date()
   const formattedDate = format(currentDate, "MMMM d")
 
@@ -49,7 +48,6 @@ export function PlanViewer() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
-      {/* Header */}
       <header className="mb-8 flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
         <div className="space-y-1">
           {isLoading ? (
@@ -69,7 +67,6 @@ export function PlanViewer() {
           ) : null}
         </div>
 
-        {/* Calendar Popover */}
         <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
           <PopoverTrigger asChild>
             <Button variant="outline" className="gap-2">
@@ -99,26 +96,22 @@ export function PlanViewer() {
         </Popover>
       </header>
 
-      {/* Divider */}
       <div className="mb-8 h-px bg-border/50" />
 
-      {/* Content */}
       {isLoading ? (
         <PlanViewerSkeleton />
       ) : error ? (
         <ErrorState error={error} />
       ) : data ? (
-        <div className="space-y-10">
+        <div className="space-y-4">
           {sortedTasks.map((task) => (
             <TaskSection key={task.id} task={task} />
           ))}
         </div>
       ) : null}
 
-      {/* Divider */}
       <div className="mt-10 h-px bg-border/50" />
 
-      {/* Bottom Navigation */}
       <nav className="mt-6 flex items-center justify-between">
         {data?.previous_date ? (
           <Button

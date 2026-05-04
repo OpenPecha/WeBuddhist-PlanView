@@ -2,8 +2,6 @@ import { extractYouTubeId } from '@/lib/utils'
 import type { Subtask } from '@/types/plan'
 
 export function SubtaskContent({ subtask }: { subtask: Subtask }) {
-    const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL
-
     switch (subtask.content_type) {
         case "TEXT":
             return (
@@ -16,8 +14,8 @@ export function SubtaskContent({ subtask }: { subtask: Subtask }) {
             return (
                 <div className="overflow-hidden rounded-lg">
                     <img
-                        src={`${baseUrl}/${subtask.content}`}
-                        alt=""
+                        src={subtask.content}
+                        alt="image placeholder"
                         className="w-full rounded-lg object-cover"
                         loading="lazy"
                     />

@@ -17,14 +17,14 @@ const Homepage = () => {
     }
 
     return (
-        <main className="min-h-screen w-full flex flex-col justify-between items-center p-2 bg-[#FAFAFA]">
+        <main className="sm:min-h-screen min-h-svh w-full flex flex-col justify-between items-center sm:p-2 p-4 bg-[#FAFAFA]">
             <div />
-            <div className="flex flex-col items-center gap-20 w-full">
+            <div className="flex flex-col items-center gap-10 sm:gap-20 w-full">
                 <section className="w-full max-w-[640px] flex flex-col items-center text-center gap-4">
-                    <h1 className="font-semibold tracking-[-0.03em] text-[28px] sm:text-[32px] leading-tight text-[#1a1a1a]">
-                        View your daily plan
+                    <h1 className="tracking-[-0.03em] text-xl sm:text-3xl font-serif leading-tight text-[#1a1a1a]">
+                        View your Daily Plan
                     </h1>
-                    <p className=" tracking-normal max-w-102 [white-space-collapse:preserve] text-[15px]/5.75 text-[#707070]">
+                    <p className=" tracking-normal max-w-102 [white-space-collapse:preserve] text-sm sm:text-base text-[#707070]">
                         Plan Viewer is a web application that shows the preview for any We Buddhist
                         plan in a clean, shareable read-only view. Just paste the link with
                         your plan ID and a date.
@@ -49,11 +49,11 @@ const Homepage = () => {
                     </div>
                 </section>
 
-                <section className="w-full max-w-[520px] flex flex-col gap-6">
-                    <h2 className="text-[20px] font-semibold tracking-[-0.02em] text-[#1a1a1a]">
+                <section className="w-full max-w-[520px] flex flex-col gap-4 sm:gap-6">
+                    <h2 className="text-lg sm:text-xl font-serif tracking-[-0.02em] text-[#1a1a1a]">
                         How it works
                     </h2>
-                    <ol className="flex flex-col gap-5">
+                    <ol className="flex flex-col gap-4">
                         {[
                             "Get your plan ID from We Buddhist after creating a plan",
                             "Pick the date you want to view in YYYY-MM-DD format",
@@ -61,10 +61,10 @@ const Homepage = () => {
                             "Share the link with anyone — it's read-only and works without an account",
                         ].map((step, i) => (
                             <li key={i} className="flex gap-4">
-                                <span className="shrink-0 text-[15px] font-medium tabular-nums text-[#9a9a9a]">
+                                <span className="shrink-0 text-sm sm:text-base font-medium tabular-nums text-[#9a9a9a]">
                                     {i + 1}.
                                 </span>
-                                <span className="text-[15px] font-medium leading-[1.55] text-[#707070]">
+                                <span className="text-sm sm:text-base leading-[1.55] text-[#707070]">
                                     {step}
                                 </span>
                             </li>
@@ -73,7 +73,7 @@ const Homepage = () => {
                 </section>
             </div>
 
-            <footer className="text-sm  text-[#9a9a9a]">
+            <footer className="text-xs sm:text-sm text-[#9a9a9a]">
                 Plan Viewer - A WeBuddhist Product
             </footer>
         </main>

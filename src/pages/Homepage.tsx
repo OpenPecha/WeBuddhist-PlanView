@@ -1,7 +1,82 @@
+import { useState } from "react"
+import { Copy, Check } from "lucide-react"
+
+const SAMPLE_URL =
+    "https://your-domain.com/plan-id/date"
 
 const Homepage = () => {
+    const [copied, setCopied] = useState(false)
+
+    const handleCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(SAMPLE_URL)
+            setCopied(true)
+            setTimeout(() => setCopied(false), 1500)
+        } catch {
+        }
+    }
+
     return (
-        <div>Homepage</div>
+        <main className="min-h-screen w-full flex flex-col justify-between items-center p-2 bg-[#FAFAFA]">
+            <div />
+            <div className="flex flex-col items-center gap-20 w-full">
+                <section className="w-full max-w-[640px] flex flex-col items-center text-center gap-4">
+                    <h1 className="font-semibold tracking-[-0.03em] text-[28px] sm:text-[32px] leading-tight text-[#1a1a1a]">
+                        View your daily plan
+                    </h1>
+                    <p className=" tracking-normal max-w-102 [white-space-collapse:preserve] text-[15px]/5.75 text-[#707070]">
+                        Plan Viewer is a web application that shows the preview for any We Buddhist
+                        plan in a clean, shareable read-only view. Just paste the link with
+                        your plan ID and a date.
+                    </p>
+
+                    <div className="w-full max-w-[480px]">
+                        <div className="group flex items-center gap-3 rounded-full border border-[#ECECEC] bg-white pl-5 pr-2 py-2">
+                            <span className="text-[15px] select-none text-[#9a9a9a]">
+                                $
+                            </span>
+                            <code className="flex-1 truncate text-left text-sm font-mono text-[#1a1a1a]" title={SAMPLE_URL}>
+                                {SAMPLE_URL}
+                            </code>
+                            <button onClick={handleCopy} aria-label="Copy URL" className="shrink-0 inline-flex h-8 w-8 items-center justify-center rounded-full hover:bg-[#F2F2F2] transition-colors text-[#707070]">
+                                {copied ? (
+                                    <Check className="h-4 w-4" />
+                                ) : (
+                                    <Copy className="h-4 w-4" />
+                                )}
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="w-full max-w-[520px] flex flex-col gap-6">
+                    <h2 className="text-[20px] font-semibold tracking-[-0.02em] text-[#1a1a1a]">
+                        How it works
+                    </h2>
+                    <ol className="flex flex-col gap-5">
+                        {[
+                            "Get your plan ID from We Buddhist after creating a plan",
+                            "Pick the date you want to view in YYYY-MM-DD format",
+                            "Open the URL — your day's tasks, sessions, and notes load instantly",
+                            "Share the link with anyone — it's read-only and works without an account",
+                        ].map((step, i) => (
+                            <li key={i} className="flex gap-4">
+                                <span className="shrink-0 text-[15px] font-medium tabular-nums text-[#9a9a9a]">
+                                    {i + 1}.
+                                </span>
+                                <span className="text-[15px] font-medium leading-[1.55] text-[#707070]">
+                                    {step}
+                                </span>
+                            </li>
+                        ))}
+                    </ol>
+                </section>
+            </div>
+
+            <footer className="text-sm  text-[#9a9a9a]">
+                Plan Viewer - A WeBuddhist Product
+            </footer>
+        </main>
     )
 }
 

@@ -1,6 +1,27 @@
 import { extractYouTubeId } from '@/lib/utils'
 import type { Subtask } from '@/types/plan'
 
+export const SourceReferenceContent = ({ content }: { content: string }) => {
+    const segments = content
+        .replace(/⤵/g, '<br />')
+        .split("\n")
+        .filter(Boolean)
+
+    return (
+        <div className="space-y-3">
+            {segments.map((text, index) => (
+                <div
+                    key={index}
+                    className="w-full font-serif min-h-12 whitespace-pre-wrap text-base p-3 border rounded-md bg-white"
+                >
+                    <span className="font-medium">{index + 1}. </span>
+                    <span dangerouslySetInnerHTML={{ __html: text }} />
+                </div>
+            ))}
+        </div>
+    )
+}
+
 export function SubtaskContent({ subtask }: { subtask: Subtask }) {
     switch (subtask.content_type) {
         case "TEXT":
@@ -49,23 +70,8 @@ export function SubtaskContent({ subtask }: { subtask: Subtask }) {
             )
         }
 
-        case "SOURCE_REFERENCE": {
-            const html = subtask.content.replace(/⤵/g, '<br />')
-            return (
-                <figure className="rounded-xl border border-[#ECECEC] bg-white p-5 sm:p-6">
-                    <div className="mb-3 flex items-center gap-2">
-                        <span className="h-px w-6 bg-[#ECECEC]" />
-                        <span className="text-[10px] uppercase tracking-[0.12em] text-[#9a9a9a]">
-                            Source
-                        </span>
-                    </div>
-                    <div
-                        className="prose font-serif prose-sm rich-html max-w-none text-[#3a3a3a]"
-                        dangerouslySetInnerHTML={{ __html: html }}
-                    />
-                </figure>
-            )
-        }
+        case "SOURCE_REFERENCE":
+            return <SourceReferenceContent content={subtask.content} />
 
         default:
             return (

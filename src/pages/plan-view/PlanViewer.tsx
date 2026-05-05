@@ -33,6 +33,7 @@ export function PlanViewer() {
     refetchOnWindowFocus: false,
   })
   const [calendarOpen, setCalendarOpen] = useState(false)
+  const [openTaskId, setOpenTaskId] = useState<string | null | undefined>()
 
   const resolvedDate = date ?? data?.date
   const currentDate = resolvedDate ? parseISO(resolvedDate) : new Date()
@@ -46,6 +47,7 @@ export function PlanViewer() {
     ? [...data.tasks].sort((a, b) => a.display_order - b.display_order)
     : []
 
+  const activeTaskId = openTaskId === undefined ? sortedTasks[0]?.id ?? null : openTaskId
   return (
     <main className="min-h-svh w-full bg-[#FAFAFA]">
       <div className="mx-auto max-w-[720px] px-5 py-10 sm:px-8 sm:py-16">
@@ -110,7 +112,15 @@ export function PlanViewer() {
         ) : data ? (
           <div className="space-y-4">
             {sortedTasks.map((task, idx) => (
-              <TaskSection key={task.id} task={task} index={idx + 1} />
+              <TaskSection
+                key={task.id}
+                task={task}
+                index={idx + 1}
+                isOpen={activeTaskId === task.id}
+                onToggle={() =>
+                  setOpenTaskId(activeTaskId === task.id ? null : task.id)
+                }
+              />
             ))}
           </div>
         ) : null}

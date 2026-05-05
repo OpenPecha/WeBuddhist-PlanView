@@ -7,13 +7,20 @@ import {
 } from "@/components/ui/atom/collapsible"
 import { ChevronDown } from "lucide-react"
 
-export function TaskSection({ task, index }: { task: Task; index?: number }) {
+interface TaskSectionProps {
+    task: Task
+    index?: number
+    isOpen?: boolean
+    onToggle?: () => void
+}
+
+export function TaskSection({ task, index, isOpen, onToggle }: TaskSectionProps) {
     const sortedSubtasks = [...task.subtasks].sort(
         (a, b) => a.display_order - b.display_order
     )
 
     return (
-        <Collapsible defaultOpen>
+        <Collapsible open={isOpen} onOpenChange={onToggle}>
             <CollapsibleTrigger className="group w-full">
                 <section className="flex items-baseline gap-3">
                     {typeof index === "number" && (
@@ -23,7 +30,7 @@ export function TaskSection({ task, index }: { task: Task; index?: number }) {
                     )}
                     <h2 className="flex items-center gap-2 font-serif text-xl tracking-[-0.01em] text-[#3D3D3A] sm:text-[22px]">
                         {task.title}
-                        <ChevronDown className="h-5 w-5 transition-transform duration-200 group-data-[state=closed]:-rotate-90" />
+                        <ChevronDown className="h-5 w-5 transition-transform duration-250 ease-out group-data-[state=closed]:-rotate-90" />
                     </h2>
                 </section>
             </CollapsibleTrigger>

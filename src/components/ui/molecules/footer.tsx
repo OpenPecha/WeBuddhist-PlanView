@@ -17,7 +17,7 @@ const Footer = () => {
     return (
         <footer className="w-full max-w-2xl mx-auto space-y-2 p-4 flex flex-col items-center justify-center">
             <p className="text-sm text-gray-400 tracking-wide text-center">
-                Explore more with WeBuddhist App
+                Get daily reminders with the WeBuddhist App
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full">

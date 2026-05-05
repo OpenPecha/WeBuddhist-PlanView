@@ -55,8 +55,8 @@ export function PlanViewer() {
   return (
     <main className="min-h-svh w-full bg-[#FAFAFA]">
       <div className="mx-auto max-w-[720px] px-5 py-10 sm:px-8 sm:py-16">
-        <header className="mb-12 z-60 p-2 sticky top-0 bg-[#FAFAFA] flex flex-col gap-8 after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-8 after:bg-linear-to-b after:from-[#FAFAFA] after:to-transparent">
-          <div className="flex items-start justify-between gap-4">
+        <header className="mb-12 z-60 sticky top-0 flex flex-col gap-8 bg-[#FAFAFA] p-2 after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-8 after:bg-linear-to-b after:from-[#FAFAFA] after:to-transparent">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div className="min-w-0 flex-1 space-y-2">
               {isLoading ? (
                 <>
@@ -65,11 +65,11 @@ export function PlanViewer() {
                 </>
               ) : data ? (
                 <>
-                  <h1 className="font-serif text-3xl text-[#3D3D3A]">
+                  <h1 className="font-serif text-2xl leading-tight text-[#3D3D3A] sm:text-3xl">
                     {/* {data.plan_title} */} Road to Tipitaka Chanting 2026
                   </h1>
                   <p className="text-sm tabular-nums text-[#9a9a9a]">
-                    Day {data.day_number} - 200
+                    Day {data.day_number} of 200
                     {/* {data.total_days} */}
                   </p>
                 </>
@@ -78,7 +78,7 @@ export function PlanViewer() {
             {!error && data && (
               <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
                 <PopoverTrigger asChild>
-                  <button className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-[#ECECEC] bg-white px-4 py-2 text-sm text-[#1a1a1a] transition-colors hover:bg-[#F2F2F2]">
+                  <button className="group inline-flex w-fit shrink-0 items-center gap-2 rounded-full border border-[#ECECEC] bg-white px-3 py-1.5 text-xs text-[#1a1a1a] transition-colors hover:bg-[#F2F2F2] sm:px-4 sm:py-2 sm:text-sm">
                     <span className="tabular-nums">{formattedDate}</span>
                     <ChevronDownIcon className="size-3.5 text-[#9a9a9a] transition-transform group-data-[state=open]:rotate-180" />
                   </button>

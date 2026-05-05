@@ -8,7 +8,7 @@ export const SourceReferenceContent = ({ content }: { content: string }) => {
         .filter(Boolean)
 
     return (
-        <div className="space-y-3">
+        <div className="space-y-1">
             {segments.map((text, index) => (
                 <div
                     key={index}

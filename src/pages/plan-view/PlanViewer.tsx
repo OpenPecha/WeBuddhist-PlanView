@@ -3,13 +3,14 @@ import { format, parseISO } from "date-fns"
 import { useQuery } from "@tanstack/react-query"
 import api from "@/lib/api"
 import type { PlanDay } from "@/types/plan"
-import { Calendar } from "@/components/ui/calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Calendar } from "@/components/ui/atom/calendar"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/atom/popover"
 import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon } from "lucide-react"
 import { useState } from "react"
 import { PlanViewerSkeleton } from "./micro-components/loader"
 import { TaskSection } from "./micro-components/TaskContent"
 import { ErrorState } from "./micro-components/Error"
+import Footer from "@/components/ui/molecules/footer"
 
 export const fetchPlanDay = async (
   planId: string,
@@ -158,6 +159,8 @@ export function PlanViewer() {
           </>
         )}
       </div>
+
+      <Footer />
     </main>
   )
 }

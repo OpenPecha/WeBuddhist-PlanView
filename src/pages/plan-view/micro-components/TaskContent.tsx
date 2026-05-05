@@ -4,7 +4,7 @@ import {
     Collapsible,
     CollapsibleContent,
     CollapsibleTrigger,
-} from "@/components/ui/collapsible"
+} from "@/components/ui/atom/collapsible"
 import { ChevronDown } from "lucide-react"
 
 export function TaskSection({ task, index }: { task: Task; index?: number }) {

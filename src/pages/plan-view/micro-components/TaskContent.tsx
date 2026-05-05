@@ -25,7 +25,7 @@ export function TaskSection({ task, index, isOpen, onToggle }: TaskSectionProps)
                 <section className="flex items-baseline gap-3">
                     {typeof index === "number" && (
                         <span className="font-serif text-sm tabular-nums text-[#9a9a9a]">
-                            {String(index).padStart(2, "0")}
+                            {String(index).padStart(1, "0")}
                         </span>
                     )}
                     <h2 className="flex items-center gap-2 text-xl tracking-[-0.01em] text-[#3D3D3A]">

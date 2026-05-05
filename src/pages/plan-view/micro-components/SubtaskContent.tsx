@@ -8,11 +8,11 @@ export const SourceReferenceContent = ({ content }: { content: string }) => {
         .filter(Boolean)
 
     return (
-        <div className="space-y-1">
+        <div className=" rounded-sm bg-white">
             {segments.map((text, index) => (
                 <div
                     key={index}
-                    className="w-full font-serif min-h-12 whitespace-pre-wrap text-base p-3 border rounded-md bg-white"
+                    className="w-full font-serif min-h-12 whitespace-pre-wrap text-base p-2"
                 >
                     <span className="font-medium">{index + 1}. </span>
                     <span dangerouslySetInnerHTML={{ __html: text }} />

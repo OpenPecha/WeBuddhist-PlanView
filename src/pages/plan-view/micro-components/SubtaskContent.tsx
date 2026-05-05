@@ -60,7 +60,7 @@ export function SubtaskContent({ subtask }: { subtask: Subtask }) {
                         </span>
                     </div>
                     <div
-                        className="prose prose-sm max-w-none text-[14px] leading-[1.7] text-[#3a3a3a] [&_a]:text-[#1a1a1a] [&_a]:underline [&_a]:underline-offset-4"
+                        className="prose prose-sm rich-html max-w-none leading-[1.7] text-[#3a3a3a]"
                         dangerouslySetInnerHTML={{ __html: html }}
                     />
                 </figure>

@@ -127,4 +127,11 @@
   html {
     @apply font-sans;
     }
+
+  .rich-html h1 { font-size: 2em; font-weight: bold; }
+  .rich-html h2 { font-size: 1.5em; font-weight: bold; }
+  .rich-html h3 { font-size: 1.17em; font-weight: bold; }
+  .rich-html h4 { font-size: 1em; font-weight: bold; }
+  .rich-html h5 { font-size: 0.83em; font-weight: bold; }
+  .rich-html h6 { font-size: 0.67em; font-weight: bold; }
 }

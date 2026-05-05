@@ -49,7 +49,8 @@ export function SubtaskContent({ subtask }: { subtask: Subtask }) {
             )
         }
 
-        case "SOURCE_REFERENCE":
+        case "SOURCE_REFERENCE": {
+            const html = subtask.content.replace(/⤵/g, '<br />')
             return (
                 <figure className="rounded-xl border border-[#ECECEC] bg-white p-5 sm:p-6">
                     <div className="mb-3 flex items-center gap-2">
@@ -60,10 +61,11 @@ export function SubtaskContent({ subtask }: { subtask: Subtask }) {
                     </div>
                     <div
                         className="prose prose-sm max-w-none text-[14px] leading-[1.7] text-[#3a3a3a] [&_a]:text-[#1a1a1a] [&_a]:underline [&_a]:underline-offset-4"
-                        dangerouslySetInnerHTML={{ __html: subtask.content }}
+                        dangerouslySetInnerHTML={{ __html: html }}
                     />
                 </figure>
             )
+        }
 
         default:
             return (

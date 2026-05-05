@@ -59,10 +59,10 @@ export function PlanViewer() {
           <div>
             <div className="min-w-0">
               {isLoading ? (
-                <>
+                <div className="space-y-2">
                   <div className="h-8 w-56 animate-pulse rounded-md bg-[#ECECEC]" />
                   <div className="h-4 w-24 animate-pulse rounded-md bg-[#ECECEC]" />
-                </>
+                </div>
               ) : data ? (
                 <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-3 gap-y-2 sm:gap-x-4">
                   <h1 className="col-span-2 col-start-1 row-start-1 font-serif text-2xl leading-tight text-[#3D3D3A] sm:col-span-1 sm:text-3xl">

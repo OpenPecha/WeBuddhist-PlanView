@@ -6,7 +6,7 @@ import type { PlanDay } from "@/types/plan"
 import { Calendar } from "@/components/ui/atom/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/atom/popover"
 import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { PlanViewerSkeleton } from "./micro-components/loader"
 import { TaskSection } from "./micro-components/TaskContent"
 import { ErrorState } from "./micro-components/Error"
@@ -38,6 +38,10 @@ export function PlanViewer() {
   const resolvedDate = date ?? data?.date
   const currentDate = resolvedDate ? parseISO(resolvedDate) : new Date()
   const formattedDate = format(currentDate, "MMMM d, yyyy")
+
+  useEffect(() => {
+    setOpenTaskId(undefined)
+  }, [data?.date])
 
   function navigateToDate(newDate: string) {
     navigate(`/${planId}/${newDate}`)

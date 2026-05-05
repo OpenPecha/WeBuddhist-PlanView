@@ -23,6 +23,7 @@ const Footer = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full">
                 {Distribution.map((item) => (
                     <a
+                        key={item.name}
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"

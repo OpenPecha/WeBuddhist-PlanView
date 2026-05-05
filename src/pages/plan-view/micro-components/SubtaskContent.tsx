@@ -26,7 +26,7 @@ export function SubtaskContent({ subtask }: { subtask: Subtask }) {
     switch (subtask.content_type) {
         case "TEXT":
             return (
-                <div className="whitespace-pre-wrap font-serif text-[15px] leading-[1.7] text-[#3a3a3a]">
+                <div className="whitespace-pre-wrap text-[15px] leading-[1.7] text-[#3a3a3a]">
                     {subtask.content}
                 </div>
             )

@@ -55,58 +55,60 @@ export function PlanViewer() {
   return (
     <main className="min-h-svh w-full bg-[#FAFAFA]">
       <div className="mx-auto max-w-[720px] px-5 py-10 sm:px-8 sm:py-16">
-        <header className="mb-12 z-60 sm:sticky sm:top-0 flex flex-col gap-8 bg-[#FAFAFA] p-2 after:pointer-events-none sm:after:absolute sm:after:inset-x-0 sm:after:top-full sm:after:h-8 sm:after:bg-linear-to-b sm:after:from-[#FAFAFA] sm:after:to-transparent">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-            <div className="min-w-0 flex-1 space-y-2">
+        <header className="sm:mb-12 mb-4 z-60 sm:sticky sm:top-0 flex flex-col gap-8 bg-[#FAFAFA] p-2 after:pointer-events-none sm:after:absolute sm:after:inset-x-0 sm:after:top-full sm:after:h-8 sm:after:bg-linear-to-b sm:after:from-[#FAFAFA] sm:after:to-transparent">
+          <div>
+            <div className="min-w-0">
               {isLoading ? (
                 <>
                   <div className="h-8 w-56 animate-pulse rounded-md bg-[#ECECEC]" />
                   <div className="h-4 w-24 animate-pulse rounded-md bg-[#ECECEC]" />
                 </>
               ) : data ? (
-                <>
-                  <h1 className="font-serif text-2xl leading-tight text-[#3D3D3A] sm:text-3xl">
+                <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-3 gap-y-2 sm:gap-x-4">
+                  <h1 className="col-span-2 col-start-1 row-start-1 font-serif text-2xl leading-tight text-[#3D3D3A] sm:col-span-1 sm:text-3xl">
                     {/* {data.plan_title} */} Road to Tipitaka Chanting 2026
                   </h1>
-                  <p className="text-sm tabular-nums text-[#9a9a9a]">
+                  <p className="col-start-1 row-start-2 text-sm tabular-nums text-[#9a9a9a]">
                     Day {data.day_number} of 200
                     {/* {data.total_days} */}
                   </p>
-                </>
+                  {!error && (
+                    <div className="col-start-2 row-start-2 self-center sm:row-start-1">
+                      <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
+                        <PopoverTrigger asChild>
+                          <button className="group inline-flex w-fit shrink-0 items-center gap-2 rounded-full border border-[#ECECEC] bg-white px-3 py-1.5 text-xs text-[#1a1a1a] transition-colors hover:bg-[#F2F2F2] sm:px-4 sm:py-2 sm:text-sm">
+                            <span className="tabular-nums">{formattedDate}</span>
+                            <ChevronDownIcon className="size-3.5 text-[#9a9a9a] transition-transform group-data-[state=open]:rotate-180" />
+                          </button>
+                        </PopoverTrigger>
+                        <PopoverContent
+                          className="w-auto rounded-2xl border-[#ECECEC] p-0 shadow-sm"
+                          align="end"
+                        >
+                          <Calendar
+                            mode="single"
+                            selected={currentDate}
+                            defaultMonth={currentDate}
+                            disabled={(d) => {
+                              if (!data) return false
+                              const start = parseISO(data.start_date)
+                              const end = parseISO(data.end_date)
+                              return d < start || d > end
+                            }}
+                            onSelect={(selectedDate) => {
+                              if (selectedDate) {
+                                navigateToDate(format(selectedDate, "yyyy-MM-dd"))
+                                setCalendarOpen(false)
+                              }
+                            }}
+                          />
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+                  )}
+                </div>
               ) : null}
             </div>
-            {!error && data && (
-              <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
-                <PopoverTrigger asChild>
-                  <button className="group inline-flex w-fit shrink-0 items-center gap-2 rounded-full border border-[#ECECEC] bg-white px-3 py-1.5 text-xs text-[#1a1a1a] transition-colors hover:bg-[#F2F2F2] sm:px-4 sm:py-2 sm:text-sm">
-                    <span className="tabular-nums">{formattedDate}</span>
-                    <ChevronDownIcon className="size-3.5 text-[#9a9a9a] transition-transform group-data-[state=open]:rotate-180" />
-                  </button>
-                </PopoverTrigger>
-                <PopoverContent
-                  className="w-auto rounded-2xl border-[#ECECEC] p-0 shadow-sm"
-                  align="end"
-                >
-                  <Calendar
-                    mode="single"
-                    selected={currentDate}
-                    defaultMonth={currentDate}
-                    disabled={(d) => {
-                      if (!data) return false
-                      const start = parseISO(data.start_date)
-                      const end = parseISO(data.end_date)
-                      return d < start || d > end
-                    }}
-                    onSelect={(selectedDate) => {
-                      if (selectedDate) {
-                        navigateToDate(format(selectedDate, "yyyy-MM-dd"))
-                        setCalendarOpen(false)
-                      }
-                    }}
-                  />
-                </PopoverContent>
-              </Popover>
-            )}
           </div>
         </header>
         {data && (

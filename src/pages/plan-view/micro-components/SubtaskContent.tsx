@@ -5,7 +5,7 @@ export function SubtaskContent({ subtask }: { subtask: Subtask }) {
     switch (subtask.content_type) {
         case "TEXT":
             return (
-                <div className="whitespace-pre-wrap text-[15px] leading-[1.7] text-[#3a3a3a]">
+                <div className="whitespace-pre-wrap font-serif text-[15px] leading-[1.7] text-[#3a3a3a]">
                     {subtask.content}
                 </div>
             )
@@ -60,7 +60,7 @@ export function SubtaskContent({ subtask }: { subtask: Subtask }) {
                         </span>
                     </div>
                     <div
-                        className="prose prose-sm rich-html max-w-none leading-[1.7] text-[#3a3a3a]"
+                        className="prose font-serif prose-sm rich-html max-w-none text-[#3a3a3a]"
                         dangerouslySetInnerHTML={{ __html: html }}
                     />
                 </figure>

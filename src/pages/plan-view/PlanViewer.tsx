@@ -61,11 +61,12 @@ export function PlanViewer() {
                 </>
               ) : data ? (
                 <>
-                  <h1 className="font-serif text-2xl text-[#3D3D3A]">
-                    {data.plan_title}
+                  <h1 className="font-serif text-3xl text-[#3D3D3A]">
+                    {/* {data.plan_title} */} Road to Tipitaka Chanting 2026
                   </h1>
                   <p className="text-sm tabular-nums text-[#9a9a9a]">
-                    Day {data.day_number} of {data.total_days}
+                    Day {data.day_number} - 200
+                    {/* {data.total_days} */}
                   </p>
                 </>
               ) : null}
@@ -104,7 +105,16 @@ export function PlanViewer() {
             )}
           </div>
         </header>
-
+        {data && (
+          <section className="mb-10 text-center">
+            <h1 className="font-serif text-2xl text-[#3D3D3A]">
+              Days 1-6: The Matrix
+            </h1>
+            {/* <p className="text-sm text-[#3D3D3A]">
+              Day {data.day_number} - {data.total_days}
+            </p> */}
+          </section>
+        )}
         {isLoading ? (
           <PlanViewerSkeleton />
         ) : error ? (

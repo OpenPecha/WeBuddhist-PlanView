@@ -28,7 +28,7 @@ export function TaskSection({ task, index, isOpen, onToggle }: TaskSectionProps)
                             {String(index).padStart(2, "0")}
                         </span>
                     )}
-                    <h2 className="flex items-center gap-2 font-serif text-xl tracking-[-0.01em] text-[#3D3D3A] sm:text-[22px]">
+                    <h2 className="flex items-center gap-2 text-xl tracking-[-0.01em] text-[#3D3D3A]">
                         {task.title}
                         <ChevronDown className="h-5 w-5 transition-transform duration-250 ease-out group-data-[state=closed]:-rotate-90" />
                     </h2>

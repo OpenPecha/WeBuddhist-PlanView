@@ -107,7 +107,7 @@ export function PlanViewer() {
         ) : error ? (
           <ErrorState error={error} />
         ) : data ? (
-          <div className="space-y-12 sm:space-y-16">
+          <div className="space-y-4">
             {sortedTasks.map((task, idx) => (
               <TaskSection key={task.id} task={task} index={idx + 1} />
             ))}

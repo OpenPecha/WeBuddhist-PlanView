@@ -1,5 +1,11 @@
 import { SubtaskContent } from "./SubtaskContent"
 import type { Task } from "@/types/plan"
+import {
+    Collapsible,
+    CollapsibleContent,
+    CollapsibleTrigger,
+} from "@/components/ui/collapsible"
+import { ChevronDown } from "lucide-react"
 
 export function TaskSection({ task, index }: { task: Task; index?: number }) {
     const sortedSubtasks = [...task.subtasks].sort(
@@ -7,22 +13,27 @@ export function TaskSection({ task, index }: { task: Task; index?: number }) {
     )
 
     return (
-        <section className="space-y-5">
-            <div className="flex items-baseline gap-3">
-                {typeof index === "number" && (
-                    <span className="font-serif text-sm tabular-nums text-[#9a9a9a]">
-                        {String(index).padStart(2, "0")}
-                    </span>
-                )}
-                <h2 className="font-serif text-xl tracking-[-0.01em] text-[#3D3D3A] sm:text-[22px]">
-                    {task.title}
-                </h2>
-            </div>
-            <div className="space-y-4 border-l border-[#ECECEC] pl-5 sm:pl-6">
-                {sortedSubtasks.map((subtask) => (
-                    <SubtaskContent key={subtask.id} subtask={subtask} />
-                ))}
-            </div>
-        </section>
+        <Collapsible defaultOpen>
+            <CollapsibleTrigger className="group w-full">
+                <section className="flex items-baseline gap-3">
+                    {typeof index === "number" && (
+                        <span className="font-serif text-sm tabular-nums text-[#9a9a9a]">
+                            {String(index).padStart(2, "0")}
+                        </span>
+                    )}
+                    <h2 className="flex items-center gap-2 font-serif text-xl tracking-[-0.01em] text-[#3D3D3A] sm:text-[22px]">
+                        {task.title}
+                        <ChevronDown className="h-5 w-5 transition-transform duration-200 group-data-[state=closed]:-rotate-90" />
+                    </h2>
+                </section>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+                <div className="space-y-4 border-l mt-4 border-[#ECECEC] pl-5 sm:pl-6">
+                    {sortedSubtasks.map((subtask) => (
+                        <SubtaskContent key={subtask.id} subtask={subtask} />
+                    ))}
+                </div>
+            </CollapsibleContent>
+        </Collapsible>
     )
 }

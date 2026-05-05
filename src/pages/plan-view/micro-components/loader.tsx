@@ -1,8 +1,8 @@
 export function PlanViewerSkeleton() {
     return (
-        <div className="space-y-12 sm:space-y-16">
+        <div className="space-y-4">
             {[0, 1].map((i) => (
-                <section key={i} className="space-y-5">
+                <section key={i}>
                     <div className="flex items-baseline gap-3">
                         <div className="h-4 w-6 animate-pulse rounded bg-[#ECECEC]" />
                         <div className="h-6 w-48 animate-pulse rounded bg-[#ECECEC]" />

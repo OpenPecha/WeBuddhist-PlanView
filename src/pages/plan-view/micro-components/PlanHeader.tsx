@@ -41,11 +41,10 @@ export function PlanHeader({
           ) : data ? (
             <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-3 gap-y-2 sm:gap-x-4">
               <h1 className="col-span-2 col-start-1 row-start-1 font-serif text-2xl leading-tight text-[#3D3D3A] sm:col-span-1 sm:text-3xl">
-                {/* {data.plan_title} */} Road to Tipitaka Chanting 2026
+                {data.series?.name.en}
               </h1>
               <p className="col-start-1 row-start-2 text-sm tabular-nums text-[#9a9a9a]">
-                Day {data.day_number} of 200
-                {/* {data.total_days} */}
+                Day {data.day_number}
               </p>
               {!hasError && (
                 <div className="col-start-2 row-start-2 self-center sm:row-start-1">

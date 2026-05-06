@@ -18,14 +18,26 @@ export interface Task {
   subtasks: Subtask[]
 }
 
+export interface PlanSeries {
+  id: string
+  name: Record<string, string>
+  image: {
+    thumbnail: string
+    medium: string
+    original: string
+  }
+}
+
 export interface PlanDay {
   image: {
     thumbnail: string
     medium: string
     original: string
   }
+  series?: PlanSeries
   plan_id: string
   plan_title: string
+  plan_description: string
   date: string
   day_number: number
   total_days: number

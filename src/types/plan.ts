@@ -19,6 +19,11 @@ export interface Task {
 }
 
 export interface PlanDay {
+  image: {
+    thumbnail: string
+    medium: string
+    original: string
+  }
   plan_id: string
   plan_title: string
   date: string

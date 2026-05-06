@@ -49,7 +49,8 @@ export function PlanViewer() {
           onNavigateToDate={navigateToDate}
         />
         {data && (
-          <section className="mb-10 text-center">
+          <section className="mb-10 space-y-2 text-center">
+            <img src={data.image.original} alt={data.plan_title} className=" rounded-lg" />
             <h1 className="font-serif text-2xl text-[#3D3D3A]">
               Days 1-6: The Matrix
             </h1>

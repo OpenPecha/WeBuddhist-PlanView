@@ -1,3 +1,5 @@
+import { useState } from "react"
+import { SCRIPTS, type PaliScript } from "pali_script_convertor"
 import { SubtaskContent } from "./subtask/SubtaskContent"
 import type { Task } from "@/types/plan"
 import {
@@ -5,16 +7,24 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/atom/accordion"
+import { PaliScriptDropdown } from "./PaliScriptDropdown"
 
 interface TaskSectionProps {
     task: Task
     index?: number
 }
 
+function isPaliTask(title: string): boolean {
+    return title.toLowerCase().includes("chanting in pali")
+}
+
 export function TaskSection({ task, index }: TaskSectionProps) {
     const sortedSubtasks = [...task.subtasks].sort(
         (a, b) => a.display_order - b.display_order
     )
+    const showScriptDropdown = isPaliTask(task.title)
+    const [script, setScript] = useState<PaliScript>(SCRIPTS.RO)
+    const targetScript = showScriptDropdown ? script : null
 
     return (
         <AccordionItem value={task.id} className="border-0">
@@ -31,8 +41,17 @@ export function TaskSection({ task, index }: TaskSectionProps) {
                 </section>
             </AccordionTrigger>
             <AccordionContent className="mt-4 space-y-2 border-l border-[#ECECEC] pl-5 sm:pl-6">
+                {showScriptDropdown && (
+                    <div className="flex justify-end items-center p-2">
+                        <PaliScriptDropdown value={script} onChange={setScript} />
+                    </div>
+                )}
                 {sortedSubtasks.map((subtask) => (
-                    <SubtaskContent key={subtask.id} subtask={subtask} />
+                    <SubtaskContent
+                        key={subtask.id}
+                        subtask={subtask}
+                        targetScript={targetScript}
+                    />
                 ))}
             </AccordionContent>
         </AccordionItem>

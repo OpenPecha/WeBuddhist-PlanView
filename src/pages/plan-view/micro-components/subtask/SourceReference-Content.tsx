@@ -1,8 +1,23 @@
-export function SourceReferenceContent({ content }: { content: string }) {
+import { convertPali, SCRIPTS, type PaliScript } from "pali_script_convertor"
+
+interface SourceReferenceContentProps {
+    content: string
+    targetScript?: PaliScript | null
+}
+
+export function SourceReferenceContent({
+    content,
+    targetScript = null,
+}: SourceReferenceContentProps) {
     const segments = content
         .replace(/⤵/g, '<br />')
         .split("\n")
         .filter(Boolean)
+
+    const render = (text: string) =>
+        targetScript && targetScript !== SCRIPTS.RO
+            ? convertPali(text, targetScript, SCRIPTS.RO)
+            : text
 
     return (
         <div className=" rounded-sm bg-white">
@@ -12,7 +27,7 @@ export function SourceReferenceContent({ content }: { content: string }) {
                     className="w-full font-serif min-h-12 whitespace-pre-wrap text-base p-2"
                 >
                     <span className="font-medium">{index + 1}. </span>
-                    <span dangerouslySetInnerHTML={{ __html: text }} />
+                    <span dangerouslySetInnerHTML={{ __html: render(text) }} />
                 </div>
             ))}
         </div>

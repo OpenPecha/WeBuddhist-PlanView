@@ -1,10 +1,16 @@
 import type { Subtask } from '@/types/plan'
+import type { PaliScript } from 'pali_script_convertor'
 import { SourceReferenceContent } from './SourceReference-Content'
 import { TextContent } from './Text-Content'
 import ImageContent from './Image-Content'
 import VideoContent from './Video-Content'
 
-export function SubtaskContent({ subtask }: { subtask: Subtask }) {
+interface SubtaskContentProps {
+    subtask: Subtask
+    targetScript?: PaliScript | null
+}
+
+export function SubtaskContent({ subtask, targetScript = null }: SubtaskContentProps) {
     switch (subtask.content_type) {
         case "TEXT":
             return <TextContent content={subtask.content} />
@@ -16,7 +22,12 @@ export function SubtaskContent({ subtask }: { subtask: Subtask }) {
             return <VideoContent content={subtask.content} />
 
         case "SOURCE_REFERENCE":
-            return <SourceReferenceContent content={subtask.content} />
+            return (
+                <SourceReferenceContent
+                    content={subtask.content}
+                    targetScript={targetScript}
+                />
+            )
 
         default:
             return (

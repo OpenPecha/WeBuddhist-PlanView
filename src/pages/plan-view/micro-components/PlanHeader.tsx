@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { format, parseISO } from "date-fns"
+import { differenceInCalendarDays, format, parseISO } from "date-fns"
+import { useQuery } from "@tanstack/react-query"
 import { ChevronDownIcon } from "lucide-react"
 import type { PlanDay } from "@/types/plan"
 import { Calendar } from "@/components/ui/atom/calendar"
@@ -8,6 +9,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/atom/popover"
+import { Progress } from "@/components/ui/atom/progress"
+import api from "@/lib/api"
 
 interface PlanHeaderProps {
   data?: PlanDay
@@ -15,6 +18,24 @@ interface PlanHeaderProps {
   hasError: boolean
   isLoading: boolean
   onNavigateToDate: (date: string) => void
+}
+
+interface SeriesPlanSummary {
+  id: string
+  display_order: number
+  start_date: string
+  total_days: number
+}
+
+interface Series {
+  id: string
+  total_days: number
+  plans: SeriesPlanSummary[]
+}
+
+export const fetchSeriesById = async (seriesId: string): Promise<Series> => {
+  const { data } = await api.get<Series>(`/api/v1/cms/series/${seriesId}`)
+  return data
 }
 
 export function PlanHeader({
@@ -29,9 +50,32 @@ export function PlanHeader({
   const currentDate = resolvedDate ? parseISO(resolvedDate) : new Date()
   const formattedDate = format(currentDate, "MMMM d, yyyy")
 
+  const seriesId = data?.series?.id
+  const { data: series } = useQuery({
+    queryKey: ["series", seriesId],
+    queryFn: () => fetchSeriesById(seriesId!),
+    enabled: !!seriesId,
+    refetchOnWindowFocus: false,
+  })
+
+  const seriesProgress = (() => {
+    if (!series?.plans?.length || !series.total_days) return null
+    const firstPlan = [...series.plans].sort(
+      (a, b) => a.display_order - b.display_order,
+    )[0]
+    const start = parseISO(firstPlan.start_date)
+    const totalDays = series.total_days
+    const currentDay = Math.min(
+      Math.max(differenceInCalendarDays(currentDate, start) + 1, 0),
+      totalDays,
+    )
+    const percent = (currentDay / totalDays) * 100
+    return { currentDay, totalDays, percent }
+  })()
+
   return (
-    <header className="sm:mb-12 mb-4 z-60 sm:sticky sm:top-0 flex flex-col gap-8 bg-[#FAFAFA] p-2 after:pointer-events-none sm:after:absolute sm:after:inset-x-0 sm:after:top-full sm:after:h-8 sm:after:bg-linear-to-b sm:after:from-[#FAFAFA] sm:after:to-transparent">
-      <div>
+    <header className="sm:mb-12 mb-4 flex flex-col gap-8 bg-[#FAFAFA] p-2">
+      <div className="flex flex-col gap-4">
         <div className="min-w-0">
           {isLoading ? (
             <div className="space-y-2">
@@ -82,6 +126,17 @@ export function PlanHeader({
             </div>
           ) : null}
         </div>
+        {seriesProgress && (
+          <div className="flex flex-col gap-1.5">
+            <div className="flex items-center justify-between text-xs tabular-nums text-[#9a9a9a]">
+              <span>
+                Day {seriesProgress.currentDay} of {seriesProgress.totalDays} Series
+              </span>
+              <span>{Math.round(seriesProgress.percent)}%</span>
+            </div>
+            <Progress value={seriesProgress.percent} />
+          </div>
+        )}
       </div>
     </header>
   )

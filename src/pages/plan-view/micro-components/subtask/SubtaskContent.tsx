@@ -1,5 +1,4 @@
 import type { Subtask } from '@/types/plan'
-import type { PaliScript } from 'pali_script_convertor'
 import { SourceReferenceContent } from './SourceReference-Content'
 import { TextContent } from './Text-Content'
 import ImageContent from './Image-Content'
@@ -7,7 +6,7 @@ import VideoContent from './Video-Content'
 
 interface SubtaskContentProps {
     subtask: Subtask
-    targetScript?: PaliScript | null
+    targetScript?: any
 }
 
 export function SubtaskContent({ subtask, targetScript = null }: SubtaskContentProps) {

@@ -1,4 +1,3 @@
-import { type PaliScript } from "pali_script_convertor"
 import {
     Select,
     SelectContent,
@@ -9,13 +8,13 @@ import {
 import { SCRIPT_LABELS } from "@/lib/constant"
 
 interface PaliScriptDropdownProps {
-    value: PaliScript
-    onChange: (next: PaliScript) => void
+    value: any
+    onChange: (next: any) => void
 }
 
 export function PaliScriptDropdown({ value, onChange }: PaliScriptDropdownProps) {
     return (
-        <Select value={value} onValueChange={(v) => onChange(v as PaliScript)}>
+        <Select value={value} onValueChange={(v) => onChange(v as any)}>
             <SelectTrigger className="min-w-32 ">
                 <SelectValue />
             </SelectTrigger>

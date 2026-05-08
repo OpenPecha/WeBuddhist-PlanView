@@ -1,8 +1,8 @@
-import { convertPali, SCRIPTS, type PaliScript } from "pali_script_convertor"
+import { convertPali, SCRIPTS } from "pali_script_convertor"
 
 interface SourceReferenceContentProps {
     content: string
-    targetScript?: PaliScript | null
+    targetScript?: any
 }
 
 export function SourceReferenceContent({

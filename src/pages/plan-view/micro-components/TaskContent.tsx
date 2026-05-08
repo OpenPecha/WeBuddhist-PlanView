@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { SCRIPTS, type PaliScript } from "pali_script_convertor"
+import { SCRIPTS } from "pali_script_convertor"
 import { SubtaskContent } from "./subtask/SubtaskContent"
 import type { Task } from "@/types/plan"
 import {
@@ -23,7 +23,7 @@ export function TaskSection({ task, index }: TaskSectionProps) {
         (a, b) => a.display_order - b.display_order
     )
     const showScriptDropdown = isPaliTask(task.title)
-    const [script, setScript] = useState<PaliScript>(SCRIPTS.RO)
+    const [script, setScript] = useState<any>(SCRIPTS.RO)
     const targetScript = showScriptDropdown ? script : null
 
     return (

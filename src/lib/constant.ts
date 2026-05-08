@@ -1,4 +1,4 @@
-import { SCRIPTS, type PaliScript } from "pali_script_convertor"
+import { SCRIPTS } from "pali_script_convertor"
 
 export const LANGUAGE = {
     en: "en",
@@ -7,7 +7,7 @@ export const LANGUAGE = {
 
 }
 
-export const SCRIPT_LABELS: Record<PaliScript, string> = {
+export const SCRIPT_LABELS: Record<any, string> = {
     [SCRIPTS.RO]: "Roman",
     [SCRIPTS.SI]: "Sinhala",
     [SCRIPTS.HI]: "Devanagari",

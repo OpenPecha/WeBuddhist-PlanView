@@ -1,5 +1,4 @@
 import { convertPali, SCRIPTS } from "pali_script_convertor"
-import { cn } from "@/lib/utils"
 
 interface SourceReferenceContentProps {
     content: string

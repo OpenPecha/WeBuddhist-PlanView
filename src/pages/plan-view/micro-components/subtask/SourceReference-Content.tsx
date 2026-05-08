@@ -39,7 +39,7 @@ export function SourceReferenceContent({
             {segments.map((text, index) => (
                 <div
                     key={index}
-                    className="w-full min-h-12 whitespace-pre-wrap text-base font-serif p-2"
+                    className="w-full min-h-12 whitespace-pre-wrap rich-html text-base font-serif p-2"
                 >
                     {!text.trim().startsWith("<h") && (
                         <span className="font-medium">{index + 1}. </span>

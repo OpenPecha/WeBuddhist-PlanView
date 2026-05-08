@@ -14,10 +14,25 @@ export function SourceReferenceContent({
         .split("\n")
         .filter(Boolean)
 
-    const render = (text: string) =>
-        targetScript && targetScript !== SCRIPTS.RO
-            ? convertPali(text, targetScript, SCRIPTS.RO)
-            : text
+    const extractTags = (html: string) => {
+        const tags = html.match(/<[^>]+>/g)
+        const content = html.replace(/<[^>]+>/g, "")
+        return { tags, content }
+    }
+    const render = (text: string) => {
+        const { tags, content } = extractTags(text)
+        if (tags?.length && tags.some(tag => tag.includes("br"))) {
+            return text.split("<br />").map((text) => {
+                return convertPali(text, targetScript, SCRIPTS.RO)
+            }).join("<br />")
+        }
+        if (tags?.length && tags.some(tag => tag.includes("h"))) {
+            const convertedtext = convertPali(content, targetScript, SCRIPTS.RO)
+            return `${tags[0]}${convertedtext}${tags[1]}`
+
+        }
+        return convertPali(content, targetScript, SCRIPTS.RO)
+    }
 
     return (
         <div className=" rounded-sm bg-white">

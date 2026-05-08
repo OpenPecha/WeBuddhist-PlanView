@@ -23,15 +23,15 @@ export function SourceReferenceContent({
         const { tags, content } = extractTags(text)
         if (tags?.length && tags.some(tag => tag.includes("br"))) {
             return text.split("<br />").map((text) => {
-                return convertPali(text, targetScript, SCRIPTS.RO)
+                return targetScript ? convertPali(text, targetScript, SCRIPTS.RO) : text
             }).join("<br />")
         }
         if (tags?.length && tags.some(tag => tag.includes("h"))) {
-            const convertedtext = convertPali(content, targetScript, SCRIPTS.RO)
+            const convertedtext = targetScript ? convertPali(content, targetScript, SCRIPTS.RO) : content
             return `${tags[0]}${convertedtext}${tags[1]}`
 
         }
-        return convertPali(content, targetScript, SCRIPTS.RO)
+        return targetScript ? convertPali(content, targetScript, SCRIPTS.RO) : content
     }
 
     return (

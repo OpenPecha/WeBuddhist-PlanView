@@ -1,4 +1,5 @@
 import { convertPali, SCRIPTS } from "pali_script_convertor"
+import { cn } from "@/lib/utils"
 
 interface SourceReferenceContentProps {
     content: string
@@ -39,10 +40,12 @@ export function SourceReferenceContent({
             {segments.map((text, index) => (
                 <div
                     key={index}
-                    className="w-full font-serif min-h-12 whitespace-pre-wrap text-base p-2"
+                    className="w-full min-h-12 whitespace-pre-wrap text-base font-serif p-2"
                 >
-                    <span className="font-medium">{index + 1}. </span>
-                    <span dangerouslySetInnerHTML={{ __html: render(text) }} />
+                    {!text.trim().startsWith("<h") && (
+                        <span className="font-medium">{index + 1}. </span>
+                    )}
+                    <span className={`${targetScript === "tb" && "tibetan-font"}`} dangerouslySetInnerHTML={{ __html: render(text) }} />
                 </div>
             ))}
         </div>

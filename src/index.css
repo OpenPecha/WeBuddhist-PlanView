@@ -3,6 +3,20 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
 
+@font-face {
+  font-family: "Jomolhari";
+  src: url("./assets/font/Jomolhari-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer utilities {
+  .tibetan-font {
+    font-family: "Jomolhari", ui-serif, serif;
+  }
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

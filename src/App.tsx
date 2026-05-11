@@ -4,7 +4,7 @@ import Homepage from "@/pages/home-page/Homepage"
 
 function App() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="bg-background text-foreground">
       <Routes>
         <Route path="/:planId/:date" element={<PlanViewer />} />
         <Route path="/:planId" element={<PlanViewer />} />

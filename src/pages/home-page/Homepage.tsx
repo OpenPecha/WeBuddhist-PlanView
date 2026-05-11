@@ -28,7 +28,7 @@ const Homepage = () => {
         setLanguage(newLanguage)
     }
     return (
-        <main className="w-full bg-[#FAFAFA]">
+        <main className=" max-w-[720px] mx-auto gap-4 flex flex-col">
             <div className="flex items-center gap-2 px-4 py-2">
                 <img src={logo} alt="logo" className="w-10 h-10" />
                 <p className="text-sm font-medium text-[#3D3D3A]">WeBuddhist </p>
@@ -51,13 +51,13 @@ const Homepage = () => {
                     </SelectItem>
                 </SelectContent>
             </Select>
-            <div className="flex flex-col gap-2">
+            <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {isLoading && <p>Loading tags...</p>}
                 {error && <p>Error loading tags</p>}
                 {data &&
                     data?.tags?.map((tag: string, index: number) => (
                         <div key={index}>
-                            <TagCard tag={tag} />
+                            <TagCard tag={tag} language={language} />
                         </div>
                     ))
                 }

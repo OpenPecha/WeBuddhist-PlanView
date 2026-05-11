@@ -1,9 +1,10 @@
 import logo from "@/assets/icon/pecha-icon.png"
-import { Separator } from "@/components/ui/separator"
+import { Separator } from "@/components/ui/atom/separator"
 import api from "@/lib/api"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/atom/select'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
+import TagCard from "@/components/ui/molecules/cards/tag-card"
 
 
 export const fetchTag = async (language: string) => {
@@ -56,7 +57,7 @@ const Homepage = () => {
                 {data &&
                     data?.tags?.map((tag: string, index: number) => (
                         <div key={index}>
-                            <p>{tag}</p>
+                            <TagCard tag={tag} />
                         </div>
                     ))
                 }

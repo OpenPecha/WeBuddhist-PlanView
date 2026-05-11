@@ -51,12 +51,9 @@ const PlanListing = () => {
                     Back to Tags
                 </Button>
 
-                <h1 className={`text-2xl font-bold mb-2 ${language === 'bo' ? 'tibetan-font' : ''}`}>
+                <h1 className={`text-xl mb-2 ${language === 'bo' ? 'tibetan-font' : ''}`}>
                     {tag}
                 </h1>
-                <p className="text-sm text-muted-foreground mb-6">
-                    {data?.total || 0} {data?.total === 1 ? 'plan' : 'plans'} available
-                </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">

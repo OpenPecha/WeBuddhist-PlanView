@@ -1,4 +1,4 @@
-import logo from "@/assets/icon/pecha-icon.png"
+import logo from "@/assets/icon/logo.png"
 import { Separator } from "@/components/ui/atom/separator"
 
 const Header = () => {

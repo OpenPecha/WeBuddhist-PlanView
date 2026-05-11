@@ -2,7 +2,8 @@ import logo from "@/assets/icon/pecha-icon.png"
 import { Separator } from "@/components/ui/separator"
 import api from "@/lib/api"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/atom/select'
-import { useMutation } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
+import { useState } from 'react'
 
 
 export const fetchTag = async (language: string) => {
@@ -15,20 +16,16 @@ export const fetchTag = async (language: string) => {
 }
 
 const Homepage = () => {
-    const mutation = useMutation({
-        mutationFn: fetchTag,
-        onSuccess: (data) => {
-            console.log('Tags fetched successfully:', data)
-        },
-        onError: (error) => {
-            console.error('Error fetching tags:', error)
-        }
+    const [language, setLanguage] = useState('en')
+
+    const { data, isLoading, error } = useQuery({
+        queryKey: ['tags', language],
+        queryFn: () => fetchTag(language),
     })
 
-    const handleLanguageChange = (language: string) => {
-        mutation.mutate(language)
+    const handleLanguageChange = (newLanguage: string) => {
+        setLanguage(newLanguage)
     }
-
     return (
         <main className="w-full bg-[#FAFAFA]">
             <div className="flex items-center gap-2 px-4 py-2">
@@ -37,7 +34,7 @@ const Homepage = () => {
                 <Separator orientation="vertical" />
                 <p className="text-sm text-[#3D3D3A]">Plan Viewer</p>
             </div>
-            <Select onValueChange={handleLanguageChange}>
+            <Select value={language} onValueChange={handleLanguageChange}>
                 <SelectTrigger className=' w-fit'>
                     <SelectValue placeholder="Select a language" />
                 </SelectTrigger>
@@ -53,6 +50,17 @@ const Homepage = () => {
                     </SelectItem>
                 </SelectContent>
             </Select>
+            <div className="flex flex-col gap-2">
+                {isLoading && <p>Loading tags...</p>}
+                {error && <p>Error loading tags</p>}
+                {data &&
+                    data?.tags?.map((tag: string, index: number) => (
+                        <div key={index}>
+                            <p>{tag}</p>
+                        </div>
+                    ))
+                }
+            </div>
         </main>
     )
 }

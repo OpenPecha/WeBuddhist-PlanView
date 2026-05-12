@@ -9,6 +9,7 @@ import Footer from "@/components/ui/molecules/footer"
 import { Accordion } from "@/components/ui/atom/accordion"
 import { PlanHeader } from "./micro-components/PlanHeader"
 import { PlanPagination } from "./micro-components/PlanPagination"
+import { PlanNavigation } from "./micro-components/PlanNavigation"
 
 export const fetchPlanDay = async (
   planId: string,
@@ -32,6 +33,10 @@ export function PlanViewer() {
   })
   function navigateToDate(newDate: string) {
     navigate(`/${planId}/${newDate}`)
+  }
+
+  function navigateToPlan(newPlanId: string) {
+    navigate(`/${newPlanId}`)
   }
 
   const sortedTasks = data
@@ -85,11 +90,18 @@ export function PlanViewer() {
         ) : null}
 
         {data && (
-          <PlanPagination
-            previousDate={data.previous_date}
-            nextDate={data.next_date}
-            onNavigateToDate={navigateToDate}
-          />
+          <>
+            <PlanPagination
+              previousDate={data.previous_date}
+              nextDate={data.next_date}
+              onNavigateToDate={navigateToDate}
+            />
+            <PlanNavigation
+              previousPlanId={data.previous_plan_id}
+              nextPlanId={data.next_plan_id}
+              onNavigateToPlan={navigateToPlan}
+            />
+          </>
         )}
       </div>
 

@@ -45,6 +45,8 @@ export interface PlanDay {
   end_date: string
   previous_date: string | null
   next_date: string | null
+  previous_plan_id: string | null
+  next_plan_id: string | null
   tasks: Task[]
 }
 

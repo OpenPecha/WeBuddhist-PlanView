@@ -87,9 +87,6 @@ export function PlanHeader({
               <h1 className="col-span-2 col-start-1 row-start-1 font-serif text-2xl leading-tight text-[#3D3D3A] sm:col-span-1 sm:text-3xl">
                 {data.series?.name.en}
               </h1>
-              <p className="col-start-1 row-start-2 text-sm tabular-nums text-[#9a9a9a]">
-                Day {data.day_number}
-              </p>
               {!hasError && (
                 <div className="col-start-2 row-start-2 self-center sm:row-start-1">
                   <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
@@ -130,7 +127,7 @@ export function PlanHeader({
           <div className="flex flex-col gap-1.5">
             <div className="flex items-center justify-between text-xs tabular-nums text-[#9a9a9a]">
               <span>
-                Day {seriesProgress.currentDay} of {seriesProgress.totalDays} Series
+                Day {seriesProgress.currentDay} of {seriesProgress.totalDays}
               </span>
               <span>{Math.round(seriesProgress.percent)}%</span>
             </div>

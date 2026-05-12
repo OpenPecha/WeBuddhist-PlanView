@@ -62,9 +62,15 @@ export function PlanViewer() {
                 className="w-full h-full object-cover object-top"
               />
             </div>
-            <h1 className="font-serif text-2xl text-[#3D3D3A]">
-              {data.plan_description}
-            </h1>
+            <div className="flex flex-col items-center">
+              <h1 className="font-serif text-2xl text-[#3D3D3A]">
+                {data.plan_description}
+              </h1>
+              <p className="text-sm text-[#9a9a9a]">
+                {data.plan_title}
+              </p>
+            </div>
+
           </section>
         )}
         {isLoading ? (

@@ -9,7 +9,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/plans" element={<PlanListing />} />
-        <Route path="/:planId/:date" element={<PlanViewer />} />
         <Route path="/:planId" element={<PlanViewer />} />
       </Routes>
     </div>

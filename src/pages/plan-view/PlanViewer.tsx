@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate, useSearchParams } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
 import api from "@/lib/api"
 import type { PlanDay } from "@/types/plan"
@@ -23,7 +23,9 @@ export const fetchPlanDay = async (
 }
 
 export function PlanViewer() {
-  const { planId, date } = useParams<{ planId: string; date?: string }>()
+  const [params,setParams]=useSearchParams()
+  const { planId} = useParams<{ planId: string; date?: string }>()
+  const date=params.get('date')
   const navigate = useNavigate()
   const { data, isLoading, error } = useQuery<PlanDay>({
     queryKey: ["planDay", planId, date],
@@ -33,7 +35,12 @@ export function PlanViewer() {
     refetchOnWindowFocus: false,
   })
   function navigateToDate(newDate: string) {
-    navigate(`/${planId}/${newDate}`)
+    setParams(prev=>
+    {
+      prev.set('date',newDate)
+      return prev
+    }
+    )
   }
 
   function navigateToPlan(newPlanId: string) {

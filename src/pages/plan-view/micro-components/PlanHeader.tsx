@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/atom/popover"
 import { Progress } from "@/components/ui/atom/progress"
 import api from "@/lib/api"
+import ShareButton from "./ShareButton"
 
 interface PlanHeaderProps {
   data?: PlanDay
@@ -73,6 +74,7 @@ export function PlanHeader({
     return { currentDay, totalDays, percent }
   })()
 
+
   return (
     <header className="sm:mb-12 mb-4 flex flex-col gap-8 bg-[#FAFAFA] p-2">
       <div className="flex flex-col gap-4">
@@ -84,9 +86,13 @@ export function PlanHeader({
             </div>
           ) : data ? (
             <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-3 gap-y-2 sm:gap-x-4">
+              <div className="flex items-center gap-2">
+
               <h1 className="col-span-2 col-start-1 row-start-1 font-serif text-2xl leading-tight text-[#3D3D3A] sm:col-span-1 sm:text-3xl">
-                {data.series?.name.en}
+                {data.series?.name.en} 
               </h1>
+              <ShareButton/>
+              </div>
               {!hasError && (
                 <div className="col-start-2 row-start-2 self-center sm:row-start-1">
                   <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>

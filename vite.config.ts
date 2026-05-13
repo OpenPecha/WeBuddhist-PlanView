@@ -7,6 +7,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "")
   const backendBaseUrl = env.VITE_BACKEND_BASE_URL
+  const shortUrlBase = env.VITE_SHORT_URL_BASE
   return {
     plugins: [react(), tailwindcss()],
     resolve: {
@@ -21,6 +22,11 @@ export default defineConfig(({ mode }) => {
         "/api": {
           target: backendBaseUrl,
           changeOrigin: true,
+        },
+        "/shortener": {
+          target: shortUrlBase,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/shortener/, ""),
         },
       },
     },

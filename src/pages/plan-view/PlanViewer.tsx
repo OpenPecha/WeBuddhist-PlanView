@@ -25,7 +25,7 @@ export const fetchPlanDay = async (
 export function PlanViewer() {
   const [params,setParams]=useSearchParams()
   const { planId} = useParams<{ planId: string; date?: string }>()
-  const date=params.get('date')
+  const date=params.get('date') ?? undefined
   const navigate = useNavigate()
   const { data, isLoading, error } = useQuery<PlanDay>({
     queryKey: ["planDay", planId, date],

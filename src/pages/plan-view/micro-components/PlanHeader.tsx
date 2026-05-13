@@ -12,6 +12,7 @@ import {
 import { Progress } from "@/components/ui/atom/progress"
 import api from "@/lib/api"
 import ShareButton from "./ShareButton"
+import { Button } from "@/components/ui/atom/button"
 
 interface PlanHeaderProps {
   data?: PlanDay
@@ -85,26 +86,30 @@ export function PlanHeader({
               <div className="h-4 w-24 animate-pulse rounded-md bg-[#ECECEC]" />
             </div>
           ) : data ? (
-            <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-3 gap-y-2 sm:gap-x-4">
-              <div className="flex items-center gap-2">
-
-                <h1 className="col-span-2 col-start-1 row-start-1 font-serif text-2xl leading-tight text-[#3D3D3A] sm:col-span-1 sm:text-3xl">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
+              <div className="flex items-center min-w-0">
+                <ShareButton />
+                <h1 className="font-serif text-xl leading-tight text-[#3D3D3A] sm:text-2xl lg:text-3xl">
                   {data.series?.name.en}
                 </h1>
-                <ShareButton />
               </div>
               {!hasError && (
-                <div className="col-start-2 row-start-2 self-center sm:row-start-1">
+                <div className="flex justify-end sm:justify-start">
                   <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
                     <PopoverTrigger asChild>
-                      <button className="group inline-flex w-fit shrink-0 items-center gap-2 rounded-full border border-[#ECECEC] bg-white px-3 py-1.5 text-xs text-[#1a1a1a] transition-colors hover:bg-[#F2F2F2] sm:px-4 sm:py-2 sm:text-sm">
-                        <span className="tabular-nums">{formattedDate}</span>
-                        <ChevronDownIcon className="size-3.5 text-[#9a9a9a] transition-transform group-data-[state=open]:rotate-180" />
-                      </button>
+                      <Button variant="outline" className="group shrink-0">
+                        <span className="tabular-nums text-sm">
+                          <span className="hidden sm:inline">{formattedDate}</span>
+                          <span className="sm:hidden">{format(currentDate, "MMM d, yyyy")}</span>
+                        </span>
+                        <ChevronDownIcon className="size-3.5 transition-transform group-data-[state=open]:rotate-180" />
+                      </Button>
                     </PopoverTrigger>
                     <PopoverContent
                       className="w-auto rounded-2xl border-[#ECECEC] p-0 shadow-sm"
                       align="end"
+                      side="bottom"
+                      sideOffset={8}
                     >
                       <Calendar
                         mode="single"

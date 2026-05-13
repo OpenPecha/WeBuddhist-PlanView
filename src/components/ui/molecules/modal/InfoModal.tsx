@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useQuery } from "@tanstack/react-query"
+import { useMutation } from "@tanstack/react-query"
 import { InfoIcon, Loader2, XIcon } from "lucide-react"
 import {
     Dialog,
@@ -14,32 +14,33 @@ import { Button } from "@/components/ui/atom/button"
 import api from "@/lib/api"
 import type { PlanDay } from "@/types/plan"
 
-interface InfoModalProps {
-    planId: string
-}
+const PLAN_ID = "d7857644-e0f1-4f54-ada6-a3d1a50b05a3"
 
-const fetchPlanInfo = async (planId: string): Promise<PlanDay> => {
-    const { data } = await api.get<PlanDay>(`/api/v1/plans/${planId}/daily`)
+const fetchPlanInfo = async (): Promise<PlanDay> => {
+    const { data } = await api.get<PlanDay>(`/api/v1/plans/${PLAN_ID}/daily`)
     return data
 }
 
-const InfoModal = ({ planId }: InfoModalProps) => {
+const InfoModal = () => {
     const [isOpen, setIsOpen] = useState(false)
 
-    const { data, error, isLoading } = useQuery<PlanDay>({
-        queryKey: ["planInfo", planId],
-        queryFn: () => fetchPlanInfo(planId),
-        enabled: isOpen,
-        staleTime: 5 * 60 * 1000,
-        refetchOnWindowFocus: false,
+    const { data, error, isPending, mutate } = useMutation<PlanDay>({
+        mutationFn: fetchPlanInfo,
     })
+
+    const handleOpenChange = (open: boolean) => {
+        setIsOpen(open)
+        if (open) {
+            mutate()
+        }
+    }
 
     const sortedTasks = data
         ? [...data.tasks].sort((a, b) => a.display_order - b.display_order)
         : []
 
     return (
-        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <Dialog open={isOpen} onOpenChange={handleOpenChange}>
             <DialogTrigger asChild>
                 <Button
                     variant="outline"
@@ -78,19 +79,19 @@ const InfoModal = ({ planId }: InfoModalProps) => {
                 </DialogHeader>
 
                 <div className="px-6 pb-8">
-                    {isLoading && (
+                    {isPending && (
                         <div className="flex items-center justify-center gap-2 py-12 text-sm text-muted-foreground">
                             <Loader2 className="size-4 animate-spin" />
                         </div>
                     )}
 
-                    {error && !isLoading && (
+                    {error && !isPending && (
                         <div className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
                             Failed to load plan information. Please try again.
                         </div>
                     )}
 
-                    {data && !isLoading && (
+                    {data && !isPending && (
                         <ul className="divide-y divide-gray-100">
                             {sortedTasks.map((task) => (
                                 <li key={task.id} className="py-5">

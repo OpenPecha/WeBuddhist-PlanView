@@ -11,14 +11,13 @@ function ShareButton() {
 
   const source = params.get('source')
   const date = params.get('date')
-
   async function sharePlan() {
     let link = shortUrlBase + "/api/v1/plan/" + planId;
     const paramsObj: Record<string, string> = {};
     if (source) paramsObj.source = source;
     if (date) paramsObj.date = date;
     const search = new URLSearchParams(paramsObj).toString();
-    if (search) link += `${source ? '' : '/'}?${search}`;
+    if (search) link += `?${search}`;
     try {
       if (navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(link);

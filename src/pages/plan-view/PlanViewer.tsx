@@ -10,6 +10,7 @@ import { Accordion } from "@/components/ui/atom/accordion"
 import { PlanHeader } from "./micro-components/PlanHeader"
 import { PlanPagination } from "./micro-components/PlanPagination"
 import { PlanNavigation } from "./micro-components/PlanNavigation"
+import InfoModal from "@/components/ui/molecules/modal/InfoModal"
 
 export const fetchPlanDay = async (
   planId: string,
@@ -112,6 +113,9 @@ export function PlanViewer() {
       </div>
 
       <Footer />
+      <div className="fixed bottom-4 right-4 z-40 sm:bottom-6 sm:right-6">
+        <InfoModal />
+      </div>
     </main>
   )
 }

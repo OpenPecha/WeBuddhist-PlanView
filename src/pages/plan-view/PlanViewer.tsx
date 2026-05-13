@@ -8,8 +8,7 @@ import { ErrorState } from "./micro-components/Error"
 import Footer from "@/components/ui/molecules/footer"
 import { Accordion } from "@/components/ui/atom/accordion"
 import { PlanHeader } from "./micro-components/PlanHeader"
-import { PlanPagination } from "./micro-components/PlanPagination"
-import { PlanNavigation } from "./micro-components/PlanNavigation"
+import { PlanFooterNav } from "./micro-components/PlanFooterNav"
 import InfoModal from "@/components/ui/molecules/modal/InfoModal"
 
 export const fetchPlanDay = async (
@@ -104,18 +103,14 @@ export function PlanViewer() {
         ) : null}
 
         {data && (
-          <>
-            <PlanPagination
-              previousDate={data.previous_date}
-              nextDate={data.next_date}
-              onNavigateToDate={navigateToDate}
-            />
-            <PlanNavigation
-              previousPlanId={data.previous_plan_id}
-              nextPlanId={data.next_plan_id}
-              onNavigateToPlan={navigateToPlan}
-            />
-          </>
+          <PlanFooterNav
+            previousDate={data.previous_date}
+            nextDate={data.next_date}
+            previousPlanId={data.previous_plan_id}
+            nextPlanId={data.next_plan_id}
+            onNavigateToDate={navigateToDate}
+            onNavigateToPlan={navigateToPlan}
+          />
         )}
       </div>
 

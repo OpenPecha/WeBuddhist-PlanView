@@ -28,9 +28,7 @@ function ShareButton() {
         if ((e as Error).name === 'AbortError') return;
     }   
   }
-  return (
-                <Button variant="ghost" size="icon"onClick={sharePlan} ><Share className="size-4" /></Button>
-  )
+  return <Button variant="ghost" size="icon"onClick={sharePlan} ><Share className="size-4" /></Button>
 }
 
 export default ShareButton

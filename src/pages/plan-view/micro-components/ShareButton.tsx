@@ -24,6 +24,9 @@ function ShareButton() {
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
       }
+      if (navigator.share) {
+        await navigator.share({ url: link, title: 'Plan' /* optional */ });
+      }
     } catch (e) {
       if ((e as Error).name === 'AbortError') return;
     }

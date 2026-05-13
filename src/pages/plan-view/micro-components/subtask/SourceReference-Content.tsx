@@ -35,7 +35,7 @@ export function SourceReferenceContent({
     }
 
     return (
-        <div className=" rounded-sm bg-white">
+        <div className=" rounded-sm bg-[#fbfbfb]">
             {segments.map((text, index) => (
                 <div
                     key={index}

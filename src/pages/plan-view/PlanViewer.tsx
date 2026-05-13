@@ -22,9 +22,9 @@ export const fetchPlanDay = async (
 }
 
 export function PlanViewer() {
-  const [params,setParams]=useSearchParams()
-  const { planId} = useParams<{ planId: string; date?: string }>()
-  const date=params.get('date') ?? undefined
+  const [params, setParams] = useSearchParams()
+  const { planId } = useParams<{ planId: string; date?: string }>()
+  const date = params.get('date') ?? undefined
   const navigate = useNavigate()
   const { data, isLoading, error } = useQuery<PlanDay>({
     queryKey: ["planDay", planId, date],
@@ -34,9 +34,8 @@ export function PlanViewer() {
     refetchOnWindowFocus: false,
   })
   function navigateToDate(newDate: string) {
-    setParams(prev=>
-    {
-      prev.set('date',newDate)
+    setParams(prev => {
+      prev.set('date', newDate)
       return prev
     }
     )
@@ -51,7 +50,7 @@ export function PlanViewer() {
     : []
 
   return (
-    <main className="min-h-svh w-full bg-[#FAFAFA]">
+    <main className="min-h-svh w-full">
       <div className="mx-auto max-w-[720px] px-5 py-10 sm:px-8 sm:py-16">
         <PlanHeader
           data={data}

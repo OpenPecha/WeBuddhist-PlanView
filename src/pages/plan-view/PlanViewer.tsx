@@ -88,7 +88,7 @@ export function PlanViewer() {
           <Accordion
             key={data.date}
             type="multiple"
-            defaultValue={sortedTasks[0]?.id}
+            // defaultValue={sortedTasks[0]?.id}
             className="space-y-4"
           >
             {sortedTasks.map((task, idx) => (

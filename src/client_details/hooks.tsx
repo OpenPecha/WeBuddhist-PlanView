@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAboutPlan, getDefaultImage, getPlanDay } from "./get_details";
+import { getAboutPlan, getClientDetails, getDefaultImage, getPlanDay } from "./get_details";
 import { useParams, useSearchParams } from "react-router-dom";
 
 export function useImageURLWithFallback(){
@@ -32,3 +32,14 @@ export function useAboutPlanWithFallback(isOpen: boolean){
     return {data,error,isLoading:isPending}
 
 } 
+
+export function useClientDetails(){
+    const [params] = useSearchParams()
+    const client = params.get('source') ?? undefined
+    const {data,error,isLoading:isPending}=useQuery({
+        queryKey:["client",client],
+        queryFn:()=>getClientDetails(client),
+        enabled:!!client
+    })
+    return {data,error,isLoading:isPending}
+}

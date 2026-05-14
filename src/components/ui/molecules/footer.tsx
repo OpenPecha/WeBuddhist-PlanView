@@ -1,4 +1,6 @@
+import { useClientDetails } from "@/client_details/hooks";
 import { AppleIcon, PlayStoreIcon } from "@/components/icons/icons"
+import { Button } from "../atom/button";
 
 const Distribution = [
     {
@@ -14,10 +16,19 @@ const Distribution = [
         href: "https://apps.apple.com/in/app/webuddhist/id6745810914",
     }
 ]
-
+const gif_link = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXJyeHFtbWsyeWhuOWpvNmZocTJxb3Nkc3VvYzBwOXQyMDRkN2l4ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/BTR0w5qkwakJBTXCcm/giphy.gif"
 const Footer = () => {
+    const {data,error,isLoading:isPending}=useClientDetails()
     return (
         <footer id="we_footer" className="w-max sm:mx-auto max-w-2xl  space-y-2 p-4 flex flex-col sm:items-center sm:justify-center">
+            {data?.sign_up && (
+                <a href={data.sign_up} target="_blank" rel="noopener noreferrer" className="w-[60vw] sm:w-max sm:mx-auto">
+                    <Button variant="secondary" size="lg" className="w-full">
+                        <img src={gif_link} alt="logo" className="w-4 h-4 mix-blend-multiply" />
+                        Join Us Now
+                    </Button>
+                </a>
+            )}
             <p className="text-sm text-gray-400 tracking-wide ">
                 Get daily reminders with the WeBuddhist App
             </p>

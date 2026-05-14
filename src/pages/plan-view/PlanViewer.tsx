@@ -44,7 +44,7 @@ export function PlanViewer() {
     : []
   return (
     <main className="h-[calc(100dvh - 64px)] overflow-y-auto w-full">
-      <div className="mx-auto max-w-[720px] px-5 py-10 sm:px-8 sm:py-16">
+      <div className="mx-auto max-w-[720px] px-5 pt-10 pb-2 sm:px-8 sm:py-16">
         <PlanHeader
           data={data}
           date={date}

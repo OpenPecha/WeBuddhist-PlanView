@@ -18,18 +18,17 @@ const Distribution = [
 const Footer = () => {
     const {data}=useClientDetails()
     return (
-        <footer id="we_footer" className="w-max sm:mx-auto max-w-2xl  space-y-2  flex flex-col sm:items-center sm:justify-center">
+        <footer id="we_footer" className="w-max mx-auto max-w-2xl  space-y-2  flex flex-col sm:items-center sm:justify-center">
             {data?.sign_up && (
-                <a href={data.sign_up} target="_blank" rel="noopener noreferrer" className="w-[177px] h-[40px] mb-20 sm:w-max sm:mx-auto">
-                    <div className="w-full h-full text-xl  bg-[#f66e00] font-[lato] hover:bg-[#f66e00]/80 flex items-center justify-center gap-2.5 px-6 py-2.5 text-white tracking-wide">
-                        Register for the Event in Bodhgaya </div>
+                <a href={data.sign_up} target="_blank" rel="noopener noreferrer" className=" text-center mt-10 sm:mt-0 md:h-[40px] text-white px-4 py-2 tracking-wide w-full h-[40px] mb-10 sm:mb-20 sm:w-max mx-auto md:text-xl  bg-[#f66e00] font-[lato] hover:bg-[#f66e00]/80">
+                        Register for the Event in Bodhgaya
                 </a>
             )}
             <p className="text-md text-gray-400 tracking-wide ">
                 Get daily reminders with the <span className="font-bold">WeBuddhist App</span>
             </p>
 
-            <div className="flex flex-col sm:flex-row pb-20 gap-2 sm:gap-2 w-full sm:items-center sm:justify-center">
+            <div className="flex flex-row flex-wrap pb-20 gap-2 sm:gap-2 w-full sm:items-center sm:justify-center">
                 {Distribution.map((item) => (
                     <a
                         key={item.name}

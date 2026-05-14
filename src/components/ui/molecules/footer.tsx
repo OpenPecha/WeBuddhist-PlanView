@@ -1,6 +1,5 @@
 import { useClientDetails } from "@/client_details/hooks";
 import { AppleIcon, PlayStoreIcon } from "@/components/icons/icons"
-import { Button } from "../atom/button";
 
 const Distribution = [
     {
@@ -16,7 +15,6 @@ const Distribution = [
         href: "https://apps.apple.com/in/app/webuddhist/id6745810914",
     }
 ]
-const gif_link = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXJyeHFtbWsyeWhuOWpvNmZocTJxb3Nkc3VvYzBwOXQyMDRkN2l4ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/BTR0w5qkwakJBTXCcm/giphy.gif"
 const Footer = () => {
     const {data}=useClientDetails()
     return (

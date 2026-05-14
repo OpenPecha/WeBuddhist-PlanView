@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { InfoIcon, Loader2, XIcon } from "lucide-react"
 import {
     Dialog,
     DialogClose,
     DialogContent,
-    DialogDescription,
     DialogHeader,
-    DialogTitle,
     DialogTrigger,
 } from "@/components/ui/atom/dialog"
 import { Button } from "@/components/ui/atom/button"
@@ -17,8 +15,7 @@ import { useAboutPlanWithFallback } from "@/client_details/hooks"
 
 const InfoModal = () => {
     const [isOpen, setIsOpen] = useState(false)
-    const [showAboutLabel, setShowAboutLabel] = useState(false)
-    const {data,error,isLoading:isPending}=useAboutPlanWithFallback(isOpen)
+    const {data,isLoading:isPending}=useAboutPlanWithFallback(isOpen)
    
     const handleOpenChange = (open: boolean) => {
         if(open){

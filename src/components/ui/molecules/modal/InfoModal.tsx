@@ -21,6 +21,11 @@ const InfoModal = () => {
     const {data,error,isLoading:isPending}=useAboutPlanWithFallback(isOpen)
    
     const handleOpenChange = (open: boolean) => {
+        if(open){
+              window.scroll({
+                top:0
+              })
+        }
         setIsOpen(open)
     }
     useEffect(() => {

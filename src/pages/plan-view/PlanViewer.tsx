@@ -10,16 +10,10 @@ import { Accordion } from "@/components/ui/atom/accordion"
 import { PlanHeader } from "./micro-components/PlanHeader"
 import { PlanFooterNav } from "./micro-components/PlanFooterNav"
 import InfoModal from "@/components/ui/molecules/modal/InfoModal"
+import { getDefaultImage, getPlanDay } from "@/client_details/get_details"
+import { useImageURLWithFallback } from "@/client_details/hooks"
 
-export const fetchPlanDay = async (
-  planId: string,
-  date?: string
-): Promise<PlanDay> => {
-  const { data } = await api.get<PlanDay>(`/api/v1/plans/${planId}/daily`, {
-    params: date ? { date } : undefined,
-  })
-  return data
-}
+
 
 export function PlanViewer() {
   const [params, setParams] = useSearchParams()
@@ -28,11 +22,13 @@ export function PlanViewer() {
   const navigate = useNavigate()
   const { data, isLoading, error } = useQuery<PlanDay>({
     queryKey: ["planDay", planId, date],
-    queryFn: () => fetchPlanDay(planId!, date),
+    queryFn: () => getPlanDay(planId!, date),
     enabled: !!planId,
     retry: false,
     refetchOnWindowFocus: false,
   })
+  const imageURL=useImageURLWithFallback()
+
   function navigateToDate(newDate: string) {
     setParams(prev => {
       prev.set('date', newDate)
@@ -44,11 +40,9 @@ export function PlanViewer() {
   function navigateToPlan(newPlanId: string) {
     navigate(`/${newPlanId}`)
   }
-
   const sortedTasks = data
     ? [...data.tasks].sort((a, b) => a.display_order - b.display_order)
     : []
-
   return (
     <main className="min-h-svh w-full">
       <div className="mx-auto max-w-[720px] px-5 py-10 sm:px-8 sm:py-16">
@@ -63,7 +57,7 @@ export function PlanViewer() {
           <section className="mb-10 space-y-4 text-center">
             <div className="w-full md:h-80 h-48 overflow-hidden rounded-lg">
               <img
-                src={data.image.original}
+                src={imageURL}
                 alt={data.plan_title}
                 className="w-full h-full object-cover object-top"
               />

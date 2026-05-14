@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQuery } from "@tanstack/react-query"
 import { InfoIcon, Loader2, XIcon } from "lucide-react"
 import {
     Dialog,
@@ -11,31 +11,19 @@ import {
     DialogTrigger,
 } from "@/components/ui/atom/dialog"
 import { Button } from "@/components/ui/atom/button"
-import api from "@/lib/api"
-import type { PlanDay } from "@/types/plan"
+import { useAboutPlanWithFallback } from "@/client_details/hooks"
 
-const PLAN_ID = "d7857644-e0f1-4f54-ada6-a3d1a50b05a3"
 
-const fetchPlanInfo = async (): Promise<PlanDay> => {
-    const { data } = await api.get<PlanDay>(`/api/v1/plans/${PLAN_ID}/daily`)
-    return data
-}
+
 
 const InfoModal = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [showAboutLabel, setShowAboutLabel] = useState(false)
-
-    const { data, error, isPending, mutate } = useMutation<PlanDay>({
-        mutationFn: fetchPlanInfo,
-    })
-
+    const {data,error,isLoading:isPending}=useAboutPlanWithFallback(isOpen)
+   
     const handleOpenChange = (open: boolean) => {
         setIsOpen(open)
-        if (open) {
-            mutate()
-        }
     }
-
     useEffect(() => {
         const footer = document.querySelector("#we_footer")
 
@@ -78,7 +66,7 @@ const InfoModal = () => {
                 className="sm:min-w-3xl rounded-none sm:rounded-lg w-full h-screen sm:h-[90vh] overflow-y-auto max-w-full sm:max-w-3xl p-0"
             >
                 <DialogHeader className="sticky top-0 z-10 border-b bg-popover ">
-                    <img src={data?.image.original} alt={data?.plan_title} className="w-full h-full object-cover rounded-br-2xl" />
+                    <img src={data?.image.original} alt={data?.plan_title} className="w-full h-full max-h-96 object-cover rounded-br-2xl" />
                     <div className="absolute bottom-0 left-0 right-0 p-4 bg-black/20 backdrop-blur-sm ">
 
                     <DialogTitle className="font-serif text-lg">

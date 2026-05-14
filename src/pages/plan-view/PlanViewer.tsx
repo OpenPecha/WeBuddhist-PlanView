@@ -43,7 +43,7 @@ export function PlanViewer() {
     ? [...data.tasks].sort((a, b) => a.display_order - b.display_order)
     : []
   return (
-    <main className="h-[calc(100dvh - 64px)] overflow-y-auto w-full">
+    <main className="h-[calc(100dvh - 150px)] overflow-y-auto w-full">
       <div className="mx-auto max-w-[720px] px-5 pt-10 pb-2 sm:px-8 sm:py-16">
         <PlanHeader
           data={data}

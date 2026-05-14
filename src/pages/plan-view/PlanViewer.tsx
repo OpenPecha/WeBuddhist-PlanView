@@ -8,6 +8,7 @@ import Footer from "@/components/ui/molecules/footer"
 import { Accordion } from "@/components/ui/atom/accordion"
 import { PlanHeader } from "./micro-components/PlanHeader"
 import { PlanFooterNav } from "./micro-components/PlanFooterNav"
+import InfoModal from "@/components/ui/molecules/modal/InfoModal"
 import {  getPlanDay } from "@/client_details/get_details"
 import { useImageURLWithFallback } from "@/client_details/hooks"
 
@@ -38,21 +39,13 @@ export function PlanViewer() {
     }
     )
   }
-  async function navigateToPlan(newPlanId: string) {
-    try {
-      const targetPlan = await getPlanDay(newPlanId)
-      window.scrollTo({
-        top:0,
-        behavior:'smooth'
-      })
-      navigate(`/${newPlanId}?date=${targetPlan.end_date}`)
-    } catch {
-      window.scrollTo({
-        top:0,
-        behavior:'smooth'
-      })
-      navigate(`/${newPlanId}`)
-    }
+console.log(date)
+  function navigateToPlan(newPlanId: string) {
+    window.scrollTo({
+      top:0,
+      behavior:'smooth'
+    })
+    navigate(`/${newPlanId}`)
   }
   const sortedTasks = data
     ? [...data.tasks].sort((a, b) => a.display_order - b.display_order)
@@ -95,7 +88,7 @@ export function PlanViewer() {
           <Accordion
             key={data.date}
             type="multiple"
-            // defaultValue={sortedTasks[0]?.id}
+            defaultValue={sortedTasks[0] ? [sortedTasks[0].id] : []}
             className="space-y-4"
           >
             {sortedTasks.map((task, idx) => (
@@ -121,7 +114,11 @@ export function PlanViewer() {
       </div>
 
       <Footer />
-   
+      {planId && (
+        <div className="fixed bottom-4 right-4 z-40 sm:bottom-2 sm:right-2">
+          <InfoModal />
+        </div>
+      )}
     </main>
   )
 }

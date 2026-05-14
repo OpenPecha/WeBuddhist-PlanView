@@ -28,24 +28,7 @@ const InfoModal = () => {
         }
         setIsOpen(open)
     }
-    useEffect(() => {
-        const footer = document.querySelector("#we_footer")
-
-        if (!footer) return
-
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                setShowAboutLabel(entry.isIntersecting)
-            },
-            { threshold: 0.25 }
-        )
-
-        observer.observe(footer)
-
-        return () => {
-            observer.disconnect()
-        }
-    }, [])
+  
 
 
     const sortedTasks = data
@@ -55,30 +38,17 @@ const InfoModal = () => {
     return (
         <Dialog open={isOpen} onOpenChange={handleOpenChange}>
             <DialogTrigger asChild>
-                <div className='flex pl-2 items-center gap-2 cursor-pointer text-xs'>
-                    <InfoIcon className="size-3 text-gray-600" />
-                    {showAboutLabel && <span>How It Works</span>}
+                <div className='flex pl-2 items-center gap-1 cursor-pointer text-xs hover:underline'>
+                    <InfoIcon className="size-3 text-[#9a9a9a]" />
+                    <span className="text-[#9a9a9a] ">How it works</span>
                 </div>
             </DialogTrigger>
             <DialogContent
                 showCloseButton={false}
-                className="sm:min-w-3xl rounded-none sm:rounded-lg w-full h-screen sm:h-[90vh] overflow-y-auto max-w-full sm:max-w-3xl p-0"
+                className="sm:min-w-3xl rounded-none sm:rounded-lg w-full h-screen sm:h-max overflow-y-auto max-w-full sm:max-w-3xl p-0"
             >
                 <DialogHeader className="sticky top-0 z-10 border-b bg-popover ">
-                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-black/20 backdrop-blur-sm ">
-
-                    <DialogTitle className="font-serif text-lg">
-                        {data?.plan_description ?? "Plan information"}
-                    </DialogTitle>
-                    <DialogDescription className="sr-only">
-                        Detailed information about the tasks in this plan.
-                    </DialogDescription>
-                    {data?.plan_title && (
-                        <p className="text-xs text-gray-800">
-                            {data.plan_title}
-                        </p>
-                    )}
-                    </div>
+                   
                     <DialogClose asChild>
                         <Button
                             variant="ghost"
@@ -97,13 +67,6 @@ const InfoModal = () => {
                             <Loader2 className="size-4 animate-spin" />
                         </div>
                     )}
-
-                    {error && !isPending && (
-                        <div className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-                            Failed to load plan information. Please try again.
-                        </div>
-                    )}
-
                     {data && !isPending && (
                         <ul className="divide-y divide-gray-100">
                             {sortedTasks.map((task) => (

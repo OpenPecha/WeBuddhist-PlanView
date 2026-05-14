@@ -20,32 +20,30 @@ const gif_link = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXJyeHFtbWsy
 const Footer = () => {
     const {data}=useClientDetails()
     return (
-        <footer id="we_footer" className="w-max sm:mx-auto max-w-2xl  space-y-2 p-4 flex flex-col sm:items-center sm:justify-center">
+        <footer id="we_footer" className="w-max sm:mx-auto max-w-2xl  space-y-2  flex flex-col sm:items-center sm:justify-center">
             {data?.sign_up && (
-                <a href={data.sign_up} target="_blank" rel="noopener noreferrer" className="w-[60vw] sm:w-max sm:mx-auto">
-                    <Button variant="secondary" size="lg" className="w-full">
-                        <img src={gif_link} alt="logo" className="w-4 h-4 mix-blend-multiply" />
-                        Join Us Now
-                    </Button>
+                <a href={data.sign_up} target="_blank" rel="noopener noreferrer" className="w-[177px] h-[40px] mb-20 sm:w-max sm:mx-auto">
+                    <div className="w-full h-full text-xl  bg-[#f66e00] font-[lato] hover:bg-[#f66e00]/80 flex items-center justify-center gap-2.5 px-6 py-2.5 text-white tracking-wide">
+                        Register for the Event in Bodhgaya </div>
                 </a>
             )}
-            <p className="text-sm text-gray-400 tracking-wide ">
-                Get daily reminders with the WeBuddhist App
+            <p className="text-md text-gray-400 tracking-wide ">
+                Get daily reminders with the <span className="font-bold">WeBuddhist App</span>
             </p>
 
-            <div className="flex flex-col sm:flex-row  gap-2 sm:gap-6 w-full sm:items-center sm:justify-center">
+            <div className="flex flex-col sm:flex-row pb-20 gap-2 sm:gap-2 w-full sm:items-center sm:justify-center">
                 {Distribution.map((item) => (
                     <a
                         key={item.name}
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex w-max items-center shadow-sm border border-gray-200 rounded-full gap-2.5 px-6 py-2.5 text-gray-600 hover:text-gray-800 hover:border-gray-300 hover:bg-gray-50/50 transition-all duration-300 text-sm tracking-wide"
+                        className="flex w-max items-center border border-gray-300  rounded-full gap-2.5 px-4 py-1 text-gray-500 hover:text-gray-800 hover:border-gray-300 hover:bg-gray-50/50 transition-all duration-300 text-sm tracking-wide"
                     >
                         {item.icon}
                         <div className="flex flex-col">
                         <span className="text-xs text-gray-400 uppercase">{item.description}</span>
-                        <span className="text-sm font-bold">{item.name}</span>
+                        <span className="text-sm ">{item.name}</span>
                         </div>
                     </a>
                 ))}

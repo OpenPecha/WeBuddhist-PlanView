@@ -93,7 +93,7 @@ export function PlanHeader({
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
               <div className="flex items-center min-w-0">
                 <h1 className="font-serif text-xl leading-tight text-[#3D3D3A] sm:text-2xl lg:text-3xl">
-                  <span className="flex flex-col gap-1">
+                  <span className="flex flex-col gap-1 font-[lato]">
                     {description}
                   </span>
                 </h1>
@@ -143,7 +143,7 @@ export function PlanHeader({
         </div>
         {seriesProgress && (
           <div className="flex flex-col gap-1.5">
-            <div className="flex items-center justify-between text-xs tabular-nums text-[#9a9a9a]">
+            <div className="flex items-center gap-2 justify-between text-xs tabular-nums text-[#9a9a9a]">
               <div className='flex-1'>
                 <div className="flex items-center justify-between">
                 <span>

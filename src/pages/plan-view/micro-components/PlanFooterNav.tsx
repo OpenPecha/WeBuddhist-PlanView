@@ -33,7 +33,7 @@ export function PlanFooterNav({
               onClick={() => onNavigateToPlan(previousPlanId)}
             >
               <ChevronLeftIcon className="size-4" />
-              Previous Plan
+              Previous
             </Button>
           )}
           {previousDate && (
@@ -65,7 +65,7 @@ export function PlanFooterNav({
               className="cursor-pointer"
               onClick={() => onNavigateToPlan(nextPlanId)}
             >
-              Next Plan
+              Next
               <ChevronRightIcon className="size-4" />
             </Button>
           )}

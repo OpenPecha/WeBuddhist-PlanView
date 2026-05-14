@@ -13,6 +13,7 @@ import { Progress } from "@/components/ui/atom/progress"
 import api from "@/lib/api"
 import ShareButton from "./ShareButton"
 import { Button } from "@/components/ui/atom/button"
+import InfoModal from "@/components/ui/molecules/modal/InfoModal"
 
 interface PlanHeaderProps {
   data?: PlanDay
@@ -63,7 +64,7 @@ export function PlanHeader({
     if (!series?.plans?.length || !series.total_days) return null
     const firstPlan = [...series.plans].sort(
       (a, b) => a.display_order - b.display_order,
-    )[0]
+    )[1]
     const start = parseISO(firstPlan.start_date)
     const totalDays = series.total_days
     const currentDay = Math.min(
@@ -74,10 +75,14 @@ export function PlanHeader({
     return { currentDay, totalDays, percent }
   })()
 
+  const [title, description] = data?.series?.name.en.split("->") || []
+  const fakeTotalDays = 200
   return (
     <header className="sm:mb-12 mb-4 flex flex-col gap-8 p-2">
       <div className="flex flex-col gap-4">
         <div className="min-w-0">
+          <div className="text-[43px] font-[Lato] font-bold text-[#3D3D3A] text-center pb-20">{title}</div>
+
           {isLoading && (
             <div className="space-y-2">
               <div className="h-8 w-56 animate-pulse rounded-md bg-[#ECECEC]" />
@@ -88,7 +93,9 @@ export function PlanHeader({
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
               <div className="flex items-center min-w-0">
                 <h1 className="font-serif text-xl leading-tight text-[#3D3D3A] sm:text-2xl lg:text-3xl">
-                  {data.series?.name.en}
+                  <span className="flex flex-col gap-1">
+                    {description}
+                  </span>
                 </h1>
               </div>
               {!hasError && (
@@ -137,14 +144,23 @@ export function PlanHeader({
         {seriesProgress && (
           <div className="flex flex-col gap-1.5">
             <div className="flex items-center justify-between text-xs tabular-nums text-[#9a9a9a]">
-              <span>
-                Day {seriesProgress.currentDay} of {seriesProgress.totalDays}
-              </span>
-              <span>{Math.round(seriesProgress.percent)}%</span>
-            </div>
-            <Progress value={seriesProgress.percent} />
+              <div className='flex-1'>
+                <div className="flex items-center justify-between">
+                <span>
+                  Day {seriesProgress.currentDay} of {fakeTotalDays}
+                </span>
+                <span>{Math.round(seriesProgress.percent)}%</span>
+                 </div>
+               <Progress value={seriesProgress.percent} />
+              </div>
+              <div className="w-max">
+                <InfoModal />
+              </div>
+              </div>
+
           </div>
         )}
+
       </div>
     </header>
   )

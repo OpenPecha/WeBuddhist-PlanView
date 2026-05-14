@@ -39,13 +39,21 @@ export function PlanViewer() {
     }
     )
   }
-
-  function navigateToPlan(newPlanId: string) {
-    window.scrollTo({
-      top:0,
-      behavior:'smooth'
-    })
-    navigate(`/${newPlanId}`)
+  async function navigateToPlan(newPlanId: string) {
+    try {
+      const targetPlan = await getPlanDay(newPlanId)
+      window.scrollTo({
+        top:0,
+        behavior:'smooth'
+      })
+      navigate(`/${newPlanId}?date=${targetPlan.end_date}`)
+    } catch {
+      window.scrollTo({
+        top:0,
+        behavior:'smooth'
+      })
+      navigate(`/${newPlanId}`)
+    }
   }
   const sortedTasks = data
     ? [...data.tasks].sort((a, b) => a.display_order - b.display_order)
@@ -114,11 +122,7 @@ export function PlanViewer() {
       </div>
 
       <Footer />
-      {planId && (
-        <div className="fixed bottom-4 right-4 z-40 sm:bottom-2 sm:right-2">
-          <InfoModal />
-        </div>
-      )}
+   
     </main>
   )
 }

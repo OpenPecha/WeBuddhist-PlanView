@@ -55,15 +55,10 @@ const InfoModal = () => {
     return (
         <Dialog open={isOpen} onOpenChange={handleOpenChange}>
             <DialogTrigger asChild>
-                <Button
-                    variant="outline"
-                    size={showAboutLabel ? "default" : "icon"}
-                    aria-label={showAboutLabel ? "Open about modal" : "Open plan information"}
-                    className={showAboutLabel ? "gap-2 px-3" : undefined}
-                >
-                    <InfoIcon className="size-4 text-gray-600" />
-                    {showAboutLabel && <span>About</span>}
-                </Button>
+                <div className='flex pl-2 items-center gap-2 cursor-pointer text-xs'>
+                    <InfoIcon className="size-3 text-gray-600" />
+                    {showAboutLabel && <span>How It Works</span>}
+                </div>
             </DialogTrigger>
             <DialogContent
                 showCloseButton={false}

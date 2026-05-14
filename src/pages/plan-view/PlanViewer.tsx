@@ -11,7 +11,7 @@ import { PlanFooterNav } from "./micro-components/PlanFooterNav"
 import InfoModal from "@/components/ui/molecules/modal/InfoModal"
 import {  getPlanDay } from "@/client_details/get_details"
 import { useImageURLWithFallback } from "@/client_details/hooks"
-import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
+import {  isMobile } from 'react-device-detect';
 
 
 export function PlanViewer() {
@@ -50,6 +50,10 @@ console.log(date)
   const sortedTasks = data
     ? [...data.tasks].sort((a, b) => a.display_order - b.display_order)
     : []
+  const firstTaskId = sortedTasks[0]?.id
+  const accordionProps = isMobile
+    ? { type: "multiple" as const, defaultValue: firstTaskId ? [firstTaskId] : [] }
+    : { type: "single" as const, defaultValue: firstTaskId,collapsible: true }
   return (
     <main className="h-[calc(100dvh - 150px)] overflow-y-auto w-full">
       <div className="mx-auto max-w-[720px] px-5 pt-10 pb-2 sm:px-8 sm:py-16">
@@ -80,16 +84,14 @@ console.log(date)
 
           </section>
         )}
-        {isLoading ? (
-          <PlanViewerSkeleton />
-        ) : error ? (
-          <ErrorState error={error} />
-        ) : data ? (
+        {isLoading && (
+          <PlanViewerSkeleton />)}
+          { error && <ErrorState error={error} />}
+        { data && (
           <Accordion
             key={data.date}
-            type={!isMobile ? "single" : "multiple"}
-            defaultValue={!isMobile ? sortedTasks[0]?.id : sortedTasks[0] ? [sortedTasks[0].id] : []}
             className="space-y-4"
+            {...accordionProps}
           >
             {sortedTasks.map((task, idx) => (
               <TaskSection
@@ -99,7 +101,7 @@ console.log(date)
               />
             ))}
           </Accordion>
-        ) : null}
+        )}
 
         {data && (
           <PlanFooterNav

@@ -94,7 +94,7 @@ export function PlanHeader({
               </div>
               {!hasError && (
                 <div className="flex justify-end sm:justify-start">
-                <ShareButton />
+                  <ShareButton />
 
                   <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
                     <PopoverTrigger asChild>

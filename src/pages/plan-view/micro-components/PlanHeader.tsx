@@ -36,7 +36,7 @@ interface Series {
 }
 
 export const fetchSeriesById = async (seriesId: string): Promise<Series> => {
-  const { data } = await api.get<Series>(`/api/v1/cms/series/${seriesId}`)
+  const { data } = await api.get<Series>(`/api/v1/series/${seriesId}`)
   return data
 }
 
@@ -95,7 +95,7 @@ export function PlanHeader({
               </div>
               {!hasError && (
                 <div className="flex justify-end sm:justify-start">
-                <ShareButton />
+                  <ShareButton />
 
                   <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
                     <PopoverTrigger asChild>

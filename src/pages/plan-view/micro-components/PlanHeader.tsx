@@ -80,21 +80,23 @@ export function PlanHeader({
     <header className="sm:mb-12 mb-4 flex flex-col gap-8 p-2">
       <div className="flex flex-col gap-4">
         <div className="min-w-0">
-          {isLoading ? (
+          {isLoading && (
             <div className="space-y-2">
               <div className="h-8 w-56 animate-pulse rounded-md bg-[#ECECEC]" />
               <div className="h-4 w-24 animate-pulse rounded-md bg-[#ECECEC]" />
             </div>
-          ) : data ? (
+          )}
+          {data && (
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
               <div className="flex items-center min-w-0">
-                <ShareButton />
                 <h1 className="font-serif text-xl leading-tight text-[#3D3D3A] sm:text-2xl lg:text-3xl">
                   {data.series?.name.en}
                 </h1>
               </div>
               {!hasError && (
                 <div className="flex justify-end sm:justify-start">
+                <ShareButton />
+
                   <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
                     <PopoverTrigger asChild>
                       <Button variant="outline" className="group shrink-0">
@@ -132,7 +134,7 @@ export function PlanHeader({
                 </div>
               )}
             </div>
-          ) : null}
+          )}
         </div>
         {seriesProgress && (
           <div className="flex flex-col gap-1.5">

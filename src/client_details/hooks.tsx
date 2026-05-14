@@ -12,6 +12,7 @@ export function useImageURLWithFallback(){
         queryFn:()=>getDefaultImage(source),
         enabled:!!source
     })
+    console.log(imageURL)
     const {data:imageData}=useQuery({
         queryKey:[planId],
         queryFn:()=>getPlanDay(planId),

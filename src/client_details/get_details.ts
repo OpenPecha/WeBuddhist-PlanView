@@ -9,16 +9,15 @@ export function getClientDetails(client:string|undefined){
     return clientDetails
 }
 
-export async function getDefaultImage(client:string|undefined){
+export function getBannerImage(client:string|undefined){
     const clientDetails = getClientDetails(client)
-    const aboutPlanId = clientDetails?.about_plan_id
-    if (!clientDetails) {
-        throw new Error(`Client ${client} not found`)
-    }
-    if (clientDetails.default_image) {
-        const { data } = await api.get<PlanDay>(`/api/v1/plans/${aboutPlanId}/daily`)
-        return data.image.original
-    }
+    return clientDetails?.banner_image ||null
+}
+
+
+export async function getDefaultImage(client:string|undefined){
+    const defaultImageURL = getBannerImage(client)
+    return defaultImageURL || null
 }
 
 export async function getAboutPlan(client:string|undefined): Promise<PlanDay> {

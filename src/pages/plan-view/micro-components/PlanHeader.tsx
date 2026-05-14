@@ -59,7 +59,6 @@ export function PlanHeader({
     enabled: !!seriesId,
     refetchOnWindowFocus: false,
   })
-  console.log(series)
   const seriesProgress = (() => {
     if (!series?.plans?.length || !series.total_days) return null
     const firstPlan = [...series.plans].sort(

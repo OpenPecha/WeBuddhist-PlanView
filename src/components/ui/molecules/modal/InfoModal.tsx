@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useMutation } from "@tanstack/react-query"
 import { InfoIcon, Loader2, XIcon } from "lucide-react"
 import {
@@ -23,6 +23,7 @@ const fetchPlanInfo = async (): Promise<PlanDay> => {
 
 const InfoModal = () => {
     const [isOpen, setIsOpen] = useState(false)
+    const [showAboutLabel, setShowAboutLabel] = useState(false)
 
     const { data, error, isPending, mutate } = useMutation<PlanDay>({
         mutationFn: fetchPlanInfo,
@@ -35,6 +36,26 @@ const InfoModal = () => {
         }
     }
 
+    useEffect(() => {
+        const footer = document.querySelector("#we_footer")
+
+        if (!footer) return
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setShowAboutLabel(entry.isIntersecting)
+            },
+            { threshold: 0.25 }
+        )
+
+        observer.observe(footer)
+
+        return () => {
+            observer.disconnect()
+        }
+    }, [])
+
+
     const sortedTasks = data
         ? [...data.tasks].sort((a, b) => a.display_order - b.display_order)
         : []
@@ -44,17 +65,22 @@ const InfoModal = () => {
             <DialogTrigger asChild>
                 <Button
                     variant="outline"
-                    size="icon"
-                    aria-label="Open plan information"
+                    size={showAboutLabel ? "default" : "icon"}
+                    aria-label={showAboutLabel ? "Open about modal" : "Open plan information"}
+                    className={showAboutLabel ? "gap-2 px-3" : undefined}
                 >
                     <InfoIcon className="size-4 text-gray-600" />
+                    {showAboutLabel && <span>About</span>}
                 </Button>
             </DialogTrigger>
             <DialogContent
                 showCloseButton={false}
                 className="sm:min-w-3xl rounded-none sm:rounded-lg w-full h-screen sm:h-[90vh] overflow-y-auto max-w-full sm:max-w-3xl p-0"
             >
-                <DialogHeader className="sticky top-0 z-10 border-b bg-popover px-6 py-4 pr-14">
+                <DialogHeader className="sticky top-0 z-10 border-b bg-popover ">
+                    <img src={data?.image.original} alt={data?.plan_title} className="w-full h-full object-cover rounded-br-2xl" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-black/20 backdrop-blur-sm ">
+
                     <DialogTitle className="font-serif text-lg">
                         {data?.plan_description ?? "Plan information"}
                     </DialogTitle>
@@ -62,10 +88,11 @@ const InfoModal = () => {
                         Detailed information about the tasks in this plan.
                     </DialogDescription>
                     {data?.plan_title && (
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-xs text-gray-800">
                             {data.plan_title}
                         </p>
                     )}
+                    </div>
                     <DialogClose asChild>
                         <Button
                             variant="ghost"

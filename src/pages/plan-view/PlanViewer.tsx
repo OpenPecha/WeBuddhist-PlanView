@@ -115,7 +115,7 @@ export function PlanViewer() {
 
       <Footer />
       {planId && (
-        <div className="fixed bottom-4 right-4 z-40 sm:bottom-6 sm:right-6">
+        <div className="fixed bottom-4 right-4 z-40 sm:bottom-2 sm:right-2">
           <InfoModal />
         </div>
       )}

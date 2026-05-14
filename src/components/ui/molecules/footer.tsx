@@ -18,7 +18,7 @@ const Distribution = [
 ]
 const gif_link = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXJyeHFtbWsyeWhuOWpvNmZocTJxb3Nkc3VvYzBwOXQyMDRkN2l4ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/BTR0w5qkwakJBTXCcm/giphy.gif"
 const Footer = () => {
-    const {data,error,isLoading:isPending}=useClientDetails()
+    const {data}=useClientDetails()
     return (
         <footer id="we_footer" className="w-max sm:mx-auto max-w-2xl  space-y-2 p-4 flex flex-col sm:items-center sm:justify-center">
             {data?.sign_up && (

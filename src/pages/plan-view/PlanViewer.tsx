@@ -29,6 +29,10 @@ export function PlanViewer() {
   const imageURL=useImageURLWithFallback()
 
   function navigateToDate(newDate: string) {
+    window.scrollTo({
+      top:0,
+      behavior:'smooth'
+    })
     setParams(prev => {
       prev.set('date', newDate)
       return prev
@@ -37,6 +41,10 @@ export function PlanViewer() {
   }
 
   function navigateToPlan(newPlanId: string) {
+    window.scrollTo({
+      top:0,
+      behavior:'smooth'
+    })
     navigate(`/${newPlanId}`)
   }
   const sortedTasks = data

@@ -70,7 +70,6 @@ const InfoModal = () => {
                 className="sm:min-w-3xl rounded-none sm:rounded-lg w-full h-screen sm:h-[90vh] overflow-y-auto max-w-full sm:max-w-3xl p-0"
             >
                 <DialogHeader className="sticky top-0 z-10 border-b bg-popover ">
-                    <img src={data?.image.original} alt={data?.plan_title} className="w-full h-full max-h-96 object-cover rounded-br-2xl" />
                     <div className="absolute bottom-0 left-0 right-0 p-4 bg-black/20 backdrop-blur-sm ">
 
                     <DialogTitle className="font-serif text-lg">

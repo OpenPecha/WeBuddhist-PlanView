@@ -36,7 +36,7 @@ interface Series {
 }
 
 export const fetchSeriesById = async (seriesId: string): Promise<Series> => {
-  const { data } = await api.get<Series>(`/api/v1/cms/series/${seriesId}`)
+  const { data } = await api.get<Series>(`/api/v1/series/${seriesId}`)
   return data
 }
 
@@ -59,7 +59,7 @@ export function PlanHeader({
     enabled: !!seriesId,
     refetchOnWindowFocus: false,
   })
-
+  console.log(series)
   const seriesProgress = (() => {
     if (!series?.plans?.length || !series.total_days) return null
     const firstPlan = [...series.plans].sort(
@@ -74,7 +74,6 @@ export function PlanHeader({
     const percent = (currentDay / totalDays) * 100
     return { currentDay, totalDays, percent }
   })()
-
 
   return (
     <header className="sm:mb-12 mb-4 flex flex-col gap-8 p-2">

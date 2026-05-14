@@ -8,7 +8,6 @@ import Footer from "@/components/ui/molecules/footer"
 import { Accordion } from "@/components/ui/atom/accordion"
 import { PlanHeader } from "./micro-components/PlanHeader"
 import { PlanFooterNav } from "./micro-components/PlanFooterNav"
-import InfoModal from "@/components/ui/molecules/modal/InfoModal"
 import {  getPlanDay } from "@/client_details/get_details"
 import { useImageURLWithFallback } from "@/client_details/hooks"
 import {  isMobile } from 'react-device-detect';
@@ -116,11 +115,7 @@ console.log(date)
       </div>
 
       <Footer />
-      {planId && (
-        <div className="fixed bottom-4 right-4 z-40 sm:bottom-2 sm:right-2">
-          <InfoModal />
-        </div>
-      )}
+     
     </main>
   )
 }

@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/atom/popover"
 import { Progress } from "@/components/ui/atom/progress"
 import api from "@/lib/api"
-import ShareButton from "./ShareButton"
+// import ShareButton from "./ShareButton"
 import { Button } from "@/components/ui/atom/button"
 import InfoModal from "@/components/ui/molecules/modal/InfoModal"
 
@@ -100,7 +100,7 @@ export function PlanHeader({
               </div>
               {!hasError && (
                 <div className="flex justify-end sm:justify-start">
-                  <ShareButton />
+                  {/* <ShareButton /> */}
 
                   <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
                     <PopoverTrigger asChild>

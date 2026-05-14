@@ -11,7 +11,7 @@ import { PlanFooterNav } from "./micro-components/PlanFooterNav"
 import InfoModal from "@/components/ui/molecules/modal/InfoModal"
 import {  getPlanDay } from "@/client_details/get_details"
 import { useImageURLWithFallback } from "@/client_details/hooks"
-
+import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
 
 
 export function PlanViewer() {
@@ -87,8 +87,8 @@ console.log(date)
         ) : data ? (
           <Accordion
             key={data.date}
-            type="multiple"
-            defaultValue={sortedTasks[0] ? [sortedTasks[0].id] : []}
+            type={!isMobile ? "single" : "multiple"}
+            defaultValue={!isMobile ? sortedTasks[0]?.id : sortedTasks[0] ? [sortedTasks[0].id] : []}
             className="space-y-4"
           >
             {sortedTasks.map((task, idx) => (

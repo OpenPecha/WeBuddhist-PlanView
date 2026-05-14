@@ -36,8 +36,8 @@ const InfoModal = () => {
         <Dialog open={isOpen} onOpenChange={handleOpenChange}>
             <DialogTrigger asChild>
                 <div className='flex pl-2 items-center gap-1 cursor-pointer text-xs hover:underline'>
-                    <InfoIcon className="size-3 text-[#9a9a9a]" />
-                    <span className="text-[#9a9a9a] ">How it works</span>
+                    <InfoIcon className="size-3 text-gray-500/80" />
+                    <span className="text-gray-500/80 ">How it works</span>
                 </div>
             </DialogTrigger>
             <DialogContent

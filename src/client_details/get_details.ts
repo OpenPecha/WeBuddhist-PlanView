@@ -3,15 +3,15 @@ import config from "./config.json"
 import api from "@/lib/api"
 
 
-export function getClientDetails(client:string){
+export function getClientDetails(client:string|undefined){
     const clientDetails = config.find(c => c.client === client)
     if (!clientDetails) return null;
     return clientDetails
 }
 
-export async function getDefaultImage(client:string){
+export async function getDefaultImage(client:string|undefined){
     const clientDetails = getClientDetails(client)
-    const aboutPlanId = clientDetails.about_plan_id
+    const aboutPlanId = clientDetails?.about_plan_id
     if (!clientDetails) {
         throw new Error(`Client ${client} not found`)
     }
@@ -21,7 +21,7 @@ export async function getDefaultImage(client:string){
     }
 }
 
-export async function getAboutPlan(client:string): Promise<PlanDay> {
+export async function getAboutPlan(client:string|undefined): Promise<PlanDay> {
     const clientDetails = getClientDetails(client)||config[0];
     const aboutPlanId = clientDetails.about_plan_id
     const { data } = await api.get<PlanDay>(`/api/v1/plans/${aboutPlanId}/daily`)
@@ -29,7 +29,7 @@ export async function getAboutPlan(client:string): Promise<PlanDay> {
 }
 
 export const getPlanDay = async (
-    planId: string,
+    planId: string | undefined,
     date?: string
   ): Promise<PlanDay> => {
     const { data } = await api.get<PlanDay>(`/api/v1/plans/${planId}/daily`, {

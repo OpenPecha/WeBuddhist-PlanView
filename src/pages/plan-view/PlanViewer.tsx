@@ -1,6 +1,5 @@
 import { useParams, useNavigate, useSearchParams } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
-import api from "@/lib/api"
 import type { PlanDay } from "@/types/plan"
 import { PlanViewerSkeleton } from "./micro-components/loader"
 import { TaskSection } from "./micro-components/TaskContent"
@@ -10,7 +9,7 @@ import { Accordion } from "@/components/ui/atom/accordion"
 import { PlanHeader } from "./micro-components/PlanHeader"
 import { PlanFooterNav } from "./micro-components/PlanFooterNav"
 import InfoModal from "@/components/ui/molecules/modal/InfoModal"
-import { getDefaultImage, getPlanDay } from "@/client_details/get_details"
+import {  getPlanDay } from "@/client_details/get_details"
 import { useImageURLWithFallback } from "@/client_details/hooks"
 
 

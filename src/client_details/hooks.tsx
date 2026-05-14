@@ -27,7 +27,7 @@ export function useAboutPlanWithFallback(isOpen: boolean){
     const {data,error,isLoading:isPending}=useQuery({
         queryKey:["about",client],
         queryFn:()=>getAboutPlan(client),
-        enabled:isOpen
+        enabled:isOpen && !!client
     })
     return {data,error,isLoading:isPending}
 

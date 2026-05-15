@@ -11,6 +11,7 @@ import { PlanFooterNav } from "./micro-components/PlanFooterNav"
 import {  getPlanDay } from "@/client_details/get_details"
 import { useImageURLWithFallback } from "@/client_details/hooks"
 import {  isMobile } from 'react-device-detect';
+import AudioPlayer from "./micro-components/AudioPlayer"
 
 
 export function PlanViewer() {
@@ -95,7 +96,6 @@ export function PlanViewer() {
             {sortedTasks.map((task, idx) => (
               <TaskSection
                 key={task.id}
-                seriesId={data.series?.id}
                 task={task}
                 index={idx + 1}
               />
@@ -116,7 +116,9 @@ export function PlanViewer() {
       </div>
 
       <Footer />
-     
+       <div className="fixed bottom-0 left-0 right-0">
+       <AudioPlayer seriesId={data?.series?.id} imageUrl={data?.image?.original} description={data?.plan_description} />
+       </div>
     </main>
   )
 }

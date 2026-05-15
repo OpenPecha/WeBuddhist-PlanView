@@ -7,9 +7,6 @@ import {
   Pause,
   Play,
   RotateCcw,
-  Square,
-  Volume2,
-  VolumeX,
 } from 'lucide-react';
 import YouTube from 'react-youtube';
 import useSeriesData from './hooks/useSeriesData';
@@ -24,10 +21,12 @@ function formatTime(seconds: number): string {
 /** Timestamps are in seconds (YouTube player time). When both are set and valid, playback is restricted to [start, end). */
 export type AudioPlayerProps = {
   seriesId?: string;
+  imageUrl?: string;
+  description?: string;
 };
 
 function AudioPlayer(props: Readonly<AudioPlayerProps>) {
-  const { seriesId } = props;
+  const { seriesId,imageUrl,description } = props;
   const seriesProgress = useSeriesData(seriesId)
   const timestamps = useTimeStamps(seriesProgress?.currentDay ?? 0)
   const { data } = useClientDetails();
@@ -38,52 +37,48 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isSeeking, setIsSeeking] = useState(false);
-  const startTimestamp =timestamps?.[0]?.time_stamp||0;
-  const endTimestamp =timestamps?.[timestamps.length-1]?.time_stamp||0;
-  const clip = useMemo(() => {
-    if (
-      typeof startTimestamp === 'number' &&
-      !Number.isNaN(startTimestamp) &&
-      typeof endTimestamp === 'number' &&
-      !Number.isNaN(endTimestamp) &&
-      endTimestamp > startTimestamp
-    ) {
-      return { start: startTimestamp, end: endTimestamp };
-    }
-    return null;
-  }, [startTimestamp, endTimestamp]);
+  const [playerState, setPlayerState] = useState<number>(
+    YouTube.PlayerState.UNSTARTED
+  );
+  const isPlaying = playerState === YouTube.PlayerState.PLAYING;
+  const startTimestamp = Number(timestamps?.[0]?.time_stamp||0);
+  const endTimestamp = Number(timestamps?.[timestamps.length-1]?.time_stamp||0) ;
 
-  const opts = {
-    height: '390',
-    width: '640',
-    playerVars: {
-      // https://developers.google.com/youtube/player_parameters
-      autoplay: 1,
-      ...(clip && {
-        start: Math.floor(clip.start),
-        end: Math.ceil(clip.end),
-      }),
-    },
-  };
+
+  const opts = useMemo(
+    () => ({
+      height: '390',
+      width: '640',
+      playerVars: {
+        autoplay: 0,
+        ...(timestamps &&
+          endTimestamp > startTimestamp && {
+            start: Math.floor(startTimestamp),
+            end: Math.ceil(endTimestamp),
+          }),
+      },
+    }),
+    [timestamps, startTimestamp, endTimestamp]
+  );
 
   const getPlayer = () => ref.current?.getInternalPlayer();
 
   const handlePlay = () => {
     const player = getPlayer();
     if (!player) return;
-    if (!clip) {
+    if (!timestamps) {
       player.playVideo();
       return;
     }
     Promise.resolve(player.getCurrentTime())
       .then((t) => {
-        if (typeof t !== 'number' || t < clip.start || t >= clip.end) {
-          player.seekTo(clip.start, true);
+        if (typeof t !== 'number' || t < startTimestamp || t >= endTimestamp) {
+          player.seekTo(startTimestamp, true);
         }
         player.playVideo();
       })
       .catch(() => {
-        player.seekTo(clip.start, true);
+        player.seekTo(startTimestamp, true);
         player.playVideo();
       });
   };
@@ -92,28 +87,36 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
     getPlayer()?.pauseVideo();
   };
 
-  const handleStop = () => {
-    getPlayer()?.stopVideo();
+  const togglePlayPause = () => {
+    if (isPlaying) {
+      handlePause();
+    } else {
+      handlePlay();
+    }
+  };
+
+  const handleStateChange = (event: { data: number }) => {
+    setPlayerState(event.data);
   };
 
   const handleRestart = () => {
     const player = getPlayer();
     if (!player) return;
-    if (clip) {
-      player.seekTo(clip.start, true);
+    if (timestamps) {
+      player.seekTo(startTimestamp, true);
     } else {
       player.seekTo(0, true);
     }
     player.playVideo();
   };
 
-  const handleMute = () => {
-    getPlayer()?.mute();
-  };
+  // const handleMute = () => {
+  //   getPlayer()?.mute();
+  // };
 
-  const handleUnmute = () => {
-    getPlayer()?.unMute();
-  };
+  // const handleUnmute = () => {
+  //   getPlayer()?.unMute();
+  // };
 
   useEffect(() => {
     if (!videoLink) return;
@@ -132,27 +135,28 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
             setCurrentTime(time);
           }
           if (typeof dur === 'number' && dur > 0) setDuration(dur);
+          if (typeof state === 'number') setPlayerState(state);
 
-          if (!clip || typeof time !== 'number') return;
+          if (!timestamps || typeof time !== 'number') return;
           const playing = state === YouTube.PlayerState.PLAYING;
           if (!playing) return;
-          if (time >= clip.end) {
+          if (time >= endTimestamp) {
             player.pauseVideo();
-            player.seekTo(clip.start, true);
-            setCurrentTime(clip.start);
-          } else if (time < clip.start) {
-            player.seekTo(clip.start, true);
-            setCurrentTime(clip.start);
+            player.seekTo(startTimestamp, true);
+            setCurrentTime(startTimestamp);
+              } else if (time < startTimestamp) {
+            player.seekTo(startTimestamp, true);
+            setCurrentTime(startTimestamp);
           }
         })
         .catch(() => {});
     }, 200);
 
     return () => globalThis.clearInterval(id);
-  }, [clip, videoLink]);
+  }, [timestamps, videoLink]);
 
-  const progressStart = clip?.start ?? 0;
-  const progressEnd = clip?.end ?? duration;
+  const progressStart = startTimestamp ?? 0;
+  const progressEnd = endTimestamp ?? duration;
   const progressSpan = Math.max(0, progressEnd - progressStart);
   const progressPercent =
     progressSpan > 0
@@ -160,13 +164,6 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
       : 0;
   const elapsedDisplay = formatTime(Math.max(0, currentTime - progressStart));
   const totalDisplay = formatTime(progressSpan);
-
-  const handleReady = () => {
-    if (!clip) return;
-    const player = getPlayer();
-    if (!player) return;
-    player.seekTo(clip.start, true);
-  };
 
   const seekFromClientX = (clientX: number): number | null => {
     const el = progressRef.current;
@@ -178,8 +175,8 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
   };
 
   const applySeek = (targetTime: number) => {
-    const clamped = clip
-      ? Math.min(clip.end - 0.01, Math.max(clip.start, targetTime))
+      const clamped = timestamps
+      ? Math.min(endTimestamp - 0.01, Math.max(startTimestamp, targetTime))
       : Math.min(duration || targetTime, Math.max(0, targetTime));
     setCurrentTime(clamped);
     getPlayer()?.seekTo(clamped, true);
@@ -207,9 +204,8 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
     isSeekingRef.current = false;
     setIsSeeking(false);
   };
-
   return (
-    <div className='flex-1'>
+    <div className='flex-1  flex  bg-white h-20 shadow-md border-t border-l border-r border-[#ECECEC]'>
       <div className="hidden">
       {videoLink && (
         <YouTube
@@ -217,17 +213,35 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
         videoId={videoLink}
         opts={opts}
         className="w-full h-full"
-        onReady={handleReady}
+        onStateChange={handleStateChange}
         />
       )}
       </div>
+      <div className="flex-1 flex p-4">
+       <div className="flex items-center justify-between gap-2 relative group">
+        <img src={imageUrl} alt="Series Image" className="h-full object-contain border border-[#ECECEC] opacity-75  rounded-lg group-hover:opacity-100 transition-opacity duration-300" />
+        <Button
+              type="button"
+              size="icon"
+              variant="ghost"
+              className='absolute hover:bg-transparent hover:text-black cursor-pointer  top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] '
+              onClick={togglePlayPause}
+              aria-label={isPlaying ? 'Pause' : 'Play'}
+            >
+              {isPlaying ? (
+                <Pause className="size-4 fill-black " />
+              ) : (
+                <Play className="size-4 fill-black " />
+              )}
+            </Button>
+       </div>
+
       {videoLink && (
         <div
-          className=" flex flex-col gap-2 rounded-lg  bg-muted/30 "
+          className=" flex flex-col gap-2 rounded-lg ml-2 bg-muted/30 flex-1"
           aria-label="Audio player controls"
         >
           <div className="flex items-center justify-between gap-2 text-xs tabular-nums text-muted-foreground">
-            <span className="shrink-0">{elapsedDisplay}</span>
             <div
               ref={progressRef}
               role="slider"
@@ -237,7 +251,7 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
               aria-valuemax={progressSpan}
               aria-valuenow={Math.max(0, currentTime - progressStart)}
               aria-valuetext={`${elapsedDisplay} of ${totalDisplay}`}
-              className="min-w-0 flex-1 cursor-pointer touch-none py-2 -my-2 select-none"
+              className="min-w-0 flex-1 cursor-pointer touch-none  select-none"
               onPointerDown={handleProgressPointerDown}
               onPointerMove={handleProgressPointerMove}
               onPointerUp={endSeek}
@@ -249,10 +263,16 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
                 indicatorClassName={isSeeking ? 'transition-none' : undefined}
               />
             </div>
-            <span className="shrink-0">{totalDisplay}</span>
+            {/* <span className="shrink-0">{elapsedDisplay}</span>
+            <span className="shrink-0">{totalDisplay}</span> */}
           </div>
-          <div className="flex items-center justify-center gap-0.5">
-            <Button
+          <div className="flex items-center justify-between gap-2 text-xs  tabular-nums text-muted-foreground"> 
+          {/* <span className="shrink-0">{elapsedDisplay}</span> */}
+          <h4 className="font-[lato] text-sm text-gray-600">{description}</h4>
+          <div className="flex items-center justify-between gap-2">
+
+          <span className="shrink-0">{elapsedDisplay} / {totalDisplay}</span>
+          <Button
               type="button"
               size="icon-sm"
               variant="ghost"
@@ -261,54 +281,13 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
             >
               <RotateCcw className="size-4" />
             </Button>
-            <Button
-              type="button"
-              size="icon"
-              variant="default"
-              onClick={handlePlay}
-              aria-label="Play"
-            >
-              <Play className="size-4" />
-            </Button>
-            <Button
-              type="button"
-              size="icon-sm"
-              variant="ghost"
-              onClick={handlePause}
-              aria-label="Pause"
-            >
-              <Pause className="size-4" />
-            </Button>
-            <Button
-              type="button"
-              size="icon-sm"
-              variant="ghost"
-              onClick={handleStop}
-              aria-label="Stop"
-            >
-              <Square className="size-3.5 fill-current" />
-            </Button>
-            <Button
-              type="button"
-              size="icon-sm"
-              variant="ghost"
-              onClick={handleMute}
-              aria-label="Mute"
-            >
-              <VolumeX className="size-4" />
-            </Button>
-            <Button
-              type="button"
-              size="icon-sm"
-              variant="ghost"
-              onClick={handleUnmute}
-              aria-label="Unmute"
-            >
-              <Volume2 className="size-4" />
-            </Button>
           </div>
+         </div> 
         </div>
       )}
+      
+      </div>
+
     </div>
   );
 }

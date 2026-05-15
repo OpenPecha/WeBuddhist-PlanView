@@ -32,9 +32,12 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
   const timestamps = useTimeStamps(seriesProgress?.currentDay ?? 0)
   const { data } = useClientDetails();
   const ref = useRef<YouTube>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
+  const isSeekingRef = useRef(false);
   const videoLink = data?.video_link;
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [isSeeking, setIsSeeking] = useState(false);
   const startTimestamp =timestamps?.[0]?.time_stamp||0;
   const endTimestamp =timestamps?.[timestamps.length-1]?.time_stamp||0;
   const clip = useMemo(() => {
@@ -125,7 +128,9 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
         Promise.resolve(player.getDuration()),
       ])
         .then(([state, time, dur]) => {
-          if (typeof time === 'number') setCurrentTime(time);
+          if (!isSeekingRef.current && typeof time === 'number') {
+            setCurrentTime(time);
+          }
           if (typeof dur === 'number' && dur > 0) setDuration(dur);
 
           if (!clip || typeof time !== 'number') return;
@@ -163,6 +168,46 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
     player.seekTo(clip.start, true);
   };
 
+  const seekFromClientX = (clientX: number): number | null => {
+    const el = progressRef.current;
+    if (!el || progressSpan <= 0) return null;
+    const { left, width } = el.getBoundingClientRect();
+    if (width <= 0) return null;
+    const ratio = Math.min(1, Math.max(0, (clientX - left) / width));
+    return progressStart + ratio * progressSpan;
+  };
+
+  const applySeek = (targetTime: number) => {
+    const clamped = clip
+      ? Math.min(clip.end - 0.01, Math.max(clip.start, targetTime))
+      : Math.min(duration || targetTime, Math.max(0, targetTime));
+    setCurrentTime(clamped);
+    getPlayer()?.seekTo(clamped, true);
+  };
+
+  const handleProgressPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (progressSpan <= 0) return;
+    e.currentTarget.setPointerCapture(e.pointerId);
+    isSeekingRef.current = true;
+    setIsSeeking(true);
+    const target = seekFromClientX(e.clientX);
+    if (target !== null) applySeek(target);
+  };
+
+  const handleProgressPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!e.currentTarget.hasPointerCapture(e.pointerId) || progressSpan <= 0) return;
+    const target = seekFromClientX(e.clientX);
+    if (target !== null) applySeek(target);
+  };
+
+  const endSeek = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    }
+    isSeekingRef.current = false;
+    setIsSeeking(false);
+  };
+
   return (
     <div className='flex-1'>
       <div className="hidden">
@@ -178,14 +223,33 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
       </div>
       {videoLink && (
         <div
-          className="mt-3  flex flex-col gap-2 rounded-lg  bg-muted/30 p-3"
+          className=" flex flex-col gap-2 rounded-lg  bg-muted/30 "
           aria-label="Audio player controls"
         >
           <div className="flex items-center justify-between gap-2 text-xs tabular-nums text-muted-foreground">
-            <span>{elapsedDisplay}</span>
-          <Progress value={progressPercent} className="h-1.5" />
-
-            <span>{totalDisplay}</span>
+            <span className="shrink-0">{elapsedDisplay}</span>
+            <div
+              ref={progressRef}
+              role="slider"
+              tabIndex={0}
+              aria-label="Playback position"
+              aria-valuemin={0}
+              aria-valuemax={progressSpan}
+              aria-valuenow={Math.max(0, currentTime - progressStart)}
+              aria-valuetext={`${elapsedDisplay} of ${totalDisplay}`}
+              className="min-w-0 flex-1 cursor-pointer touch-none py-2 -my-2 select-none"
+              onPointerDown={handleProgressPointerDown}
+              onPointerMove={handleProgressPointerMove}
+              onPointerUp={endSeek}
+              onPointerCancel={endSeek}
+            >
+              <Progress
+                value={progressPercent}
+                className="h-1.5 pointer-events-none"
+                indicatorClassName={isSeeking ? 'transition-none' : undefined}
+              />
+            </div>
+            <span className="shrink-0">{totalDisplay}</span>
           </div>
           <div className="flex items-center justify-center gap-0.5">
             <Button

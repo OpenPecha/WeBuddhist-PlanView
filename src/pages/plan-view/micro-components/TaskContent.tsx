@@ -44,7 +44,7 @@ export function TaskSection({ seriesId, task, index }: TaskSectionProps) {
             </AccordionTrigger>
             <AccordionContent className="mt-4 space-y-2 border-l border-[#ECECEC] pl-5 sm:pl-6">
                 {showScriptDropdown && (
-                    <div className="flex justify-between items-center p-2">
+                    <div className="flex justify-between items-start gap-2 p-2">
                         <AudioPlayer seriesId={seriesId} />
                         <PaliScriptDropdown value={script} onChange={setScript} />
                     </div>

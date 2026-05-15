@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAboutPlan, getClientDetails, getDefaultImage, getPlanDay } from "./get_details";
+import { getAboutPlan, getClientDetails, getDefaultImage, getPlanDay, getTimestamps } from "./get_details";
 import { useParams, useSearchParams } from "react-router-dom";
 
 export function useImageURLWithFallback(){
@@ -42,4 +42,11 @@ export function useClientDetails(){
         enabled:!!client
     })
     return {data,error,isLoading:isPending}
+}
+
+export function useTimeStamps(day:number|undefined){
+    const [params] = useSearchParams()
+    const client = params.get('source') ?? undefined
+    const timestamps = getTimestamps(client,day||0)||null
+    return timestamps
 }

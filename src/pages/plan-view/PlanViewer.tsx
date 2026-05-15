@@ -38,7 +38,6 @@ export function PlanViewer() {
     }
     )
   }
-console.log(date)
   function navigateToPlan(newPlanId: string) {
     window.scrollTo({
       top:0,
@@ -62,6 +61,7 @@ console.log(date)
           hasError={!!error}
           isLoading={isLoading}
           onNavigateToDate={navigateToDate}
+
         />
         {data && (
           <section className="mb-10 space-y-4 text-center">
@@ -95,6 +95,7 @@ console.log(date)
             {sortedTasks.map((task, idx) => (
               <TaskSection
                 key={task.id}
+                seriesId={data.series?.id}
                 task={task}
                 index={idx + 1}
               />

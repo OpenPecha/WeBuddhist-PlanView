@@ -1,7 +1,7 @@
 import type { PlanDay } from "@/types/plan"
 import config from "./config.json"
 import api from "@/lib/api"
-
+import abidhama_timestamps from "./abhidhama/parsed_segments.json"
 
 export function getClientDetails(client:string|undefined){
     const clientDetails = config.find(c => c.client === client)
@@ -35,4 +35,15 @@ export const getPlanDay = async (
       params: date ? { date } : undefined,
     })
     return data
+  }
+
+  export function getTimestamps(client: string | undefined,day:number|undefined){
+    const clientDetails = getClientDetails(client)  
+    if (clientDetails?.timestamps === "abhidhama"){
+      if (typeof day !== "number" || day < 1) return null;
+      const index = (day).toString();
+      const timestamps = abidhama_timestamps[index];
+      return timestamps || null;
+    }
+    return null
   }

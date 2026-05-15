@@ -1,0 +1,1082 @@
+{
+  "1": [
+    {
+      "time_stamp": 8.892208,
+      "text": " 1. (Ka) kusalā dhammā.\n(Kha) akusalā dhammā.\n(Ga) abyākatā dhammā. ^1-0a-1\n\n\n",
+      "start": 175,
+      "end": 252
+    },
+    {
+      "time_stamp": 15.41919879019165,
+      "text": " 2. (Ka) sukhāya vedanāya sampayuttā dhammā.\n(Kha) dukkhāya vedanāya sampayuttā dhammā.\n(Ga) adukkhamasukhāya vedanāya sampayuttā dhammā. ^1-0a-2\n\n\n",
+      "start": 253,
+      "end": 400
+    },
+    {
+      "time_stamp": 30.29979689128113,
+      "text": " 3. (Ka) vipākā dhammā.\n(Kha) vipākadhammadhammā.\n(Ga) nevavipākanavipākadhammadhammā. ^1-0a-3\n\n\n",
+      "start": 401,
+      "end": 497
+    },
+    {
+      "time_stamp": 39.92348295422363,
+      "text": " 4. (Ka) upādiṇṇupādāniyā [upādinnupādāniyā (syā.)] dhammā.\n(Kha) anupādiṇṇupādāniyā dhammā.\n(Ga) anupādiṇṇaanupādāniyā [anupādinnānupādāniyā (syā.)] dhammā. ^1-0a-4\n\n\n",
+      "start": 498,
+      "end": 665
+    },
+    {
+      "time_stamp": 51.18749785504151,
+      "text": " 5. (Ka) saṃkiliṭṭhasaṃkilesikā dhammā.\n(Kha) asaṃkiliṭṭhasaṃkilesikā dhammā.\n(Ga) asaṃkiliṭṭhaasaṃkilesikā [asaṃkiliṭṭhāsaṃkilesikā (syā.)] dhammā. ^1-0a-5\n\n\n",
+      "start": 666,
+      "end": 824
+    },
+    {
+      "time_stamp": 63.36376506866455,
+      "text": " 6. (Ka) savitakkasavicārā dhammā.\n(Kha) avitakkavicāramattā dhammā.\n(Ga) avitakkaavicārā [avitakkāvicārā (syā.)] dhammā. ^1-0a-6\n\n\n",
+      "start": 825,
+      "end": 956
+    },
+    {
+      "time_stamp": 73.76396983024597,
+      "text": " 7. (Ka) pītisahagatā dhammā.\n(Kha) sukhasahagatā dhammā.\n(Ga) upekkhāsahagatā dhammā. ^1-0a-7\n\n\n",
+      "start": 957,
+      "end": 1053
+    },
+    {
+      "time_stamp": 82.85992715640259,
+      "text": " 8. (Ka) dassanena pahātabbā dhammā.\n(Kha) bhāvanāya pahātabbā dhammā.\n(Ga) neva dassanena na bhāvanāya pahātabbā dhammā. ^1-0a-8\n\n\n",
+      "start": 1054,
+      "end": 1185
+    },
+    {
+      "time_stamp": 95.77197415640259,
+      "text": " 9. (Ka) dassanena pahātabbahetukā dhammā.\n(Kha) bhāvanāya pahātabbahetukā dhammā.\n(Ga) neva dassanena na bhāvanāya pahātabbahetukā dhammā. ^1-0a-9\n\n\n",
+      "start": 1186,
+      "end": 1335
+    },
+    {
+      "time_stamp": 111.48575902098084,
+      "text": " 10. (Ka) ācayagāmino dhammā.\n(Kha) apacayagāmino dhammā.\n(Ga) nevācayagāmināpacayagāmino [nevācayagāmino nāpacayagāmino (syā.)] dhammā. ^1-0a-10\n\n\n",
+      "start": 1336,
+      "end": 1483
+    },
+    {
+      "time_stamp": 122.05357595422363,
+      "text": " 11. (Ka) sekkhā dhammā.\n(Kha) asekkhā dhammā.\n(Ga) nevasekkhanāsekkhā [nevasekkhānāsekkhā (sī. syā.)] dhammā. ^1-0a-11\n\n\n",
+      "start": 1484,
+      "end": 1605
+    },
+    {
+      "time_stamp": 130.0055659923706,
+      "text": " 12. (Ka) parittā dhammā.\n(Kha) mahaggatā dhammā.\n(Ga) appamāṇā dhammā. ^1-0a-12\n\n\n",
+      "start": 1606,
+      "end": 1688
+    },
+    {
+      "time_stamp": 137.6388449408722,
+      "text": " 13. (Ka) parittārammaṇā dhammā.\n(Kha) mahaggatārammaṇā dhammā.\n(Ga) appamāṇārammaṇā dhammā. ^1-0a-13\n\n\n",
+      "start": 1689,
+      "end": 1792
+    },
+    {
+      "time_stamp": 146.47128197329712,
+      "text": " 14. (Ka) hīnā dhammā.\n(Kha) majjhimā dhammā.\n(Ga) paṇītā dhammā. ^1-0a-14\n\n\n",
+      "start": 1793,
+      "end": 1869
+    },
+    {
+      "time_stamp": 152.67087109346008,
+      "text": " 15. (Ka) micchattaniyatā dhammā.\n(Kha) sammattaniyatā dhammā.\n(Ga) aniyatā dhammā. ^1-0a-15\n\n\n",
+      "start": 1870,
+      "end": 1964
+    },
+    {
+      "time_stamp": 160.85545410871887,
+      "text": " 16. (Ka) maggārammaṇā dhammā.\n(Kha) maggahetukā dhammā.\n(Ga) maggādhipatino dhammā. ^1-0a-16\n\n\n",
+      "start": 1965,
+      "end": 2060
+    },
+    {
+      "time_stamp": 169.61490003623962,
+      "text": " 17. (Ka) uppannā dhammā.\n(Kha) anuppannā dhammā.\n(Ga) uppādino dhammā. ^1-0a-17\n\n\n",
+      "start": 2061,
+      "end": 2143
+    },
+    {
+      "time_stamp": 176.95135194468688,
+      "text": " 18. (Ka) atītā dhammā.\n(Kha) anāgatā dhammā.\n(Ga) paccuppannā dhammā. ^1-0a-18\n\n\n",
+      "start": 2144,
+      "end": 2225
+    },
+    {
+      "time_stamp": 184.35859517738342,
+      "text": " 19. (Ka) atītārammaṇā dhammā.\n(Kha) anāgatārammaṇā dhammā.\n(Ga) paccuppannārammaṇā dhammā. ^1-0a-19\n\n\n",
+      "start": 2226,
+      "end": 2328
+    },
+    {
+      "time_stamp": 193.1584168664856,
+      "text": " 20. (Ka) ajjhattā dhammā.\n(Kha) bahiddhā dhammā.\n(Ga) ajjhattabahiddhā dhammā. ^1-0a-20\n\n\n",
+      "start": 2329,
+      "end": 2419
+    },
+    {
+      "time_stamp": 201.07762311062623,
+      "text": " 21. (Ka) ajjhattārammaṇā dhammā.\n(Kha) bahiddhārammaṇā dhammā.\n(Ga) ajjhattabahiddhārammaṇā dhammā. ^1-0a-21\n\n\n",
+      "start": 2420,
+      "end": 2531
+    },
+    {
+      "time_stamp": 211.2784670629425,
+      "text": " 22. (Ka) sanidassanasappaṭighā dhammā.\n(Kha) anidassanasappaṭighā dhammā.\n(Ga) anidassanaappaṭighā [anidassanāppaṭighā (syā.)] dhammā.\n\n\n",
+      "start": 2532,
+      "end": 2669
+    }
+  ],
+  "2": [
+    {
+      "time_stamp": 222.76182404196166,
+      "text": " Tikamātikā. ^1-0a-22\n\n\n#### Dukamātikā ^1-0b-0\n\n\n##### Hetugocchakaṃ ^1-0b-1-0\n\n\n",
+      "start": 2670,
+      "end": 2751
+    },
+    {
+      "time_stamp": 225.40911805340576,
+      "text": " 1. (Ka) hetū dhammā.\n(Kha) na hetū dhammā. ^1-0b-1\n\n\n",
+      "start": 2752,
+      "end": 2805
+    },
+    {
+      "time_stamp": 230.35255695994567,
+      "text": " 2. (Ka) sahetukā dhammā.\n(Kha) ahetukā dhammā. ^1-0b-2\n\n\n",
+      "start": 2806,
+      "end": 2863
+    },
+    {
+      "time_stamp": 234.47281889700318,
+      "text": " 3. (Ka) hetusampayuttā dhammā.\n(Kha) hetuvippayuttā dhammā. ^1-0b-3\n\n\n",
+      "start": 2864,
+      "end": 2934
+    },
+    {
+      "time_stamp": 241.08094015258789,
+      "text": " 4. (Ka) hetū ceva dhammā sahetukā ca.\n(Kha) sahetukā ceva dhammā na ca hetū. ^1-0b-4\n\n\n",
+      "start": 2935,
+      "end": 3022
+    },
+    {
+      "time_stamp": 250.00956988555907,
+      "text": " 5. (Ka) hetū ceva dhammā hetusampayuttā ca.\n(Kha) hetusampayuttā ceva dhammā na ca hetū. ^1-0b-5\n\n\n",
+      "start": 3023,
+      "end": 3122
+    },
+    {
+      "time_stamp": 260.1236821411438,
+      "text": " 6. (Ka) na hetū kho pana dhammā sahetukāpi.\n(Kha) ahetukāpi.\n\n\n",
+      "start": 3123,
+      "end": 3186
+    },
+    {
+      "time_stamp": 267.31962378256225,
+      "text": " Hetugocchakaṃ. ^1-0b-6\n\n\n##### Cūḷantaradukaṃ ^1-0b-2-0\n\n\n",
+      "start": 3187,
+      "end": 3245
+    },
+    {
+      "time_stamp": 270.5247888626709,
+      "text": " 7. (Ka) sappaccayā dhammā.\n(Kha) appaccayā dhammā. ^1-0b-7\n\n\n ",
+      "start": 3246,
+      "end": 3308
+    },
+    {
+      "time_stamp": 275.9339959523163,
+      "text": " 8. (Ka) saṅkhatā dhammā.\n(Kha) asaṅkhatā dhammā. ^1-0b-8\n\n\n",
+      "start": 3309,
+      "end": 3368
+    },
+    {
+      "time_stamp": 280.5896568588562,
+      "text": " 9. (Ka) sanidassanā dhammā.\n(Kha) anidassanā dhammā. ^1-0b-9\n\n\n",
+      "start": 3369,
+      "end": 3432
+    },
+    {
+      "time_stamp": 285.3418280953674,
+      "text": " 10. (Ka) sappaṭighā dhammā.\n(Kha) appaṭighā dhammā. ^1-0b-10\n\n\n",
+      "start": 3433,
+      "end": 3496
+    },
+    {
+      "time_stamp": 290.120271043869,
+      "text": " 11. (Ka) rūpino dhammā.\n(Kha) arūpino dhammā. ^1-0b-11\n\n\n",
+      "start": 3497,
+      "end": 3554
+    },
+    {
+      "time_stamp": 294.88669313542175,
+      "text": " 12. (Ka) lokiyā dhammā .\n(Kha) lokuttarā dhammā. ^1-0b-12\n\n\n",
+      "start": 3555,
+      "end": 3615
+    },
+    {
+      "time_stamp": 299.22325694659423,
+      "text": " 13. (Ka) kenaci viññeyyā dhammā.\n(Kha) kenaci na viññeyyā dhammā.\n\n\n",
+      "start": 3616,
+      "end": 3684
+    },
+    {
+      "time_stamp": 306.51206997520444,
+      "text": " Cūḷantaradukaṃ. ^1-0b-13\n\n\n##### Āsavagocchakaṃ ^1-0b-3-0\n\n\n",
+      "start": 3685,
+      "end": 3745
+    },
+    {
+      "time_stamp": 310.1520799847412,
+      "text": " 14. (Ka) āsavā dhammā.\n(Kha) no āsavā dhammā. ^1-0b-14\n\n\n",
+      "start": 3746,
+      "end": 3803
+    },
+    {
+      "time_stamp": 315.32740505531314,
+      "text": " 15. (Ka) sāsavā dhammā.\n(Kha) anāsavā dhammā. ^1-0b-15\n\n\n",
+      "start": 3804,
+      "end": 3861
+    },
+    {
+      "time_stamp": 319.56928591989134,
+      "text": " 16. (Ka) āsavasampayuttā dhammā.\n(Kha) āsavavippayuttā dhammā. ^1-0b-16\n\n\n",
+      "start": 3862,
+      "end": 3936
+    },
+    {
+      "time_stamp": 326.0954710858307,
+      "text": " 17. (Ka) āsavā ceva dhammā sāsavā ca.\n(Kha) sāsavā ceva dhammā no ca āsavā. ^1-0b-17\n\n\n",
+      "start": 3937,
+      "end": 4024
+    },
+    {
+      "time_stamp": 335.87309296185305,
+      "text": " 18. (Ka) āsavā ceva dhammā āsavasampayuttā ca.\n(Kha) āsavasampayuttā ceva dhammā no ca āsavā. ^1-0b-18\n\n\n",
+      "start": 4025,
+      "end": 4130
+    },
+    {
+      "time_stamp": 347.4008628817444,
+      "text": " 19. (Ka) āsavavippayuttā kho pana dhammā sāsavāpi.\n(Kha) anāsavāpi.\n\n\n",
+      "start": 4131,
+      "end": 4201
+    },
+    {
+      "time_stamp": 355.16426001335145,
+      "text": " Āsavagocchakaṃ. ^1-0b-19\n\n\n##### Saṃyojanagocchakaṃ ^1-0b-4-0\n\n\n",
+      "start": 4202,
+      "end": 4266
+    },
+    {
+      "time_stamp": 358.9444209408722,
+      "text": " 20. (Ka) saṃyojanā dhammā.\n(Kha) no saṃyojanā dhammā. ^1-0b-20\n\n\n",
+      "start": 4267,
+      "end": 4332
+    },
+    {
+      "time_stamp": 364.0398520591278,
+      "text": " 21. (Ka) saṃyojaniyā dhammā.\n(Kha) asaṃyojaniyā dhammā. ^1-0b-21\n\n\n",
+      "start": 4333,
+      "end": 4400
+    },
+    {
+      "time_stamp": 369.8251258130798,
+      "text": " 22. (Ka) saṃyojanasampayuttā dhammā.\n(Kha) saṃyojanavippayuttā dhammā. ^1-0b-22\n\n\n",
+      "start": 4401,
+      "end": 4483
+    },
+    {
+      "time_stamp": 377.1851641163483,
+      "text": " 23. (Ka) saṃyojanā ceva dhammā saṃyojaniyā ca.\n(Kha) saṃyojaniyā ceva dhammā no ca saṃyojanā. ^1-0b-23\n\n\n",
+      "start": 4484,
+      "end": 4589
+    },
+    {
+      "time_stamp": 388.3204649160767,
+      "text": " 24. (Ka) saṃyojanā ceva dhammā saṃyojanasampayuttā ca.\n(Kha) saṃyojanasampayuttā ceva dhammā no ca saṃyojanā. ^1-0b-24\n\n\n",
+      "start": 4590,
+      "end": 4711
+    },
+    {
+      "time_stamp": 401.64887510299684,
+      "text": " 25. (Ka) saṃyojanavippayuttā kho pana dhammā saṃyojaniyāpi.\n(Kha) asaṃyojaniyāpi.\n\n\n",
+      "start": 4712,
+      "end": 4796
+    }
+  ],
+  "3": [
+    {
+      "time_stamp": 411.11229400953675,
+      "text": " Saṃyojanagocchakaṃ. ^1-0b-25\n\n\n##### Ganthagocchakaṃ ^1-0b-5-0\n\n\n",
+      "start": 4797,
+      "end": 4862
+    },
+    {
+      "time_stamp": 415.08001312207034,
+      "text": " 26. (Ka) ganthā dhammā.\n(Kha) no ganthā dhammā. ^1-0b-26\n\n\n",
+      "start": 4863,
+      "end": 4922
+    },
+    {
+      "time_stamp": 419.60814990463257,
+      "text": " 27. (Ka) ganthaniyā dhammā.\n(Kha) aganthaniyā dhammā. ^1-0b-27\n\n\n",
+      "start": 4923,
+      "end": 4988
+    },
+    {
+      "time_stamp": 425.18450601525876,
+      "text": " 28. (Ka) ganthasampayuttā dhammā.\n(Kha) ganthavippayuttā dhammā. ^1-0b-28\n\n\n",
+      "start": 4989,
+      "end": 5065
+    },
+    {
+      "time_stamp": 432.22410497138975,
+      "text": " 29. (Ka) ganthā ceva dhammā ganthaniyā ca.\n(Kha) ganthaniyā ceva dhammā no ca ganthā. ^1-0b-29\n\n\n",
+      "start": 5066,
+      "end": 5163
+    },
+    {
+      "time_stamp": 442.3609548779297,
+      "text": " 30. (Ka) ganthā ceva dhammā ganthasampayuttā ca.\n(Kha) ganthasampayuttā ceva dhammā no ca ganthā. ^1-0b-30\n\n\n",
+      "start": 5164,
+      "end": 5273
+    },
+    {
+      "time_stamp": 454.46601496757506,
+      "text": " 31. (Ka) ganthavippayuttā kho pana dhammā ganthaniyāpi.\n(Kha) aganthaniyāpi.\n\n\n",
+      "start": 5274,
+      "end": 5353
+    },
+    {
+      "time_stamp": 463.5010759885559,
+      "text": " Ganthagocchakaṃ. ^1-0b-31\n\n\n##### Oghagocchakaṃ ^1-0b-6-0\n\n\n",
+      "start": 5354,
+      "end": 5414
+    },
+    {
+      "time_stamp": 467.02409903242494,
+      "text": " 32. (Ka) oghā dhammā.\n(Kha) no oghā dhammā. ^1-0b-32\n\n\n",
+      "start": 5415,
+      "end": 5470
+    },
+    {
+      "time_stamp": 471.33523504577636,
+      "text": " 33. (Ka) oghaniyā dhammā.\n(Kha) anoghaniyā dhammā. ^1-0b-33\n\n\n",
+      "start": 5471,
+      "end": 5533
+    },
+    {
+      "time_stamp": 476.79106487983705,
+      "text": " 34. (Ka) oghasampayuttā dhammā.\n(Kha) oghavippayuttā dhammā. ^1-0b-34\n\n\n",
+      "start": 5534,
+      "end": 5606
+    },
+    {
+      "time_stamp": 483.687628125885,
+      "text": " 35. (Ka) oghā ceva dhammā oghaniyā ca.\n(Kha) oghaniyā ceva dhammā no ca oghā. ^1-0b-35\n\n\n",
+      "start": 5607,
+      "end": 5696
+    },
+    {
+      "time_stamp": 493.4315040247955,
+      "text": " 36. (Ka) oghā ceva dhammā oghasampayuttā ca.\n(Kha) oghasampayuttā ceva dhammā no ca oghā. ^1-0b-36\n\n\n",
+      "start": 5697,
+      "end": 5798
+    },
+    {
+      "time_stamp": 504.9051610972748,
+      "text": " 37. (Ka) oghavippayuttā kho pana dhammā oghaniyāpi.\n(Kha) anoghaniyāpi.\n\n\n",
+      "start": 5799,
+      "end": 5873
+    },
+    {
+      "time_stamp": 514.408784961853,
+      "text": " Oghagocchakaṃ. ^1-0b-37\n\n\n##### Yogagocchakaṃ ^1-0b-7-0\n\n\n",
+      "start": 5874,
+      "end": 5932
+    },
+    {
+      "time_stamp": 517.2650700534058,
+      "text": " 38. (Ka) yogā dhammā.\n(Kha) no yogā dhammā. ^1-0b-38\n\n\n",
+      "start": 5933,
+      "end": 5988
+    },
+    {
+      "time_stamp": 522.8636840419616,
+      "text": " 39. (Ka) yoganiyā dhammā.\n(Kha) ayoganiyā dhammā. ^1-0b-39\n\n\n",
+      "start": 5989,
+      "end": 6050
+    },
+    {
+      "time_stamp": 527.4246299828338,
+      "text": " 40. (Ka) yogasampayuttā dhammā.\n(Kha) yogavippayuttā dhammā. ^1-0b-40\n\n\n",
+      "start": 6051,
+      "end": 6123
+    },
+    {
+      "time_stamp": 534.4252541144409,
+      "text": " 41. (Ka) yogā ceva dhammā yoganiyā ca.\n(Kha) yoganiyā ceva dhammā no ca yogā. ^1-0b-41\n\n\n",
+      "start": 6124,
+      "end": 6213
+    },
+    {
+      "time_stamp": 545.0239499847412,
+      "text": " 42. (Ka) yogā ceva dhammā yogasampayuttā ca.\n(Kha) yogasampayuttā ceva dhammā no ca yogā. ^1-0b-42\n\n\n",
+      "start": 6214,
+      "end": 6315
+    },
+    {
+      "time_stamp": 556.7127258798371,
+      "text": " 43. (Ka) yogavippayuttā kho pana dhammā yoganiyāpi.\n(Kha) ayoganiyāpi.\n\n\n ",
+      "start": 6316,
+      "end": 6390
+    },
+    {
+      "time_stamp": 566.3233157730255,
+      "text": " Yogagocchakaṃ. ^1-0b-43\n\n\n##### Nīvaraṇagocchakaṃ ^1-0b-8-0\n\n\n",
+      "start": 6391,
+      "end": 6453
+    },
+    {
+      "time_stamp": 569.4878989198913,
+      "text": " 44. (Ka) nīvaraṇā dhammā.\n(Kha) no nīvaraṇā dhammā. ^1-0b-44\n\n\n",
+      "start": 6454,
+      "end": 6517
+    },
+    {
+      "time_stamp": 574.5842609027252,
+      "text": " 45. (Ka) nīvaraṇiyā dhammā.\n(Kha) anīvaraṇiyā dhammā. ^1-0b-45\n\n\n",
+      "start": 6518,
+      "end": 6583
+    },
+    {
+      "time_stamp": 580.472007874115,
+      "text": " 46. (Ka) nīvaraṇasampayuttā dhammā.\n(Kha) nīvaraṇavippayuttā dhammā. ^1-0b-46\n\n\n",
+      "start": 6584,
+      "end": 6664
+    },
+    {
+      "time_stamp": 587.8321871678467,
+      "text": " 47. (Ka) nīvaraṇā ceva dhammā nīvaraṇiyā ca.\n(Kha) nīvaraṇiyā ceva dhammā no ca nīvaraṇā. ^1-0b-47\n\n\n",
+      "start": 6665,
+      "end": 6766
+    },
+    {
+      "time_stamp": 598.4873919198914,
+      "text": " 48. (Ka) nīvaraṇā ceva dhammā nīvaraṇasampayuttā ca.\n(Kha) nīvaraṇasampayuttā ceva dhammā no ca nīvaraṇā. ^1-0b-48\n\n\n",
+      "start": 6767,
+      "end": 6884
+    },
+    {
+      "time_stamp": 610.1919628989106,
+      "text": " 49. (Ka) nīvaraṇavippayuttā kho pana dhammā nīvaraṇiyāpi.\n(Kha) anīvaraṇiyāpi .\n\n\n",
+      "start": 6885,
+      "end": 6967
+    },
+    {
+      "time_stamp": 619.1509570038147,
+      "text": " Nīvaraṇagocchakaṃ. ^1-0b-49\n\n\n##### Parāmāsagocchakaṃ ^1-0b-9-0\n\n\n",
+      "start": 6968,
+      "end": 7034
+    },
+    {
+      "time_stamp": 622.7522150247955,
+      "text": " 50. (Ka) parāmāsā dhammā.\n(Kha) no parāmāsā dhammā. ^1-0b-50\n\n\n",
+      "start": 7035,
+      "end": 7098
+    },
+    {
+      "time_stamp": 629.1761518397827,
+      "text": " 51. (Ka) parāmaṭṭhā dhammā.\n(Kha) aparāmaṭṭhā dhammā. ^1-0b-51\n\n\n",
+      "start": 7099,
+      "end": 7164
+    },
+    {
+      "time_stamp": 633.8481869465942,
+      "text": " 52. (Ka) parāmāsasampayuttā dhammā.\n(Kha) parāmāsavippayuttā dhammā. ^1-0b-52\n\n\n",
+      "start": 7165,
+      "end": 7245
+    },
+    {
+      "time_stamp": 641.255684786377,
+      "text": " 53. (Ka) parāmāsā ceva dhammā parāmaṭṭhā ca.\n(Kha) parāmaṭṭhā ceva dhammā no ca parāmāsā. ^1-0b-53\n\n\n",
+      "start": 7246,
+      "end": 7347
+    },
+    {
+      "time_stamp": 652.2888358989105,
+      "text": " 54. (Ka) parāmāsavippayuttā kho pana dhammā parāmaṭṭhāpi.\n(Kha) aparāmaṭṭhāpi.\n\n\n",
+      "start": 7348,
+      "end": 7429
+    }
+  ],
+  "4": [
+    {
+      "time_stamp": 661.3940079656677,
+      "text": " Parāmāsagocchakaṃ. ^1-0b-54\n\n\n##### Mahantaradukaṃ ^1-0b-10-0\n\n\n",
+      "start": 7430,
+      "end": 7494
+    },
+    {
+      "time_stamp": 665.3441799408722,
+      "text": " 55. (Ka) sārammaṇā dhammā.\n(Kha) anārammaṇā dhammā. ^1-0b-55\n\n\n",
+      "start": 7495,
+      "end": 7558
+    },
+    {
+      "time_stamp": 670.7274270705719,
+      "text": " 56. (Ka) cittā dhammā.\n(Kha) no cittā dhammā. ^1-0b-56\n\n\n",
+      "start": 7559,
+      "end": 7616
+    },
+    {
+      "time_stamp": 675.3598870686645,
+      "text": " 57. (Ka) cetasikā dhammā.\n(Kha) acetasikā dhammā. ^1-0b-57\n\n\n",
+      "start": 7617,
+      "end": 7678
+    },
+    {
+      "time_stamp": 680.1282868607635,
+      "text": " 58. (Ka) cittasampayuttā dhammā.\n(Kha) cittavippayuttā dhammā. ^1-0b-58\n\n\n",
+      "start": 7679,
+      "end": 7753
+    },
+    {
+      "time_stamp": 686.2722448435974,
+      "text": " 59. (Ka) cittasaṃsaṭṭhā dhammā.\n(Kha) cittavisaṃsaṭṭhā dhammā. ^1-0b-59\n\n\n",
+      "start": 7754,
+      "end": 7828
+    },
+    {
+      "time_stamp": 692.8474288664856,
+      "text": " 60. (Ka) cittasamuṭṭhānā dhammā.\n(Kha) no cittasamuṭṭhānā dhammā. ^1-0b-60\n\n\n",
+      "start": 7829,
+      "end": 7906
+    },
+    {
+      "time_stamp": 700.0867610667572,
+      "text": " 61. (Ka) cittasahabhuno dhammā.\n(Kha) no cittasahabhuno dhammā. ^1-0b-61\n\n\n",
+      "start": 7907,
+      "end": 7982
+    },
+    {
+      "time_stamp": 706.0481608664855,
+      "text": " 62. (Ka) cittānuparivattino dhammā.\n(Kha) no cittānuparivattino dhammā. ^1-0b-62\n\n\n",
+      "start": 7983,
+      "end": 8066
+    },
+    {
+      "time_stamp": 713.6173308950958,
+      "text": " 63. (Ka) cittasaṃsaṭṭhasamuṭṭhānā dhammā.\n(Kha) no cittasaṃsaṭṭhasamuṭṭhānā dhammā. ^1-0b-63\n\n\n",
+      "start": 8067,
+      "end": 8162
+    },
+    {
+      "time_stamp": 723.4639499866486,
+      "text": " 64. (Ka) cittasaṃsaṭṭhasamuṭṭhānasahabhuno dhammā.\n(Kha) no cittasaṃsaṭṭhasamuṭṭhānasahabhuno dhammā. ^1-0b-64\n\n\n",
+      "start": 8163,
+      "end": 8276
+    },
+    {
+      "time_stamp": 734.7504670782013,
+      "text": " 65. (Ka) cittasaṃsaṭṭhasamuṭṭhānānuparivattino dhammā.\n(Kha) no cittasaṃsaṭṭhasamuṭṭhānānuparivattino dhammā. ^1-0b-65\n\n\n",
+      "start": 8277,
+      "end": 8398
+    },
+    {
+      "time_stamp": 747.0723758035431,
+      "text": " 66. (Ka) ajjhattikā dhammā.\n(Kha) bāhirā dhammā. ^1-0b-66\n\n\n",
+      "start": 8399,
+      "end": 8459
+    },
+    {
+      "time_stamp": 752.0882638512268,
+      "text": " 67. (Ka) upādā dhammā.\n(Kha) no upādā dhammā. ^1-0b-67\n\n\n",
+      "start": 8460,
+      "end": 8517
+    },
+    {
+      "time_stamp": 756.1840961182556,
+      "text": " 68. (Ka) upādiṇṇā [upādinnā (sī. syā.)] dhammā.\n(Kha) anupādiṇṇā dhammā.\n\n\n",
+      "start": 8518,
+      "end": 8593
+    },
+    {
+      "time_stamp": 761.8558400019074,
+      "text": " Mahantaradukaṃ. ^1-0b-68\n\n\n##### Upādānagocchakaṃ ^1-0b-11-0\n\n\n",
+      "start": 8594,
+      "end": 8657
+    },
+    {
+      "time_stamp": 765.0709248683929,
+      "text": " 69. (Ka) upādānā dhammā.\n(Kha) no upādānā dhammā. ^1-0b-69\n\n\n",
+      "start": 8658,
+      "end": 8719
+    },
+    {
+      "time_stamp": 770.5842980801086,
+      "text": " 70. (Ka) upādāniyā dhammā.\n(Kha) anupādāniyā dhammā. ^1-0b-70\n\n\n",
+      "start": 8720,
+      "end": 8784
+    },
+    {
+      "time_stamp": 775.7113570209808,
+      "text": " 71. (Ka) upādānasampayuttā dhammā.\n(Kha) upādānavippayuttā dhammā. ^1-0b-71\n\n\n",
+      "start": 8785,
+      "end": 8863
+    },
+    {
+      "time_stamp": 784.0720419866485,
+      "text": " 72. (Ka) upādānā ceva dhammā upādāniyā ca.\n(Kha) upādāniyā ceva dhammā no ca upādānā. ^1-0b-72\n\n\n",
+      "start": 8864,
+      "end": 8961
+    },
+    {
+      "time_stamp": 795.2711869160767,
+      "text": " 73. (Ka) upādānā ceva dhammā upādānasampayuttā ca.\n(Kha) upādānasampayuttā ceva dhammā no ca upādānā. ^1-0b-73\n\n\n",
+      "start": 8962,
+      "end": 9075
+    },
+    {
+      "time_stamp": 807.7037681468659,
+      "text": " 74. (Ka) upādānavippayuttā kho pana dhammā upādāniyāpi.\n(Kha) anupādāniyāpi.\n\n\n",
+      "start": 9076,
+      "end": 9155
+    },
+    {
+      "time_stamp": 817.3344438798371,
+      "text": " Upādānagocchakaṃ. ^1-0b-74\n\n\n##### Kilesagocchakaṃ ^1-0b-12-0\n\n\n",
+      "start": 9156,
+      "end": 9220
+    },
+    {
+      "time_stamp": 821.1278448130798,
+      "text": " 75. (Ka) kilesā dhammā.\n(Kha) no kilesā dhammā. ^1-0b-75\n\n\n",
+      "start": 9221,
+      "end": 9280
+    },
+    {
+      "time_stamp": 825.7210960343323,
+      "text": " 76. (Ka) saṃkilesikā dhammā.\n(Kha) asaṃkilesikā dhammā. ^1-0b-76\n\n\n",
+      "start": 9281,
+      "end": 9348
+    },
+    {
+      "time_stamp": 831.1118541239777,
+      "text": " 77. (Ka) saṃkiliṭṭhā dhammā.\n(Kha) asaṃkiliṭṭhā dhammā. ^1-0b-77\n\n\n",
+      "start": 9349,
+      "end": 9416
+    },
+    {
+      "time_stamp": 835.990586923706,
+      "text": " 78. (Ka) kilesasampayuttā dhammā.\n(Kha) kilesavippayuttā dhammā. ^1-0b-78\n\n\n",
+      "start": 9417,
+      "end": 9493
+    },
+    {
+      "time_stamp": 842.3982199141693,
+      "text": " 79. (Ka) kilesā ceva dhammā saṃkilesikā ca.\n(Kha) saṃkilesikā ceva dhammā no ca kilesā. ^1-0b-79\n\n\n",
+      "start": 9494,
+      "end": 9593
+    },
+    {
+      "time_stamp": 853.0241790553131,
+      "text": " 80. (Ka) kilesā ceva dhammā saṃkiliṭṭhā ca.\n(Kha) saṃkiliṭṭhā ceva dhammā no ca kilesā. ^1-0b-80\n\n\n",
+      "start": 9594,
+      "end": 9693
+    },
+    {
+      "time_stamp": 863.1929108950958,
+      "text": " 81. (Ka) kilesā ceva dhammā kilesasampayuttā ca.\n(Kha) kilesasampayuttā ceva dhammā no ca kilesā. ^1-0b-81\n\n\n",
+      "start": 9694,
+      "end": 9803
+    },
+    {
+      "time_stamp": 875.2640440782013,
+      "text": " 82. (Ka) kilesavippayuttā kho pana dhammā saṃkilesikāpi.\n(Kha) asaṃkilesikāpi.\n\n\n",
+      "start": 9804,
+      "end": 9885
+    }
+  ],
+  "5": [
+    {
+      "time_stamp": 883.9028399332428,
+      "text": " Kilesagocchakaṃ. ^1-0b-82\n\n\n##### Piṭṭhidukaṃ ^1-0b-13-0\n\n\n",
+      "start": 9886,
+      "end": 9945
+    },
+    {
+      "time_stamp": 887.1440848226166,
+      "text": " 83. (Ka) dassanena pahātabbā dhammā.\n(Kha) na dassanena pahātabbā dhammā. ^1-0b-83\n\n\n",
+      "start": 9946,
+      "end": 10031
+    },
+    {
+      "time_stamp": 895.335021950409,
+      "text": " 84. (Ka) bhāvanāya pahātabbā dhammā.\n(Kha) na bhāvanāya pahātabbā dhammā. ^1-0b-84\n\n\n",
+      "start": 10032,
+      "end": 10117
+    },
+    {
+      "time_stamp": 903.7108588970032,
+      "text": " 85. (Ka) dassanena pahātabbahetukā dhammā.\n(Kha) na dassanena pahātabbahetukā dhammā. ^1-0b-85\n\n\n",
+      "start": 10118,
+      "end": 10215
+    },
+    {
+      "time_stamp": 913.5993130553131,
+      "text": " 86. (Ka) bhāvanāya pahātabbahetukā dhammā.\n(Kha) na bhāvanāya pahātabbahetukā dhammā. ^1-0b-86\n\n\n",
+      "start": 10216,
+      "end": 10313
+    },
+    {
+      "time_stamp": 922.9670709980926,
+      "text": " 87. (Ka) savitakkā dhammā.\n(Kha) avitakkā dhammā. ^1-0b-87\n\n\n",
+      "start": 10314,
+      "end": 10375
+    },
+    {
+      "time_stamp": 928.8390139694824,
+      "text": " 88. (Ka) savicārā dhammā.\n(Kha) avicārā dhammā. ^1-0b-88\n\n\n",
+      "start": 10376,
+      "end": 10435
+    },
+    {
+      "time_stamp": 932.5438569980927,
+      "text": " 89. (Ka) sappītikā dhammā.\n(Kha) appītikā dhammā. ^1-0b-89\n\n\n",
+      "start": 10436,
+      "end": 10497
+    },
+    {
+      "time_stamp": 937.8069279294281,
+      "text": " 90. (Ka) pītisahagatā dhammā.\n(Kha) na pītisahagatā dhammā. ^1-0b-90\n\n\n",
+      "start": 10498,
+      "end": 10569
+    },
+    {
+      "time_stamp": 943.7430828226165,
+      "text": " 91. (Ka) sukhasahagatā dhammā.\n(Kha) na sukhasahagatā dhammā. ^1-0b-91\n\n\n",
+      "start": 10570,
+      "end": 10643
+    },
+    {
+      "time_stamp": 950.1271028626709,
+      "text": " 92. (Ka) upekkhāsahagatā dhammā.\n(Kha) na upekkhāsahagatā dhammā. ^1-0b-92\n\n\n",
+      "start": 10644,
+      "end": 10721
+    },
+    {
+      "time_stamp": 957.7272361964569,
+      "text": " 93. (Ka) kāmāvacarā dhammā.\n(Kha) na kāmāvacarā dhammā. ^1-0b-93\n\n\n",
+      "start": 10722,
+      "end": 10789
+    },
+    {
+      "time_stamp": 963.4231578416901,
+      "text": " 94. (Ka) rūpāvacarā dhammā.\n(Kha) na rūpāvacarā dhammā. ^1-0b-94\n\n\n",
+      "start": 10790,
+      "end": 10857
+    },
+    {
+      "time_stamp": 968.7112550438691,
+      "text": " 95. (Ka) arūpāvacarā dhammā.\n(Kha) na arūpāvacarā dhammā. ^1-0b-95\n\n\n",
+      "start": 10858,
+      "end": 10927
+    },
+    {
+      "time_stamp": 974.2545000209808,
+      "text": " 96. (Ka) pariyāpannā dhammā.\n(Kha) apariyāpannā dhammā. ^1-0b-96\n\n\n",
+      "start": 10928,
+      "end": 10995
+    },
+    {
+      "time_stamp": 980.2789179084473,
+      "text": " 97. (Ka) niyyānikā dhammā.\n(Kha) aniyyānikā dhammā. ^1-0b-97\n\n\n",
+      "start": 10996,
+      "end": 11059
+    },
+    {
+      "time_stamp": 985.7266061964569,
+      "text": " 98. (Ka) niyatā dhammā.\n(Kha) aniyatā dhammā. ^1-0b-98\n\n\n",
+      "start": 11060,
+      "end": 11117
+    },
+    {
+      "time_stamp": 990.5827360953674,
+      "text": " 99. (Ka) sauttarā dhammā.\n(Kha) anuttarā dhammā. ^1-0b-99\n\n\n",
+      "start": 11118,
+      "end": 11178
+    },
+    {
+      "time_stamp": 995.1042349084472,
+      "text": " 100. (Ka) saraṇā dhammā.\n(Kha) araṇā dhammā.\n\n\n",
+      "start": 11179,
+      "end": 11226
+    },
+    {
+      "time_stamp": 999.4505331487732,
+      "text": " Piṭṭhidukaṃ.\nAbhidhammadukamātikā. ^1-0b-100\n\n\n##### Suttantikadukamātikā ^1-0b-14-0\n\n\n",
+      "start": 11227,
+      "end": 11314
+    },
+    {
+      "time_stamp": 1006.1350330686646,
+      "text": " 101. (Ka) vijjābhāgino dhammā.\n(Kha) avijjābhāgino dhammā. ^1-0b-101\n\n\n",
+      "start": 11315,
+      "end": 11386
+    },
+    {
+      "time_stamp": 1011.8596640686645,
+      "text": " 102. (Ka) vijjūpamā dhammā.\n(Kha) vajirūpamā dhammā. ^1-0b-102\n\n\n",
+      "start": 11387,
+      "end": 11452
+    },
+    {
+      "time_stamp": 1016.8513049809266,
+      "text": " 103. (Ka) bālā dhammā.\n(Kha) paṇḍitā dhammā. ^1-0b-103\n\n\n",
+      "start": 11453,
+      "end": 11510
+    },
+    {
+      "time_stamp": 1020.8358069713897,
+      "text": " 104. (Ka) kaṇhā dhammā.\n(Kha) sukkā dhammā. ^1-0b-104\n\n\n",
+      "start": 11511,
+      "end": 11567
+    },
+    {
+      "time_stamp": 1024.7158268378753,
+      "text": " 105. (Ka) tapanīyā dhammā.\n(Kha) atapanīyā dhammā. ^1-0b-105\n\n\n",
+      "start": 11568,
+      "end": 11631
+    },
+    {
+      "time_stamp": 1029.763567125885,
+      "text": " 106. (Ka) adhivacanā dhammā.\n(Kha) adhivacanapathā dhammā. ^1-0b-106\n\n\n",
+      "start": 11632,
+      "end": 11703
+    },
+    {
+      "time_stamp": 1034.7069641907349,
+      "text": " 107. (Ka) nirutti dhammā.\n(Kha) niruttipathā dhammā. ^1-0b-107\n\n\n",
+      "start": 11704,
+      "end": 11769
+    },
+    {
+      "time_stamp": 1039.908944005722,
+      "text": " 108. (Ka) paññatti dhammā.\n(Kha) paññattipathā dhammā. ^1-0b-108\n\n\n",
+      "start": 11770,
+      "end": 11837
+    },
+    {
+      "time_stamp": 1045.0830860457763,
+      "text": " 109. (Ka) nāmañca.\n(Kha) rūpañca. ^1-0b-109\n\n\n",
+      "start": 11838,
+      "end": 11884
+    }
+  ],
+  "6": [
+    {
+      "time_stamp": 1049.2607800286103,
+      "text": " 110. (Ka) avijjā ca.\n(Kha) bhavataṇhā ca. ^1-0b-110\n\n\n",
+      "start": 11885,
+      "end": 11939
+    },
+    {
+      "time_stamp": 1053.2267521716615,
+      "text": " 111. (Ka) bhavadiṭṭhi ca.\n(Kha) vibhavadiṭṭhi ca. ^1-0b-111\n\n\n",
+      "start": 11940,
+      "end": 12002
+    },
+    {
+      "time_stamp": 1057.763810087738,
+      "text": " 112. (Ka) sassatadiṭṭhi ca.\n(Kha) ucchedadiṭṭhi ca. ^1-0b-112\n\n\n",
+      "start": 12003,
+      "end": 12067
+    },
+    {
+      "time_stamp": 1063.410134196457,
+      "text": " 113. (Ka) antavā diṭṭhi ca.\n(Kha) anantavā diṭṭhi ca. ^1-0b-113\n\n\n",
+      "start": 12068,
+      "end": 12134
+    },
+    {
+      "time_stamp": 1067.9238281735688,
+      "text": " 114. (Ka) pubbantānudiṭṭhi ca.\n(Kha) aparantānudiṭṭhi ca. ^1-0b-114\n\n\n",
+      "start": 12135,
+      "end": 12205
+    },
+    {
+      "time_stamp": 1073.3862509485016,
+      "text": " 115. (Ka) ahirikañca.\n(Kha) anottappañca. ^1-0b-115\n\n\n",
+      "start": 12206,
+      "end": 12260
+    },
+    {
+      "time_stamp": 1078.2846199961853,
+      "text": " 116. (Ka) hirī ca.\n(Kha) ottappañca. ^1-0b-116\n\n\n",
+      "start": 12261,
+      "end": 12310
+    },
+    {
+      "time_stamp": 1082.0180898321532,
+      "text": " 117. (Ka) dovacassatā ca.\n(Kha) pāpamittatā ca. ^1-0b-117\n\n\n",
+      "start": 12311,
+      "end": 12371
+    },
+    {
+      "time_stamp": 1087.2678760019073,
+      "text": " 118. (Ka) sovacassatā ca.\n(Kha) kalyāṇamittatā ca. ^1-0b-118\n\n\n",
+      "start": 12372,
+      "end": 12435
+    },
+    {
+      "time_stamp": 1092.5867168760224,
+      "text": " 119. (Ka) āpattikusalatā ca.\n(Kha) āpattivuṭṭhānakusalatā ca. ^1-0b-119\n\n\n",
+      "start": 12436,
+      "end": 12510
+    },
+    {
+      "time_stamp": 1098.858870950409,
+      "text": " 120. (Ka) samāpattikusalatā ca.\n(Kha) samāpattivuṭṭhānakusalatā ca. ^1-0b-120\n\n\n",
+      "start": 12511,
+      "end": 12591
+    },
+    {
+      "time_stamp": 1106.1874770839233,
+      "text": " 121. (Ka) dhātukusalatā ca.\n(Kha) manasikārakusalatā ca. ^1-0b-121\n\n\n",
+      "start": 12592,
+      "end": 12661
+    },
+    {
+      "time_stamp": 1112.2117598989105,
+      "text": " 122. (Ka) āyatanakusalatā ca.\n(Kha) paṭiccasamuppādakusalatā ca. ^1-0b-122\n\n\n",
+      "start": 12662,
+      "end": 12739
+    },
+    {
+      "time_stamp": 1119.0341918264312,
+      "text": " 123. (Ka) ṭhānakusalatā ca.\n(Kha) aṭṭhānakusalatā ca. ^1-0b-123\n\n\n",
+      "start": 12740,
+      "end": 12806
+    },
+    {
+      "time_stamp": 1124.5626170419616,
+      "text": " 124. (Ka) ajjavo ca.\n(Kha) maddavo ca. ^1-0b-124\n\n\n",
+      "start": 12807,
+      "end": 12858
+    },
+    {
+      "time_stamp": 1128.8037568836517,
+      "text": " 125. (Ka) khanti ca.\n(Kha) soraccañca. ^1-0b-125\n\n\n",
+      "start": 12859,
+      "end": 12910
+    },
+    {
+      "time_stamp": 1132.3947819637604,
+      "text": " 126. (Ka) sākhalyañca.\n(Kha) paṭisanthāro ca [paṭisandhāro ca (ka.)]. ^1-0b-126\n\n\n",
+      "start": 12911,
+      "end": 12993
+    },
+    {
+      "time_stamp": 1137.505459929428,
+      "text": " 127. (Ka) indriyesu aguttadvāratā ca.\n(Kha) bhojane amattaññutā ca. ^1-0b-127\n\n\n",
+      "start": 12994,
+      "end": 13074
+    },
+    {
+      "time_stamp": 1145.1213890572205,
+      "text": " 128. (Ka) indriyesu guttadvāratā ca.\n(Kha) bhojane mattaññutā ca. ^1-0b-128\n\n\n",
+      "start": 13075,
+      "end": 13153
+    },
+    {
+      "time_stamp": 1152.5847478817443,
+      "text": " 129. (Ka) muṭṭhasaccañca.\n(Kha) asampajaññañca. ^1-0b-129\n\n\n",
+      "start": 13154,
+      "end": 13214
+    },
+    {
+      "time_stamp": 1157.6972710400544,
+      "text": " 130. (Ka) sati ca.\n(Kha) sampajaññañca. ^1-0b-130\n\n\n",
+      "start": 13215,
+      "end": 13267
+    },
+    {
+      "time_stamp": 1161.713881803543,
+      "text": " 131. (Ka) paṭisaṅkhānabalañca.\n(Kha) bhāvanābalañca. ^1-0b-131\n\n\n",
+      "start": 13268,
+      "end": 13333
+    },
+    {
+      "time_stamp": 1167.1234390076295,
+      "text": " 132. (Ka) samatho ca.\n(Kha) vipassanā ca. ^1-0b-132\n\n\n",
+      "start": 13334,
+      "end": 13388
+    },
+    {
+      "time_stamp": 1171.2658509790192,
+      "text": " 133. (Ka) samathanimittañca .\n(Kha) paggāhanimittañca. ^1-0b-133\n\n\n",
+      "start": 13389,
+      "end": 13456
+    },
+    {
+      "time_stamp": 1176.4654210610352,
+      "text": " 134. (Ka) paggāho ca.\n(Kha) avikkhepo ca. ^1-0b-134\n\n\n",
+      "start": 13457,
+      "end": 13511
+    },
+    {
+      "time_stamp": 1180.9933019656678,
+      "text": " 135. (Ka) sīlavipatti ca.\n(Kha) diṭṭhivipatti ca. ^1-0b-135\n\n\n",
+      "start": 13512,
+      "end": 13574
+    },
+    {
+      "time_stamp": 1186.1780327997285,
+      "text": " 136. (Ka) sīlasampadā ca.\n(Kha) diṭṭhisampadā ca. ^1-0b-136\n\n\n",
+      "start": 13575,
+      "end": 13637
+    },
+    {
+      "time_stamp": 1191.8732450572204,
+      "text": " 137. (Ka) sīlavisuddhi ca.\n(Kha) diṭṭhivisuddhi ca. ^1-0b-137\n\n\n",
+      "start": 13638,
+      "end": 13702
+    },
+    {
+      "time_stamp": 1197.0571441182556,
+      "text": " 138. (Ka) diṭṭhivisuddhi kho pana.\n(Kha) yathādiṭṭhissa ca padhānaṃ. ^1-0b-138\n\n\n",
+      "start": 13703,
+      "end": 13784
+    },
+    {
+      "time_stamp": 1203.90551690654,
+      "text": " 139. (Ka) saṃvego ca saṃvejaniyesu ṭhānesu.\n(Kha) saṃviggassa ca yoniso padhānaṃ. ^1-0b-139\n\n\n",
+      "start": 13785,
+      "end": 13879
+    },
+    {
+      "time_stamp": 1214.169413011444,
+      "text": " 140. (Ka) asantuṭṭhitā ca kusalesu dhammesu.\n(Kha) appaṭivānitā ca padhānasmiṃ. ^1-0b-140\n\n\n",
+      "start": 13880,
+      "end": 13972
+    },
+    {
+      "time_stamp": 1223.8664071010894,
+      "text": " 141. (Ka) vijjā ca.\n(Kha) vimutti ca. ^1-0b-141\n\n\n",
+      "start": 13973,
+      "end": 14023
+    },
+    {
+      "time_stamp": 1227.2644560133515,
+      "text": " 142. (Ka) khaye ñāṇaṃ.\n(Kha) anuppāde ñāṇanti.\nSuttantikadukamātikā [suttantamātikā (syā.)].\nMātikā niṭṭhitā. ^1-0b-142\n\n\n \n\n\n\n",
+      "start": 14024,
+      "end": 14151
+    }
+  ]
+}

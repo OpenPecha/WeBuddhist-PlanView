@@ -14,6 +14,7 @@ import api from "@/lib/api"
 // import ShareButton from "./ShareButton"
 import { Button } from "@/components/ui/atom/button"
 import InfoModal from "@/components/ui/molecules/modal/InfoModal"
+import useSeriesData from "./hooks/useSeriesData"
 
 interface PlanHeaderProps {
   data?: PlanDay
@@ -23,23 +24,8 @@ interface PlanHeaderProps {
   onNavigateToDate: (date: string) => void
 }
 
-interface SeriesPlanSummary {
-  id: string
-  display_order: number
-  start_date: string
-  total_days: number
-}
 
-interface Series {
-  id: string
-  total_days: number
-  plans: SeriesPlanSummary[]
-}
 
-export const fetchSeriesById = async (seriesId: string): Promise<Series> => {
-  const { data } = await api.get<Series>(`/api/v1/series/${seriesId}`)
-  return data
-}
 
 export function PlanHeader({
   data,
@@ -52,28 +38,8 @@ export function PlanHeader({
   const resolvedDate = date ?? data?.date
   const currentDate = resolvedDate ? parseISO(resolvedDate) : new Date()
   const formattedDate = format(currentDate, "MMMM d, yyyy")
-
   const seriesId = data?.series?.id
-  const { data: series } = useQuery({
-    queryKey: ["series", seriesId],
-    queryFn: () => fetchSeriesById(seriesId!),
-    enabled: !!seriesId,
-    refetchOnWindowFocus: false,
-  })
-  const seriesProgress = (() => {
-    if (!series?.plans?.length || !series.total_days) return null
-    const firstPlan = [...series.plans].sort(
-      (a, b) => a.display_order - b.display_order,
-    )[1]
-    const start = parseISO(firstPlan.start_date)
-    const totalDays = series.total_days
-    const currentDay = Math.min(
-      Math.max(differenceInCalendarDays(currentDate, start) + 1, 0),
-      totalDays,
-    )
-    const percent = (currentDay / totalDays) * 100
-    return { currentDay, totalDays, percent }
-  })()
+  const seriesProgress = useSeriesData(seriesId)
 
   const [title, description] = data?.series?.name.en.split("->") || []
   const fakeTotalDays = 200

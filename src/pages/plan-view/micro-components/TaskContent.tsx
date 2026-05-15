@@ -8,8 +8,10 @@ import {
     AccordionTrigger,
 } from "@/components/ui/atom/accordion"
 import { PaliScriptDropdown } from "./PaliScriptDropdown"
+import AudioPlayer from "./AudioPlayer"
 
 interface TaskSectionProps {
+    seriesId: string
     task: Task
     index?: number
 }
@@ -18,7 +20,7 @@ function isPaliTask(title: string): boolean {
     return title.toLowerCase().includes("chanting in pali")
 }
 
-export function TaskSection({ task, index }: TaskSectionProps) {
+export function TaskSection({ seriesId, task, index }: TaskSectionProps) {
     const sortedSubtasks = [...task.subtasks].sort(
         (a, b) => a.display_order - b.display_order
     )
@@ -42,7 +44,8 @@ export function TaskSection({ task, index }: TaskSectionProps) {
             </AccordionTrigger>
             <AccordionContent className="mt-4 space-y-2 border-l border-[#ECECEC] pl-5 sm:pl-6">
                 {showScriptDropdown && (
-                    <div className="flex justify-end items-center p-2">
+                    <div className="flex justify-between items-center p-2">
+                        <AudioPlayer seriesId={seriesId} />
                         <PaliScriptDropdown value={script} onChange={setScript} />
                     </div>
                 )}

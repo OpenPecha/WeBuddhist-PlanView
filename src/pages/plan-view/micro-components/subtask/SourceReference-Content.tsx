@@ -2,15 +2,20 @@ import { convertPali, SCRIPTS } from "pali_script_convertor"
 import { useAudioPlayer } from "../AudioPlayerContext"
 import { useTimeStamps } from "@/client_details/hooks"
 import useSeriesData from "../hooks/useSeriesData"
-import { useMemo } from "react"
 
 interface SourceReferenceContentProps {
     content: string
     targetScript?: any
 }
 
+interface TimestampSegment {
+    time_stamp: number
+}
 
-function findActiveIndexByTimestamp(data, currentTime) {
+function findActiveIndexByTimestamp(
+    data: TimestampSegment[] | null,
+    currentTime: number,
+): number {
     if (!Array.isArray(data) || data.length === 0) return -1;
   
     let left = 0;
@@ -68,8 +73,8 @@ export function SourceReferenceContent({
         return targetScript ? convertPali(content, targetScript, SCRIPTS.RO) : content
     }
     const { currentTime, seriesId } = useAudioPlayer();
-    const {currentDay} = useSeriesData(seriesId);
-    const data=useTimeStamps(currentDay)    
+    const seriesData = useSeriesData(seriesId);
+    const data = useTimeStamps(seriesData?.currentDay);    
     return (
         <div className=" rounded-sm bg-[#fbfbfb]">
             {segments.map((text, index) => {

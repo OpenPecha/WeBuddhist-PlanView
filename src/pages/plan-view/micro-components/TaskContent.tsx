@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/atom/accordion"
 import { PaliScriptDropdown } from "./PaliScriptDropdown"
 import { AudioPlayButton } from "./AudioPlayButton"
-import { useAudioPlayer } from "./AudioPlayerContext"
 
 interface TaskSectionProps {
     task: Task

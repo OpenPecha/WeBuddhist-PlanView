@@ -1,4 +1,4 @@
-import { useClientDetails, useTimeStamps } from '@/client_details/hooks';
+import { useClientDetails, usePrimaryColor, useTimeStamps } from '@/client_details/hooks';
 import { Button } from '@/components/ui/atom/button';
 import { Progress } from '@/components/ui/atom/progress';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -29,6 +29,7 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
   const { seriesId,imageUrl,description } = props;
   const seriesProgress = useSeriesData(seriesId)
   const timestamps = useTimeStamps(seriesProgress?.currentDay ?? 0)
+  const primaryColor = usePrimaryColor()
   const { data } = useClientDetails();
   const ref = useRef<YouTube>(null);
   const progressRef = useRef<HTMLDivElement>(null);
@@ -217,7 +218,7 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
         />
       )}
       </div>
-      <div className="flex-1 flex p-4">
+      <div className="flex-1 flex p-2">
        <div className="flex items-center justify-between gap-2 relative group">
         <img src={imageUrl} alt="Series Image" className="h-full object-contain border border-[#ECECEC] opacity-75  rounded-lg group-hover:opacity-100 transition-opacity duration-300" />
         <Button
@@ -229,9 +230,9 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
               aria-label={isPlaying ? 'Pause' : 'Play'}
             >
               {isPlaying ? (
-                <Pause className="size-4 fill-black " />
+                <Pause className="size-4 fill-gray-600 text-gray-600" />
               ) : (
-                <Play className="size-4 fill-black " />
+                <Play className="size-4 fill-gray-600 text-gray-600 hover:text-black" />
               )}
             </Button>
        </div>
@@ -260,7 +261,7 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
               <Progress
                 value={progressPercent}
                 className="h-1.5 pointer-events-none"
-                indicatorClassName={isSeeking ? 'transition-none' : undefined}
+                indicatorClassName={`${isSeeking ? 'transition-none' : undefined} ${primaryColor ? `bg-[${primaryColor}]` : 'bg-[#3D3D3A]'}`}
               />
             </div>
             {/* <span className="shrink-0">{elapsedDisplay}</span>

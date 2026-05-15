@@ -49,3 +49,8 @@ export const getPlanDay = async (
     }
     return null
   }
+
+  export function getPrimaryColor(client: string | undefined){
+    const clientDetails = getClientDetails(client)
+    return clientDetails?.primary_color || null
+  }

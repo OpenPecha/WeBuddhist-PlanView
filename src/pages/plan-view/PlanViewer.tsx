@@ -12,6 +12,7 @@ import {  getPlanDay } from "@/client_details/get_details"
 import { useImageURLWithFallback } from "@/client_details/hooks"
 import {  isMobile } from 'react-device-detect';
 import AudioPlayer from "./micro-components/AudioPlayer"
+import { AudioPlayerProvider } from "./micro-components/AudioPlayerContext"
 
 
 export function PlanViewer() {
@@ -54,6 +55,7 @@ export function PlanViewer() {
     ? { type: "multiple" as const, defaultValue: firstTaskId ? [firstTaskId] : [] }
     : { type: "single" as const, defaultValue: firstTaskId,collapsible: true }
   return (
+    <AudioPlayerProvider seriesId={data?.series?.id}>
     <main className="h-[calc(100dvh - 150px)] overflow-y-auto w-full">
       <div className="mx-auto max-w-[720px] px-5 pt-10 pb-2 sm:px-8 sm:py-16">
         <PlanHeader
@@ -117,8 +119,9 @@ export function PlanViewer() {
 
       <Footer />
        <div className="fixed bottom-0 left-0 right-0">
-       <AudioPlayer seriesId={data?.series?.id} imageUrl={data?.image?.original} description={data?.plan_description} />
+       <AudioPlayer imageUrl={data?.image?.original} description={data?.plan_description} />
        </div>
     </main>
+    </AudioPlayerProvider>
   )
 }

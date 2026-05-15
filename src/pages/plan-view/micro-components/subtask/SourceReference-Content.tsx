@@ -1,9 +1,43 @@
 import { convertPali, SCRIPTS } from "pali_script_convertor"
+import { useAudioPlayer } from "../AudioPlayerContext"
+import { useTimeStamps } from "@/client_details/hooks"
+import useSeriesData from "../hooks/useSeriesData"
+import { useMemo } from "react"
 
 interface SourceReferenceContentProps {
     content: string
     targetScript?: any
 }
+
+
+function findActiveIndexByTimestamp(data, currentTime) {
+    if (!Array.isArray(data) || data.length === 0) return -1;
+  
+    let left = 0;
+    let right = data.length - 1;
+    let previousIndex = -1;
+  
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2);
+      const itemTime = data[mid].time_stamp;
+  
+      if (itemTime <= currentTime) {
+        previousIndex = mid;
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
+    }
+  
+    // If there is an item less than or equal to currentTime, use it
+    if (previousIndex !== -1) {
+      return previousIndex;
+    }
+  
+    // If currentTime is before the first item, return nearest item
+    return 0;
+  }
+
 
 export function SourceReferenceContent({
     content,
@@ -33,20 +67,26 @@ export function SourceReferenceContent({
         }
         return targetScript ? convertPali(content, targetScript, SCRIPTS.RO) : content
     }
-
+    const { currentTime, seriesId } = useAudioPlayer();
+    const {currentDay} = useSeriesData(seriesId);
+    const data=useTimeStamps(currentDay)    
     return (
         <div className=" rounded-sm bg-[#fbfbfb]">
-            {segments.map((text, index) => (
-                <div
+            {segments.map((text, index) => {
+             
+             const currentTimestampIndex = findActiveIndexByTimestamp(data, Number(currentTime))
+             const shouldHighlight = currentTimestampIndex === index
+             return     <div
                     key={index}
-                    className="w-full min-h-12 whitespace-pre-wrap rich-html text-base font-serif p-2"
+                    className={`w-full min-h-12 whitespace-pre-wrap rich-html text-base font-serif p-2 ${shouldHighlight ? "font-bold" : ""}`}
                 >
                     {!text.trim().startsWith("<h") && (
                         <span className="font-medium">{index + 1}. </span>
                     )}
                     <span className={`${targetScript === "tb" && "tibetan-font"}`} dangerouslySetInnerHTML={{ __html: render(text) }} />
                 </div>
-            ))}
+            }
+            )}
         </div>
     )
 }

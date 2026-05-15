@@ -8,6 +8,8 @@ import {
     AccordionTrigger,
 } from "@/components/ui/atom/accordion"
 import { PaliScriptDropdown } from "./PaliScriptDropdown"
+import { AudioPlayButton } from "./AudioPlayButton"
+import { useAudioPlayer } from "./AudioPlayerContext"
 
 interface TaskSectionProps {
     task: Task
@@ -25,7 +27,6 @@ export function TaskSection({ task, index }: TaskSectionProps) {
     const showScriptDropdown = isPaliTask(task.title)
     const [script, setScript] = useState<any>(SCRIPTS.RO)
     const targetScript = showScriptDropdown ? script : null
-
     return (
         <AccordionItem value={task.id} className="border-0">
             <AccordionTrigger className="w-full p-0 hover:no-underline">
@@ -42,7 +43,8 @@ export function TaskSection({ task, index }: TaskSectionProps) {
             </AccordionTrigger>
             <AccordionContent className="mt-4 space-y-2 border-l border-[#ECECEC] pl-5 sm:pl-6">
                 {showScriptDropdown && (
-                    <div className="flex justify-end items-start gap-2 p-2">
+                    <div className="flex justify-between items-center gap-2 p-2">
+                        <AudioPlayButton showText={true} className="w-max px-2 gap-2" />
                         <PaliScriptDropdown value={script} onChange={setScript} />
                     </div>
                 )}

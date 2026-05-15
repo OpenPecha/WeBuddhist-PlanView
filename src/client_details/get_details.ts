@@ -41,9 +41,11 @@ export const getPlanDay = async (
     const clientDetails = getClientDetails(client)  
     if (clientDetails?.timestamps === "abhidhama"){
       if (typeof day !== "number" || day < 1) return null;
-      const index = (day).toString();
-      const timestamps = abidhama_timestamps[index];
-      return timestamps || null;
+      const index = String(day);
+      if (!(index in abidhama_timestamps)) return null;
+      const timestamps =
+        abidhama_timestamps[index as keyof typeof abidhama_timestamps];
+      return timestamps ?? null;
     }
     return null
   }

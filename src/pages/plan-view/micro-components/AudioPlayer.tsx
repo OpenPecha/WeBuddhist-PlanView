@@ -23,13 +23,13 @@ function formatTime(seconds: number): string {
 
 /** Timestamps are in seconds (YouTube player time). When both are set and valid, playback is restricted to [start, end). */
 export type AudioPlayerProps = {
- seriesId: string;
+  seriesId?: string;
 };
 
 function AudioPlayer(props: Readonly<AudioPlayerProps>) {
   const { seriesId } = props;
-  const {currentDay}=useSeriesData(seriesId)
-  const timestamps = useTimeStamps(currentDay||0)
+  const seriesProgress = useSeriesData(seriesId)
+  const timestamps = useTimeStamps(seriesProgress?.currentDay ?? 0)
   const { data } = useClientDetails();
   const ref = useRef<YouTube>(null);
   const videoLink = data?.video_link;

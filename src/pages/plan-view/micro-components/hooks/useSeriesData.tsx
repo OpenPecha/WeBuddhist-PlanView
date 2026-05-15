@@ -24,7 +24,7 @@ export const fetchSeriesById = async (seriesId: string): Promise<Series> => {
   }
   
 
-function useSeriesData(seriesId: string) {
+function useSeriesData(seriesId: string | undefined) {
   const [params] = useSearchParams();
 
   const { data: series } = useQuery({

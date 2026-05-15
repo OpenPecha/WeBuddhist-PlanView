@@ -11,7 +11,7 @@ import { PaliScriptDropdown } from "./PaliScriptDropdown"
 import AudioPlayer from "./AudioPlayer"
 
 interface TaskSectionProps {
-    seriesId: string
+    seriesId?: string
     task: Task
     index?: number
 }

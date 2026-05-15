@@ -1,6 +1,5 @@
 import { useState } from "react"
-import { differenceInCalendarDays, format, parseISO } from "date-fns"
-import { useQuery } from "@tanstack/react-query"
+import { format, parseISO } from "date-fns"
 import { ChevronDownIcon } from "lucide-react"
 import type { PlanDay } from "@/types/plan"
 import { Calendar } from "@/components/ui/atom/calendar"
@@ -10,7 +9,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/atom/popover"
 import { Progress } from "@/components/ui/atom/progress"
-import api from "@/lib/api"
 // import ShareButton from "./ShareButton"
 import { Button } from "@/components/ui/atom/button"
 import InfoModal from "@/components/ui/molecules/modal/InfoModal"

@@ -18,14 +18,39 @@ export interface Task {
   subtasks: Subtask[]
 }
 
+export interface PlanSeriesMetadata {
+  id: string
+  title: string
+  description: string
+  language: string
+}
+
+export interface PlanSeriesPlan {
+  id: string
+  title: string
+  description: string
+  language: string
+  difficulty_level: string
+  image_url: string
+  image_key: string
+  tags: string[]
+  status: string
+  featured: boolean
+  display_order: number
+  start_date: string
+  total_days: number
+}
+
 export interface PlanSeries {
   id: string
-  name: Record<string, string>
-  image: {
-    thumbnail: string
-    medium: string
-    original: string
-  }
+  metadata: PlanSeriesMetadata[]
+  image: string
+  image_key: string
+  author_id: string
+  featured: boolean
+  status: string
+  plans: PlanSeriesPlan[]
+  total_days: number
 }
 
 export interface PlanDay {

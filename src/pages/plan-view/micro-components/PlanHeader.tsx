@@ -38,8 +38,8 @@ export function PlanHeader({
   const formattedDate = format(currentDate, "MMMM d, yyyy")
   const seriesId = data?.series?.id
   const seriesProgress = useSeriesData(seriesId)
-
-  const [title, description] = data?.series?.name.en.split("->") || []
+  const title=data?.series?.metadata.at(0).title
+  const description=data?.series?.metadata.at(0).description
   const fakeTotalDays = 200
   return (
     <header className="sm:mb-12 mb-4 flex flex-col gap-8 p-2">

@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAboutPlan, getClientDetails, getDefaultImage, getPlanDay, getPrimaryColor, getTimestamps } from "./get_details";
 import { useParams, useSearchParams } from "react-router-dom";
+import { fetchSeriesById } from "@/pages/plan-view/micro-components/hooks/useSeriesData";
 
 export function useImageURLWithFallback(){
-    const { planId } = useParams<{ planId: string; date?: string }>()
+    const { planId ,seriesId} = useParams<{ planId: string; date?: string; seriesId?: string }>()
     const [params] = useSearchParams()
     const source = params.get('source') ?? undefined
 
@@ -12,12 +13,19 @@ export function useImageURLWithFallback(){
         queryFn:()=>getDefaultImage(source),
         enabled:!!source
     })
+    
+    const {data:seriesData}=useQuery({
+        queryKey:["series",seriesId],
+        queryFn:()=>fetchSeriesById(seriesId),
+        enabled:!!seriesId
+    })
+
     const {data:imageData}=useQuery({
         queryKey:[planId],
         queryFn:()=>getPlanDay(planId),
         enabled:!!planId
     })
-    return imageURL || imageData?.image.original
+    return imageURL || imageData?.image.original || seriesData?.image
 
 } 
 

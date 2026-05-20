@@ -1,0 +1,61 @@
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../atom/card'
+import { useNavigate } from 'react-router-dom'
+import { Calendar } from 'lucide-react'
+import type { SeriesListItem } from '@/types/series'
+import { getSeriesTitleAndDescription } from '@/lib/series-utils'
+
+interface SeriesCardProps {
+  series: SeriesListItem
+  language: string
+}
+
+const SeriesCard = ({ series, language }: SeriesCardProps) => {
+  const navigate = useNavigate()
+  const { title, description } = getSeriesTitleAndDescription(series, language)
+
+  const handleClick = () => {
+    navigate(`/series/${series.id}`)
+  }
+
+  if (!title) return null
+
+  return (
+    <Card
+      className="cursor-pointer p-0 rounded-sm overflow-hidden"
+      onClick={handleClick}
+    >
+      {series.image && (
+        <CardHeader className="p-0">
+          <img
+            className="h-48 w-full hover:scale-105 transition-all duration-300 object-cover"
+            src={series.image}
+            alt={title}
+            loading="lazy"
+          />
+        </CardHeader>
+      )}
+      <CardContent className="p-4 space-y-3">
+        <CardTitle className={`text-lg line-clamp-2 ${language === 'bo' ? 'tibetan-font' : ''}`}>
+          {title}
+        </CardTitle>
+
+        {description && (
+          <CardDescription className={`line-clamp-2 ${language === 'bo' ? 'tibetan-font' : ''}`}>
+            {description}
+          </CardDescription>
+        )}
+
+        {series.total_days > 0 && (
+          <div className="flex items-center gap-1 text-sm text-muted-foreground">
+            <Calendar className="h-4 w-4" />
+            <span>
+              {series.total_days} {series.total_days === 1 ? 'day' : 'days'}
+            </span>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  )
+}
+
+export default SeriesCard

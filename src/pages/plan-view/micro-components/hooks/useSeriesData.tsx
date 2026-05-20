@@ -2,24 +2,11 @@ import { useSearchParams } from 'react-router-dom'
 import { differenceInCalendarDays, parseISO } from "date-fns"
 import api from '@/lib/api'
 import { useQuery } from '@tanstack/react-query'
+import type { SeriesDetail } from '@/types/series'
+import { getSeriesAnchorPlan } from '@/lib/series-utils'
 
-interface SeriesPlanSummary {
-    id: string
-    display_order: number
-    start_date: string
-    total_days: number
-  }
-  
-
-interface Series {
-    id: string
-    total_days: number
-    plans: SeriesPlanSummary[]
-  }
-
-  
-export const fetchSeriesById = async (seriesId: string): Promise<Series> => {
-    const { data } = await api.get<Series>(`/api/v1/series/${seriesId}`)
+export const fetchSeriesById = async (seriesId: string): Promise<SeriesDetail> => {
+    const { data } = await api.get<SeriesDetail>(`/api/v1/series/${seriesId}`)
     return data
   }
   
@@ -41,10 +28,8 @@ function useSeriesData(seriesId: string | undefined) {
     return null
   }
 
-  // previously [1], but should be [0] for the first plan
-  const firstPlan = [...series.plans].sort(
-    (a, b) => a.display_order - b.display_order,
-  )[1]
+  const firstPlan = getSeriesAnchorPlan(series.plans)
+  if (!firstPlan) return null
 
   const start = parseISO(firstPlan.start_date)
   const totalDays = series.total_days

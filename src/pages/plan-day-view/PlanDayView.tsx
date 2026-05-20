@@ -1,4 +1,4 @@
-import { useParams, useNavigate, useSearchParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
 import { isMobile } from 'react-device-detect'
@@ -6,7 +6,7 @@ import type { PlanDay } from '@/types/plan'
 import { getPlanDay } from '@/client_details/get_details'
 import { useImageURLWithFallback } from '@/client_details/hooks'
 import { fetchSeriesById } from '@/pages/plan-view/micro-components/hooks/useSeriesData'
-import { getActivePlanForDate } from '@/lib/series-utils'
+import { getActivePlanForDate, getSeriesStepNavDates } from '@/lib/series-utils'
 import { PlanViewerSkeleton } from '@/pages/plan-view/micro-components/loader'
 import { TaskSection } from '@/pages/plan-view/micro-components/TaskContent'
 import { ErrorState } from '@/pages/plan-view/micro-components/Error'
@@ -20,7 +20,6 @@ import { AudioPlayerProvider } from '@/pages/plan-view/micro-components/AudioPla
 function PlanDayView() {
   const { seriesId } = useParams<{ seriesId: string }>()
   const [searchParams, setSearchParams] = useSearchParams()
-  const navigate = useNavigate()
   const imageURL = useImageURLWithFallback()
 
   const date =
@@ -71,6 +70,18 @@ function PlanDayView() {
     ? { type: 'multiple' as const, defaultValue: firstTaskId ? [firstTaskId] : [] }
     : { type: 'single' as const, defaultValue: firstTaskId, collapsible: true }
 
+  const plansForSeriesNav =
+    series?.plans && series.plans.length > 0
+      ? series.plans
+      : data?.series?.plans
+  const footerNavDates =
+    data &&
+    getSeriesStepNavDates(date, {
+      plans: plansForSeriesNav,
+      fallbackStartIso: data.start_date,
+      fallbackEndIso: data.end_date,
+    })
+
   if (!isLoading && series && !activePlan) {
     return (
       <main className="mx-auto max-w-[720px] px-5 py-16 text-center">
@@ -88,6 +99,7 @@ function PlanDayView() {
             hasError={!!error}
             isLoading={isLoading}
             onNavigateToDate={navigateToDate}
+            seriesPlansForCalendar={series?.plans}
           />
 
           {data && (
@@ -123,17 +135,11 @@ function PlanDayView() {
             </Accordion>
           )}
 
-          {data && (
+          {data && footerNavDates && (
             <PlanFooterNav
-              previousDate={data.previous_date}
-              nextDate={data.next_date}
-              previousPlanId={data.previous_plan_id}
-              nextPlanId={data.next_plan_id}
+              previousDate={footerNavDates.previousDate}
+              nextDate={footerNavDates.nextDate}
               onNavigateToDate={navigateToDate}
-              onNavigateToPlan={(planId) => {
-                window.scrollTo({ top: 0, behavior: 'smooth' })
-                navigate(`/${planId}?date=${date}`)
-              }}
             />
           )}
         </div>

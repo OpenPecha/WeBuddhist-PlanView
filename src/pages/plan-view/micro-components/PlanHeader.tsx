@@ -1,7 +1,8 @@
 import { useState } from "react"
-import { format, parseISO } from "date-fns"
+import { format, parseISO, startOfDay } from "date-fns"
 import { ChevronDownIcon } from "lucide-react"
 import type { PlanDay } from "@/types/plan"
+import type { SeriesPlanSummary } from "@/types/series"
 import { Calendar } from "@/components/ui/atom/calendar"
 import {
   Popover,
@@ -13,6 +14,7 @@ import { Progress } from "@/components/ui/atom/progress"
 import { Button } from "@/components/ui/atom/button"
 import InfoModal from "@/components/ui/molecules/modal/InfoModal"
 import useSeriesData from "./hooks/useSeriesData"
+import { getSeriesInclusiveCalendarRange } from "@/lib/series-utils"
 
 interface PlanHeaderProps {
   data?: PlanDay
@@ -20,6 +22,8 @@ interface PlanHeaderProps {
   hasError: boolean
   isLoading: boolean
   onNavigateToDate: (date: string) => void
+  /** Full series plans for the date picker when `data.series.plans` is missing or incomplete. */
+  seriesPlansForCalendar?: SeriesPlanSummary[]
 }
 
 
@@ -31,6 +35,7 @@ export function PlanHeader({
   hasError,
   isLoading,
   onNavigateToDate,
+  seriesPlansForCalendar,
 }: PlanHeaderProps) {
   const [calendarOpen, setCalendarOpen] = useState(false)
   const resolvedDate = date ?? data?.date
@@ -88,9 +93,27 @@ export function PlanHeader({
                         selected={currentDate}
                         defaultMonth={currentDate}
                         disabled={(day) => {
-                          const start = parseISO(data.start_date)
-                          const end = parseISO(data.end_date)
-                          return day < start || day > end
+                          const d = startOfDay(day)
+                          const plansForCalendar =
+                            seriesPlansForCalendar &&
+                            seriesPlansForCalendar.length > 0
+                              ? seriesPlansForCalendar
+                              : data.series?.plans &&
+                                  data.series.plans.length > 0
+                                ? data.series.plans
+                                : undefined
+                          const seriesRange =
+                            getSeriesInclusiveCalendarRange(
+                              plansForCalendar,
+                            )
+                          if (seriesRange) {
+                            return (
+                              d < seriesRange.start || d > seriesRange.end
+                            )
+                          }
+                          const start = startOfDay(parseISO(data.start_date))
+                          const end = startOfDay(parseISO(data.end_date))
+                          return d < start || d > end
                         }}
                         onSelect={(selectedDate) => {
                           if (selectedDate) {

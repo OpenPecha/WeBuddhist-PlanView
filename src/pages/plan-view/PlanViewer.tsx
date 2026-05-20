@@ -1,4 +1,4 @@
-import { useParams, useNavigate, useSearchParams } from "react-router-dom"
+import { useParams, useSearchParams } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
 import type { PlanDay } from "@/types/plan"
 import { PlanViewerSkeleton } from "./micro-components/loader"
@@ -13,13 +13,13 @@ import { useImageURLWithFallback } from "@/client_details/hooks"
 import {  isMobile } from 'react-device-detect';
 import AudioPlayer from "./micro-components/AudioPlayer"
 import { AudioPlayerProvider } from "./micro-components/AudioPlayerContext"
+import { getSeriesStepNavDates } from "@/lib/series-utils"
 
 
 export function PlanViewer() {
   const [params, setParams] = useSearchParams()
   const { planId } = useParams<{ planId: string; date?: string }>()
   const date = params.get('date') ?? undefined
-  const navigate = useNavigate()
   const { data, isLoading, error } = useQuery<PlanDay>({
     queryKey: ["planDay", planId, date],
     queryFn: () => getPlanDay(planId!, date),
@@ -40,13 +40,6 @@ export function PlanViewer() {
     }
     )
   }
-  function navigateToPlan(newPlanId: string) {
-    window.scrollTo({
-      top:0,
-      behavior:'smooth'
-    })
-    navigate(`/${newPlanId}`)
-  }
   const sortedTasks = data
     ? [...data.tasks].sort((a, b) => a.display_order - b.display_order)
     : []
@@ -54,6 +47,18 @@ export function PlanViewer() {
   const accordionProps = isMobile
     ? { type: "multiple" as const, defaultValue: firstTaskId ? [firstTaskId] : [] }
     : { type: "single" as const, defaultValue: firstTaskId,collapsible: true }
+
+  const footerNavDates =
+    data &&
+    getSeriesStepNavDates(date ?? data.date, {
+      plans:
+        data.series?.plans && data.series.plans.length > 0
+          ? data.series.plans
+          : undefined,
+      fallbackStartIso: data.start_date,
+      fallbackEndIso: data.end_date,
+    })
+
   return (
     <AudioPlayerProvider seriesId={data?.series?.id}>
     <main className="h-[calc(100dvh - 150px)] overflow-y-auto w-full">
@@ -105,14 +110,11 @@ export function PlanViewer() {
           </Accordion>
         )}
 
-        {data && (
+        {data && footerNavDates && (
           <PlanFooterNav
-            previousDate={data.previous_date}
-            nextDate={data.next_date}
-            previousPlanId={data.previous_plan_id}
-            nextPlanId={data.next_plan_id}
+            previousDate={footerNavDates.previousDate}
+            nextDate={footerNavDates.nextDate}
             onNavigateToDate={navigateToDate}
-            onNavigateToPlan={navigateToPlan}
           />
         )}
       </div>

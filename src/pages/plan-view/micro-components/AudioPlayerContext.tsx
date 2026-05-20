@@ -259,11 +259,10 @@ export function AudioPlayerProvider({
       totalDisplay,
     ]
   );
-
   return (
     <AudioPlayerContext.Provider value={value}>
       <div className="hidden" aria-hidden>
-        {videoLink && (
+        {timestamps && videoLink && (
           <YouTube
             ref={ref}
             videoId={videoLink}

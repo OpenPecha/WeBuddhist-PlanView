@@ -84,11 +84,11 @@ export function AudioPlayerProvider({
   );
 
   const getPlayer = () => ref.current?.getInternalPlayer();
-
   const handlePlay = useCallback(() => {
     const player = getPlayer();
     if (!player) return;
     if (!timestamps) {
+      alert("Audio is coming soon");
       player.playVideo();
       return;
     }
@@ -110,6 +110,10 @@ export function AudioPlayerProvider({
   }, []);
 
   const togglePlayPause = useCallback(() => {
+    if(!timestamps || timestamps?.length === 0) {
+      alert("Audio is coming soon");
+      return;
+    }
     if (isPlaying) {
       handlePause();
     } else {

@@ -34,6 +34,7 @@ export interface SeriesPlanSummary {
   display_order: number
   start_date: string
   total_days: number
+  image_url?: string | null
 }
 
 export interface SeriesDetail extends Omit<SeriesListItem, 'plans'> {

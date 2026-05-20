@@ -34,7 +34,8 @@ const PlanCard = ({ plan, language }: PlanCardProps) => {
     const navigate = useNavigate()
 
     const handleClick = () => {
-        navigate(`/${plan.id}`)
+        const query = plan.start_date ? `?date=${encodeURIComponent(plan.start_date)}` : ''
+        navigate(`/${plan.id}${query}`)
     }
 
     const getDifficultyColor = (level: string) => {

@@ -28,7 +28,6 @@ export function PlanViewer() {
     refetchOnWindowFocus: false,
   })
   const imageURL=useImageURLWithFallback()
-
   function navigateToDate(newDate: string) {
     window.scrollTo({
       top:0,

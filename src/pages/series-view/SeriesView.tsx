@@ -42,11 +42,11 @@ const SeriesView = () => {
       <div className="px-4 flex flex-col gap-4">
         <Button
           variant="ghost"
-          onClick={() => navigate('/series')}
+          onClick={() => navigate('/?tab=series')}
           className="w-fit pl-0"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Series
+          Back
         </Button>
 
         <Select value={language} onValueChange={setLanguage}>
@@ -127,10 +127,20 @@ const SeriesView = () => {
               {sortedPlans.map((plan, index) => (
                 <Card
                   key={plan.id}
-                  className="cursor-pointer rounded-sm"
-                  onClick={() => navigate(`/${plan.id}`)}
+                  className="cursor-pointer rounded-sm border-none shadow-none outline-none ring-0 hover:ring-1"
+                  onClick={() => navigate(`/plan/${plan.id}`)}
                 >
+                  
                   <CardContent className="p-4 flex items-center justify-between gap-4">
+                    {plan.image_url ? (
+                      <img
+                        src={plan.image_url}
+                        alt={plan.title ?? ''}
+                        className="h-full max-h-24 w-full max-w-40 rounded object-cover"
+                      />
+                    ) : (
+                      <div className="h-24 w-40 shrink-0 rounded bg-muted" aria-hidden />
+                    )}
                     <div className="min-w-0 flex-1">
                       <CardTitle className="text-base font-medium">
                         {plan.title ?? `Plan ${index + 1}`}

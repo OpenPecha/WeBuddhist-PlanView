@@ -16,7 +16,7 @@ export function useImageURLWithFallback(){
     
     const {data:seriesData}=useQuery({
         queryKey:["series",seriesId],
-        queryFn:()=>fetchSeriesById(seriesId),
+        queryFn:()=>fetchSeriesById(seriesId!),
         enabled:!!seriesId
     })
 

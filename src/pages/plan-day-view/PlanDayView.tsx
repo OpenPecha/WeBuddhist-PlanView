@@ -94,7 +94,7 @@ function PlanDayView() {
             <section className="mb-10 space-y-4 text-center">
               <div className="w-full md:h-80 h-48 overflow-hidden rounded-lg">
                 <img
-                  src={imageURL}
+                  src={imageURL ?? undefined}
                   alt={data.plan_title}
                   className="w-full h-full object-cover object-top"
                 />

@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom"
+import { FirebaseRouteAnalytics } from "@/components/FirebaseRouteAnalytics"
 import { PlanIdRedirect } from "@/pages/plan-view/PlanIdRedirect"
 import Homepage from "@/pages/home-page/Homepage"
 import PlanListing from "@/pages/plan-listing/PlanListing"
@@ -10,14 +11,15 @@ import { PlanViewer } from "./pages/plan-view/PlanViewer"
 function App() {
   return (
     <div className="bg-background text-foreground">
+      <FirebaseRouteAnalytics />
       <Routes>
         <Route path="/" element={<Homepage />} />
+        <Route path="/:planId" element={<PlanIdRedirect />} />
         <Route path="/plan/:planId" element={<PlanViewer />} />
-        <Route path="/series/plans" element={<PlanListing />} />
         <Route path="/series" element={<SeriesListing />} />
+        <Route path="/series/plans" element={<PlanListing />} />
         <Route path="/series/:seriesId" element={<SeriesView />} />
         <Route path="/series/:seriesId/plan-day" element={<PlanDayView />} />
-        <Route path="/:planId" element={<PlanIdRedirect />} />
       </Routes>
     </div>
   )

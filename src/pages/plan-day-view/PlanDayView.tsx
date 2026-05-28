@@ -1,4 +1,4 @@
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
 import { isMobile } from 'react-device-detect'
@@ -16,6 +16,7 @@ import { PlanHeader } from '@/pages/plan-view/micro-components/PlanHeader'
 import { PlanFooterNav } from '@/pages/plan-view/micro-components/PlanFooterNav'
 import AudioPlayer from '@/pages/plan-view/micro-components/AudioPlayer'
 import { AudioPlayerProvider } from '@/pages/plan-view/micro-components/AudioPlayerContext'
+import { useEffect } from 'react'
 
 function PlanDayView() {
   const { seriesId } = useParams<{ seriesId: string }>()
@@ -50,8 +51,15 @@ function PlanDayView() {
     retry: false,
     refetchOnWindowFocus: false,
   })
-  const isLoading = isSeriesLoading || isPlanLoading
+  const navigate = useNavigate()
   const error = seriesError ?? planError
+  useEffect(() => {
+    if (error && activePlan?.id) {
+      navigate(`/plan/${activePlan.id}`);
+    }
+  }, [error, activePlan?.id]);
+  const audioURL = data?.audio_url;
+  const isLoading = isSeriesLoading || isPlanLoading
 
   function navigateToDate(newDate: string) {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -88,6 +96,7 @@ function PlanDayView() {
       </main>
     )
   }
+
   return (
     <AudioPlayerProvider seriesId={seriesId}>
       <main className="h-[calc(100dvh - 150px)] overflow-y-auto w-full">
@@ -121,7 +130,6 @@ function PlanDayView() {
 
           {isLoading && <PlanViewerSkeleton />}
           {error && <ErrorState error={error} />}
-
           {data && (
             <Accordion
               key={data.date}
@@ -129,7 +137,7 @@ function PlanDayView() {
               {...accordionProps}
             >
               {sortedTasks.map((task, idx) => (
-                <TaskSection key={task.id} task={task} index={idx + 1} />
+                <TaskSection key={task.id} task={task} index={idx + 1} audioURL={audioURL ?? null} />
               ))}
             </Accordion>
           )}
@@ -144,12 +152,7 @@ function PlanDayView() {
         </div>
 
         <Footer />
-        <div className="fixed bottom-0 left-0 right-0">
-          <AudioPlayer
-            imageUrl={data?.image?.original}
-            description={data?.plan_description}
-          />
-        </div>
+   
       </main>
     </AudioPlayerProvider>
   )

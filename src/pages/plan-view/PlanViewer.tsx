@@ -104,6 +104,7 @@ export function PlanViewer() {
                 key={task.id}
                 task={task}
                 index={idx + 1}
+                audioURL={data?.audio_url ?? null}
               />
             ))}
           </Accordion>

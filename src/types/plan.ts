@@ -16,6 +16,8 @@ export interface Task {
   estimated_time: number
   display_order: number
   subtasks: Subtask[]
+  start_ms?: number | null
+  end_ms?: number | null
 }
 
 export interface PlanSeriesMetadata {
@@ -73,6 +75,7 @@ export interface PlanDay {
   previous_plan_id: string | null
   next_plan_id: string | null
   tasks: Task[]
+  audio_url?: string | null
 }
 
 export interface PlanError {

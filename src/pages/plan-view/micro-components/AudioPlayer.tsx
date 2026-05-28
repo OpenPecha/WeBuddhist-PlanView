@@ -29,6 +29,8 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
     handleRestart,
   } = useAudioPlayer();
 
+
+  if(!videoLink) return null;
   return (
     <div className="flex-1 flex bg-white h-20 shadow-md border-t border-l border-r border-[#ECECEC]">
       <div className="flex-1 flex p-2">

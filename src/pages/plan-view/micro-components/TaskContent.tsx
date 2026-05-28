@@ -56,9 +56,9 @@ export function TaskSection({ task, index, audioURL }: TaskSectionProps) {
 
     const targetScript = showScriptDropdown ? script : null
 
-    const startMs = task.subtasks[0].start_ms ?? null
+    const startMs = task.start_ms ?? null
 
-    const endMs = task.subtasks[0].end_ms ?? null
+    const endMs = task.end_ms ?? null
 
     const showTaskAudio =
 

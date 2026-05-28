@@ -5,6 +5,11 @@ export interface GroupMetadataItem {
   language: string
 }
 
+export interface GroupSocialLink {
+  platform: string
+  url: string
+}
+
 export interface Group {
   id: string
   slug: string
@@ -14,4 +19,6 @@ export interface Group {
   follower_count: number
   member_count: number
   sign_up?: string | null
+  banner_url?: string | null
+  social_links?: GroupSocialLink[]
 }

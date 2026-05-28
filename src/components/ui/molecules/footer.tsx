@@ -1,4 +1,4 @@
-import { useClientDetails, useGroupDetails, useSeriesDetails } from "@/client_details/hooks";
+import { useGroupDetails, useSeriesDetails } from "@/client_details/hooks";
 import { AppleIcon, PlayStoreIcon } from "@/components/icons/icons"
 import { useParams } from "react-router-dom";
 

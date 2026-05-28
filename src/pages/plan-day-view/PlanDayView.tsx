@@ -4,7 +4,7 @@ import { format } from 'date-fns'
 import { isMobile } from 'react-device-detect'
 import type { PlanDay } from '@/types/plan'
 import { getPlanDay } from '@/client_details/get_details'
-import { useImageURLWithFallback } from '@/client_details/hooks'
+import { useAuthorDetails, useGroupDetails, useImageURLWithFallback } from '@/client_details/hooks'
 import { fetchSeriesById } from '@/pages/plan-view/micro-components/hooks/useSeriesData'
 import { getActivePlanForDate, getSeriesStepNavDates } from '@/lib/series-utils'
 import { PlanViewerSkeleton } from '@/pages/plan-view/micro-components/loader'
@@ -14,14 +14,12 @@ import Footer from '@/components/ui/molecules/footer'
 import { Accordion } from '@/components/ui/atom/accordion'
 import { PlanHeader } from '@/pages/plan-view/micro-components/PlanHeader'
 import { PlanFooterNav } from '@/pages/plan-view/micro-components/PlanFooterNav'
-import AudioPlayer from '@/pages/plan-view/micro-components/AudioPlayer'
 import { AudioPlayerProvider } from '@/pages/plan-view/micro-components/AudioPlayerContext'
 import { useEffect } from 'react'
 
 function PlanDayView() {
   const { seriesId } = useParams<{ seriesId: string }>()
   const [searchParams, setSearchParams] = useSearchParams()
-  const imageURL = useImageURLWithFallback()
   const date =
     searchParams.get('date') ?? format(new Date(), 'yyyy-MM-dd')
 
@@ -35,6 +33,9 @@ function PlanDayView() {
     enabled: !!seriesId,
     refetchOnWindowFocus: false,
   })
+
+  const { data: group } = useGroupDetails(series?.group_id ?? undefined)
+  const imageURL =group?.banner_url ?? undefined
   const activePlan =
     series?.plans?.length
       ? getActivePlanForDate(series?.plans, new Date(date))

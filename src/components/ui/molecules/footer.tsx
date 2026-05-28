@@ -1,5 +1,6 @@
-import { useClientDetails } from "@/client_details/hooks";
+import { useClientDetails, useGroupDetails, useSeriesDetails } from "@/client_details/hooks";
 import { AppleIcon, PlayStoreIcon } from "@/components/icons/icons"
+import { useParams } from "react-router-dom";
 
 const Distribution = [
     {
@@ -16,11 +17,15 @@ const Distribution = [
     }
 ]
 const Footer = () => {
-    const {data}=useClientDetails()
+    const { seriesId } = useParams<{ seriesId?: string }>()
+    const { data: series } = useSeriesDetails(seriesId)
+    const { data: group } = useGroupDetails(series?.group_id ?? undefined)
+    const signUpUrl=group?.social_links?.find(link=>link.platform==="SignIn")?.url
+
     return (
         <footer id="we_footer" className="w-max mx-auto max-w-2xl  space-y-2  flex flex-col sm:items-center sm:justify-center mb-10">
-            {data?.sign_up && (
-                <a href={data.sign_up} target="_blank" rel="noopener noreferrer" className=" text-center mt-10 sm:mt-0 md:h-[40px] text-white px-4 py-2 tracking-wide w-full h-[40px] mb-10 sm:mb-20 sm:w-max mx-auto md:text-xl  bg-[#f66e00] font-[lato] hover:bg-[#f66e00]/80">
+            {signUpUrl && (
+                <a href={signUpUrl} target="_blank" rel="noopener noreferrer" className=" text-center mt-10 sm:mt-0 md:h-[40px] text-white px-4 py-2 tracking-wide w-full h-[40px] mb-10 sm:mb-20 sm:w-max mx-auto md:text-xl  bg-[#f66e00] font-[lato] hover:bg-[#f66e00]/80">
                         Register for the Event in Bodhgaya
                 </a>
             )}

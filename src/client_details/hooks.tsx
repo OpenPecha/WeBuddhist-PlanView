@@ -1,7 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAboutPlan, getClientDetails, getDefaultImage, getPlanDay, getPrimaryColor, getTimestamps } from "./get_details";
+import { fetchAuthorById, fetchGroupById, getAboutPlan, getClientDetails, getDefaultImage, getPlanDay, getPrimaryColor, getTimestamps } from "./get_details";
+import type { Author } from "@/types/author";
+import type { Group } from "@/types/group";
 import { useParams, useSearchParams } from "react-router-dom";
 import { fetchSeriesById } from "@/pages/plan-view/micro-components/hooks/useSeriesData";
+import type { SeriesDetail } from "@/types/series";
 
 export function useImageURLWithFallback(){
     const { planId ,seriesId} = useParams<{ planId: string; date?: string; seriesId?: string }>()
@@ -50,6 +53,33 @@ export function useClientDetails(){
         enabled:!!client
     })
     return {data,error,isLoading:isPending}
+}
+
+export function useSeriesDetails(seriesId: string | undefined) {
+    return useQuery<SeriesDetail>({
+        queryKey: ["series", seriesId],
+        queryFn: () => fetchSeriesById(seriesId!),
+        enabled: !!seriesId,
+        refetchOnWindowFocus: false,
+    })
+}
+
+export function useAuthorDetails(authorId: string | undefined) {
+    return useQuery<Author>({
+        queryKey: ["author", authorId],
+        queryFn: () => fetchAuthorById(authorId!),
+        enabled: !!authorId,
+        refetchOnWindowFocus: false,
+    })
+}
+
+export function useGroupDetails(groupId: string | undefined) {
+    return useQuery<Group>({
+        queryKey: ["group", groupId],
+        queryFn: () => fetchGroupById(groupId!),
+        enabled: !!groupId,
+        refetchOnWindowFocus: false,
+    })
 }
 
 export function useTimeStamps(day:number|undefined){

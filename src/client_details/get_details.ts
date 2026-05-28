@@ -1,7 +1,19 @@
 import type { PlanDay } from "@/types/plan"
+import type { Author } from "@/types/author"
+import type { Group } from "@/types/group"
 import config from "./config.json"
 import api from "@/lib/api"
 import abidhama_timestamps from "./abhidhama/parsed_segments.json"
+
+export async function fetchAuthorById(authorId: string): Promise<Author> {
+  const { data } = await api.get<Author>(`/api/v1/authors/${authorId}`)
+  return data
+}
+
+export async function fetchGroupById(groupId: string): Promise<Group> {
+  const { data } = await api.get<Group>(`/api/v1/author/groups/${groupId}`)
+  return data
+}
 
 export function getClientDetails(client:string|undefined){
     const clientDetails = config.find(c => c.client === client)

@@ -13,6 +13,7 @@ export interface SeriesListItem {
   image?: string | null
   image_key?: string | null
   author_id: string
+  group_id: string | null
   featured: boolean
   status: string
   plans: unknown[]

@@ -3,18 +3,13 @@ import { useQuery } from '@tanstack/react-query'
 import { useMemo, useState, type ComponentProps } from 'react'
 import api from '@/lib/api'
 import Header from '@/components/ui/molecules/header'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/atom/select'
 import { Button } from '@/components/ui/atom/button'
 import SeriesCard from '@/components/ui/molecules/cards/series-card'
 import PlanCard from '@/components/ui/molecules/cards/plan-card'
 import type { SeriesListResponse } from '@/types/series'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
+import ContentLanguageSelect from '@/components/ui/molecules/ContentLanguageSelect'
 
 const PAGE_SIZE = 20
 
@@ -58,6 +53,7 @@ async function fetchPlansPage(
 }
 
 const Homepage = () => {
+  const { t } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
   const [language, setLanguage] = useState('en')
 
@@ -118,10 +114,10 @@ const Homepage = () => {
 
   const tabButtons: { value: DashboardTab; label: string }[] = useMemo(
     () => [
-      { value: 'series', label: 'Series' },
-      { value: 'plan', label: 'Plans' },
+      { value: 'series', label: t('common.series') },
+      { value: 'plan', label: t('common.plans') },
     ],
-    [],
+    [t],
   )
 
   return (
@@ -129,7 +125,7 @@ const Homepage = () => {
       <Header />
 
       <div className="flex flex-col gap-4 px-4">
-        <h1 className="text-xl font-semibold text-[#3D3D3A]">Dashboard</h1>
+        <h1 className="text-xl font-semibold text-[#3D3D3A]">{t('homepage.dashboard')}</h1>
 
         <div className="flex flex-wrap items-center gap-2">
           {tabButtons.map(({ value, label }) => (
@@ -146,23 +142,14 @@ const Homepage = () => {
           ))}
         </div>
 
-        <Select value={language} onValueChange={setLanguage}>
-          <SelectTrigger className="w-fit">
-            <SelectValue placeholder="Language for titles" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="en">English</SelectItem>
-            <SelectItem value="zh">Chinese</SelectItem>
-            <SelectItem value="bo">Tibetan</SelectItem>
-          </SelectContent>
-        </Select>
+        <ContentLanguageSelect value={language} onValueChange={setLanguage} />
       </div>
 
       <div className="grid grid-cols-1 gap-4 px-4 pb-4 md:grid-cols-2">
-        {isLoading && <p className="col-span-full text-muted-foreground">Loading…</p>}
+        {isLoading && <p className="col-span-full text-muted-foreground">{t('common.loading')}</p>}
         {error && (
           <p className="col-span-full text-destructive">
-            Could not load {tab === 'series' ? 'series' : 'plans'}.
+            {tab === 'series' ? t('homepage.couldNotLoadSeries') : t('homepage.couldNotLoadPlans')}
           </p>
         )}
         {tab === 'series' &&
@@ -170,7 +157,7 @@ const Homepage = () => {
           !error &&
           seriesQuery.data?.series?.length === 0 && (
             <p className="col-span-full py-8 text-center text-muted-foreground">
-              No series found.
+              {t('homepage.noSeriesFound')}
             </p>
           )}
         {tab === 'plan' &&
@@ -178,7 +165,7 @@ const Homepage = () => {
           !error &&
           plansQuery.data?.plans?.length === 0 && (
             <p className="col-span-full py-8 text-center text-muted-foreground">
-              No plans found.
+              {t('homepage.noPlansFound')}
             </p>
           )}
         {tab === 'series' &&
@@ -201,11 +188,11 @@ const Homepage = () => {
             onClick={() => setPage(page - 1)}
           >
             <ChevronLeft className="mr-1 h-4 w-4" />
-            Previous
+            {t('common.previous')}
           </Button>
           <span className="text-sm text-muted-foreground">
-            Page {pagination.page} of {pagination.totalPages}
-            <span className="ml-1">({pagination.total} total)</span>
+            {t('homepage.pageOf', { page: pagination.page, totalPages: pagination.totalPages })}
+            <span className="ml-1">{t('homepage.totalCount', { total: pagination.total })}</span>
           </span>
           <Button
             type="button"
@@ -214,7 +201,7 @@ const Homepage = () => {
             disabled={page >= pagination.totalPages}
             onClick={() => setPage(page + 1)}
           >
-            Next
+            {t('common.next')}
             <ChevronRight className="ml-1 h-4 w-4" />
           </Button>
         </div>

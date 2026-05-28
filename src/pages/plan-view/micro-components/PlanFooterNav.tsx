@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/atom/button"
 import { format, parseISO } from "date-fns"
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
+import { useDateLocale } from "@/i18n/use-date-locale"
 
 interface PlanFooterNavProps {
   previousDate: string | null
@@ -13,6 +14,7 @@ export function PlanFooterNav({
   nextDate,
   onNavigateToDate,
 }: PlanFooterNavProps) {
+  const dateLocale = useDateLocale()
   if (!previousDate && !nextDate) return null
 
   return (
@@ -27,7 +29,7 @@ export function PlanFooterNav({
               onClick={() => onNavigateToDate(previousDate)}
             >
               <ChevronLeftIcon className="size-4" />
-              {format(parseISO(previousDate), "MMM d")}
+              {format(parseISO(previousDate), "MMM d", { locale: dateLocale })}
             </Button>
           )}
         </div>
@@ -39,7 +41,7 @@ export function PlanFooterNav({
               className="cursor-pointer"
               onClick={() => onNavigateToDate(nextDate)}
             >
-              {format(parseISO(nextDate), "MMM d")}
+              {format(parseISO(nextDate), "MMM d", { locale: dateLocale })}
               <ChevronRightIcon className="size-4" />
             </Button>
           )}

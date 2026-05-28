@@ -1,0 +1,88 @@
+{
+  "common": {
+    "loading": "འཇུག་བཞིན་པ…",
+    "error": "ནོར་འཁྲུལ།",
+    "back": "ཕྱིར་ལོག",
+    "previous": "སྔོན་མ།",
+    "next": "རྗེས་མ།",
+    "close": "ཁ་བསྡམས།",
+    "day": "ཉིན།",
+    "days": "ཉིན།",
+    "plans": "འཆར་གཞི།",
+    "series": "བསྟན་རིམ།"
+  },
+  "header": {
+    "planViewer": "འཆར་གཞི་ལྟ་ཞིབ།"
+  },
+  "languages": {
+    "en": "དབྱིན་ཡིག",
+    "hi": "ཧིན་དིའི་སྐད།",
+    "zh": "རྒྱ་ཡིག",
+    "bo": "བོད་ཡིག",
+    "uiLanguage": "མཐུད་སྦྱོར་སྐད་ཡིག",
+    "contentLanguage": "ནང་དོན་སྐད་ཡིག"
+  },
+  "homepage": {
+    "dashboard": "ཚོད་འཛིན་པང་ལེབ།",
+    "loadingSeries": "བསྟན་རིམ་འཇུག་བཞིན་པ…",
+    "loadingPlans": "འཆར་གཞི་འཇུག་བཞིན་པ…",
+    "couldNotLoadSeries": "བསྟན་རིམ་འཇུག་མ་ཐུབ།",
+    "couldNotLoadPlans": "འཆར་གཞི་འཇུག་མ་ཐུབ།",
+    "noSeriesFound": "བསྟན་རིམ་མ་རྙེད།",
+    "noPlansFound": "འཆར་གཞི་མ་རྙེད།",
+    "pageOf": "ཤོག {{page}} / {{totalPages}}",
+    "totalCount": "(ཚང་མ། {{total}})"
+  },
+  "planListing": {
+    "noTagSpecified": "རྟགས་བཀོད་མེད།",
+    "backToTags": "རྟགས་ལ་ཕྱིར་ལོག",
+    "loadingPlans": "འཆར་གཞི་འཇུག་བཞིན་པ…",
+    "errorLoadingPlans": "འཆར་གཞི་འཇུག་པར་ནོར་འཁྲུལ་བྱུང་།",
+    "noPlansForTag": "རྟགས་འདིའི་འཆར་གཞི་མ་རྙེད།"
+  },
+  "seriesListing": {
+    "title": "བསྟན་རིམ།",
+    "selectLanguage": "སྐད་ཡིག་འདེམས་པ།",
+    "loadingSeries": "བསྟན་རིམ་འཇུག་བཞིན་པ…",
+    "errorLoadingSeries": "བསྟན་རིམ་འཇུག་པར་ནོར་འཁྲུལ་བྱུང་།",
+    "noSeriesFound": "བསྟན་རིམ་མ་རྙེད།"
+  },
+  "seriesView": {
+    "back": "ཕྱིར་ལོག",
+    "selectLanguage": "སྐད་ཡིག་འདེམས་པ།",
+    "loadingSeries": "བསྟན་རིམ་འཇུག་བཞིན་པ…",
+    "todaysPlan": "དེ་རིང་གི་འཆར་གཞི།",
+    "plansInSeries": "བསྟན་རིམ་ནང་གི་འཆར་གཞི།",
+    "noPlansInSeries": "བསྟན་རིམ་འདིར་འཆར་གཞི་མེད།",
+    "planFallback": "འཆར་གཞི། {{index}}"
+  },
+  "planDayView": {
+    "noPlansInSeries": "བསྟན་རིམ་འདིར་འཆར་གཞི་མ་རྙེད།"
+  },
+  "planHeader": {
+    "dayOf": "ཉིན། {{current}} / {{total}}"
+  },
+  "footer": {
+    "registerEvent": "རྡོ་རྗེ་གདན་གྱི་བྱེད་སྒོར་ཐོ་འགོད།",
+    "dailyReminders": "<bold>WeBuddhist</bold> ཉེར་སྤྱོད་ཀྱི་ཉིན་རེའི་དྲན་སྐུལ།",
+    "googlePlay": "Google Play",
+    "getItOn": "འདི་ནས་ལེན།",
+    "appStore": "App Store",
+    "downloadOnThe": "འདི་ནས་ཕབ་ལེན།"
+  },
+  "error": {
+    "notFound": "404",
+    "noContent": "ནང་དོན་མེད།",
+    "somethingWrong": "ནོར་འཁྲུལ་ཞིག་བྱུང་འདུག"
+  },
+  "infoModal": {
+    "howItWorks": "འགྲོ་ལུགས་ལམ་སྟོན།"
+  },
+  "audio": {
+    "comingSoon": "སྒྲ་ལམ་མགྱོགས་པོ་ཡོང་རྒྱུ།",
+    "seriesImage": "བསྟན་རིམ་འདྲ་པར།",
+    "playerControls": "སྒྲ་གཏོང་ཚོད་འཛིན།",
+    "playbackPosition": "གཏོང་ཡུལ།",
+    "restart": "བསྐྱར་དུ་གཏོང་བ།"
+  }
+}

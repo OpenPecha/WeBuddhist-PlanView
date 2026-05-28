@@ -16,8 +16,10 @@ import { PlanHeader } from '@/pages/plan-view/micro-components/PlanHeader'
 import { PlanFooterNav } from '@/pages/plan-view/micro-components/PlanFooterNav'
 import { AudioPlayerProvider } from '@/pages/plan-view/micro-components/AudioPlayerContext'
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 function PlanDayView() {
+  const { t } = useTranslation()
   const { seriesId } = useParams<{ seriesId: string }>()
   const [searchParams, setSearchParams] = useSearchParams()
   const date =
@@ -93,7 +95,7 @@ function PlanDayView() {
   if (!isLoading && series && !activePlan) {
     return (
       <main className="mx-auto max-w-[720px] px-5 py-16 text-center">
-        <p className="text-muted-foreground">No plans found in this series.</p>
+        <p className="text-muted-foreground">{t('planDayView.noPlansInSeries')}</p>
       </main>
     )
   }

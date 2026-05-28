@@ -1,10 +1,12 @@
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import api from '@/lib/api'
 import Header from "@/components/ui/molecules/header"
 import PlanCard from "@/components/ui/molecules/cards/plan-card"
 import { Button } from '@/components/ui/atom/button'
 import { ArrowLeft } from 'lucide-react'
+import { contentLanguageFontClass } from '@/components/ui/molecules/ContentLanguageSelect'
 
 const fetchPlanListing = async (language: string, tag: string) => {
     const { data } = await api.get('/api/v1/plans', {
@@ -17,6 +19,7 @@ const fetchPlanListing = async (language: string, tag: string) => {
 }
 
 const PlanListing = () => {
+    const { t } = useTranslation()
     const [searchParams] = useSearchParams()
     const navigate = useNavigate()
 
@@ -32,7 +35,7 @@ const PlanListing = () => {
     if (!tag) {
         return (
             <main className="max-w-[720px] mx-auto p-4">
-                <p className="text-center text-muted-foreground">No tag specified</p>
+                <p className="text-center text-muted-foreground">{t('planListing.noTagSpecified')}</p>
             </main>
         )
     }
@@ -48,20 +51,20 @@ const PlanListing = () => {
                     className="mb-4 pl-0"
                 >
                     <ArrowLeft className="mr-2 h-4 w-4" />
-                    Back to Tags
+                    {t('planListing.backToTags')}
                 </Button>
 
-                <h1 className={`text-xl mb-2 ${language === 'bo' ? 'tibetan-font' : ''}`}>
+                <h1 className={`text-xl mb-2 ${contentLanguageFontClass(language)}`}>
                     {tag}
                 </h1>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
-                {isLoading && <p>Loading plans...</p>}
-                {error && <p className="text-destructive">Error loading plans</p>}
+                {isLoading && <p>{t('planListing.loadingPlans')}</p>}
+                {error && <p className="text-destructive">{t('planListing.errorLoadingPlans')}</p>}
                 {data?.plans?.length === 0 && (
                     <p className="text-muted-foreground col-span-full text-center py-8">
-                        No plans found for this tag
+                        {t('planListing.noPlansForTag')}
                     </p>
                 )}
                 {data?.plans?.map((plan: any) => (

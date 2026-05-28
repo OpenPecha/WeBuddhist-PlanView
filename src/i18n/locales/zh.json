@@ -1,0 +1,88 @@
+{
+  "common": {
+    "loading": "加载中…",
+    "error": "错误",
+    "back": "返回",
+    "previous": "上一页",
+    "next": "下一页",
+    "close": "关闭",
+    "day": "天",
+    "days": "天",
+    "plans": "计划",
+    "series": "系列"
+  },
+  "header": {
+    "planViewer": "计划查看器"
+  },
+  "languages": {
+    "en": "英语",
+    "hi": "印地语",
+    "zh": "中文",
+    "bo": "藏语",
+    "uiLanguage": "界面语言",
+    "contentLanguage": "内容语言"
+  },
+  "homepage": {
+    "dashboard": "控制台",
+    "loadingSeries": "正在加载系列…",
+    "loadingPlans": "正在加载计划…",
+    "couldNotLoadSeries": "无法加载系列。",
+    "couldNotLoadPlans": "无法加载计划。",
+    "noSeriesFound": "未找到相关系列。",
+    "noPlansFound": "未找到相关计划。",
+    "pageOf": "{{page}} / {{totalPages}} 页",
+    "totalCount": "（共 {{total}} 项）"
+  },
+  "planListing": {
+    "noTagSpecified": "未指定标签",
+    "backToTags": "返回标签",
+    "loadingPlans": "正在加载计划…",
+    "errorLoadingPlans": "加载计划时出错",
+    "noPlansForTag": "该标签下未找到计划"
+  },
+  "seriesListing": {
+    "title": "系列",
+    "selectLanguage": "选择语言",
+    "loadingSeries": "正在加载系列…",
+    "errorLoadingSeries": "加载系列时出错",
+    "noSeriesFound": "未找到相关系列"
+  },
+  "seriesView": {
+    "back": "返回",
+    "selectLanguage": "选择语言",
+    "loadingSeries": "正在加载系列…",
+    "todaysPlan": "今日计划",
+    "plansInSeries": "系列计划",
+    "noPlansInSeries": "该系列下暂无计划",
+    "planFallback": "计划 {{index}}"
+  },
+  "planDayView": {
+    "noPlansInSeries": "该系列下未找到计划。"
+  },
+  "planHeader": {
+    "dayOf": "第 {{current}} / {{total}} 天"
+  },
+  "footer": {
+    "registerEvent": "报名菩提伽耶活动",
+    "dailyReminders": "通过 <bold>WeBuddhist 应用</bold> 获取每日提醒",
+    "googlePlay": "Google Play",
+    "getItOn": "渴望下载",
+    "appStore": "App Store",
+    "downloadOnThe": "前往下载"
+  },
+  "error": {
+    "notFound": "404",
+    "noContent": "暂无内容",
+    "somethingWrong": "出错了，请稍后再试"
+  },
+  "infoModal": {
+    "howItWorks": "功能介绍"
+  },
+  "audio": {
+    "comingSoon": "音频即将上线",
+    "seriesImage": "系列封面",
+    "playerControls": "播放器控制",
+    "playbackPosition": "播放进度",
+    "restart": "重新播放"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "common": {
+    "loading": "लोड हो रहा है…",
+    "error": "त्रुटि",
+    "back": "वापस",
+    "previous": "पिछला",
+    "next": "अगला",
+    "close": "बंद करें",
+    "day": "दिन",
+    "days": "दिन",
+    "plans": "योजनाएँ",
+    "series": "श्रृंखला"
+  },
+  "header": {
+    "planViewer": "योजना व्यूअर"
+  },
+  "languages": {
+    "en": "अंग्रेज़ी",
+    "hi": "हिन्दी",
+    "zh": "चीनी",
+    "bo": "तिब्बती",
+    "uiLanguage": "इंटरफ़ेस की भाषा",
+    "contentLanguage": "सामग्री की भाषा"
+  },
+  "homepage": {
+    "dashboard": "डैशबोर्ड",
+    "loadingSeries": "श्रृंखला लोड हो रही है…",
+    "loadingPlans": "योजनाएँ लोड हो रही हैं…",
+    "couldNotLoadSeries": "श्रृंखला लोड नहीं हो सकी।",
+    "couldNotLoadPlans": "योजनाएँ लोड नहीं हो सकीं।",
+    "noSeriesFound": "कोई श्रृंखला नहीं मिली।",
+    "noPlansFound": "कोई योजना नहीं मिली।",
+    "pageOf": "पृष्ठ {{page}} / {{totalPages}}",
+    "totalCount": "(कुल {{total}})"
+  },
+  "planListing": {
+    "noTagSpecified": "कोई टैग निर्दिष्ट नहीं है",
+    "backToTags": "टैग पर वापस जाएँ",
+    "loadingPlans": "योजनाएँ लोड हो रही हैं…",
+    "errorLoadingPlans": "योजनाएँ लोड करने में त्रुटि हुई",
+    "noPlansForTag": "इस टैग के लिए कोई योजना नहीं मिली"
+  },
+  "seriesListing": {
+    "title": "श्रृंखला",
+    "selectLanguage": "भाषा चुनें",
+    "loadingSeries": "श्रृंखला लोड हो रही है…",
+    "errorLoadingSeries": "श्रृंखला लोड करने में त्रुटि हुई",
+    "noSeriesFound": "कोई श्रृंखला नहीं मिली"
+  },
+  "seriesView": {
+    "back": "वापस",
+    "selectLanguage": "भाषा चुनें",
+    "loadingSeries": "श्रृंखला लोड हो रही है…",
+    "todaysPlan": "आज की योजना",
+    "plansInSeries": "श्रृंखला की योजनाएँ",
+    "noPlansInSeries": "इस श्रृंखला में कोई योजना नहीं है",
+    "planFallback": "योजना {{index}}"
+  },
+  "planDayView": {
+    "noPlansInSeries": "इस श्रृंखला में कोई योजना नहीं मिली।"
+  },
+  "planHeader": {
+    "dayOf": "दिन {{current}} / {{total}}"
+  },
+  "footer": {
+    "registerEvent": "बोधगया कार्यक्रम के लिए पंजीकरण करें",
+    "dailyReminders": "<bold>WeBuddhist ऐप</bold> के साथ दैनिक रिमाइंडर प्राप्त करें",
+    "googlePlay": "Google Play",
+    "getItOn": "यहाँ से प्राप्त करें",
+    "appStore": "App Store",
+    "downloadOnThe": "यहाँ से डाउनलोड करें"
+  },
+  "error": {
+    "notFound": "404",
+    "noContent": "कोई सामग्री उपलब्ध नहीं है",
+    "somethingWrong": "कुछ गड़बड़ हो गई"
+  },
+  "infoModal": {
+    "howItWorks": "यह कैसे काम करता है"
+  },
+  "audio": {
+    "comingSoon": "ऑडियो जल्द आ रहा है",
+    "seriesImage": "श्रृंखला की छवि",
+    "playerControls": "ऑडियो प्लेयर कंट्रोल",
+    "playbackPosition": "प्लेबैक प्रोग्रेस",
+    "restart": "फिर से शुरू करें"
+  }
+}

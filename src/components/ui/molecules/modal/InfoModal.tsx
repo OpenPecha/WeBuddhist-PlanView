@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { InfoIcon, Loader2, XIcon } from "lucide-react"
+import { useTranslation } from "react-i18next"
 import {
     Dialog,
     DialogClose,
@@ -14,6 +15,7 @@ import { useAboutPlanWithFallback } from "@/client_details/hooks"
 
 
 const InfoModal = () => {
+    const { t } = useTranslation()
     const [isOpen, setIsOpen] = useState(false)
     const {data,isLoading:isPending}=useAboutPlanWithFallback(isOpen)
    
@@ -37,7 +39,7 @@ const InfoModal = () => {
             <DialogTrigger asChild>
                 <div className='flex pl-2 items-center gap-1 cursor-pointer text-xs hover:underline'>
                     <InfoIcon className="size-3 text-gray-500/80" />
-                    <span className="text-gray-500/80 ">How it works</span>
+                    <span className="text-gray-500/80 ">{t("infoModal.howItWorks")}</span>
                 </div>
             </DialogTrigger>
             <DialogContent
@@ -50,7 +52,7 @@ const InfoModal = () => {
                         <Button
                             variant="ghost"
                             size="icon-sm"
-                            aria-label="Close"
+                            aria-label={t("common.close")}
                             className="absolute top-3 right-3"
                         >
                             <XIcon className="size-4" />

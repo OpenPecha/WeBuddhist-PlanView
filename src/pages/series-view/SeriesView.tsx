@@ -2,21 +2,17 @@ import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { ArrowLeft, Calendar } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import Header from '@/components/ui/molecules/header'
 import { Button } from '@/components/ui/atom/button'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/atom/select'
+import ContentLanguageSelect, { contentLanguageFontClass } from '@/components/ui/molecules/ContentLanguageSelect'
 import { Card, CardContent, CardTitle } from '@/components/ui/atom/card'
 import { ErrorState } from '@/pages/plan-view/micro-components/Error'
 import { fetchSeriesById } from '@/pages/plan-view/micro-components/hooks/useSeriesData'
 import { getSeriesTitleAndDescription } from '@/lib/series-utils'
 
 const SeriesView = () => {
+  const { t } = useTranslation()
   const { seriesId } = useParams<{ seriesId: string }>()
   const navigate = useNavigate()
   const [language, setLanguage] = useState('en')
@@ -35,6 +31,8 @@ const SeriesView = () => {
   const sortedPlans = data?.plans
     ? [...data.plans].sort((a, b) => a.display_order - b.display_order)
     : []
+  const fontClass = contentLanguageFontClass(language)
+
   return (
     <main className="max-w-[720px] mx-auto gap-4 flex flex-col">
       <Header />
@@ -46,23 +44,14 @@ const SeriesView = () => {
           className="w-fit pl-0"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back
+          {t('seriesView.back')}
         </Button>
 
-        <Select value={language} onValueChange={setLanguage}>
-          <SelectTrigger className="w-fit">
-            <SelectValue placeholder="Select a language" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="en">English</SelectItem>
-            <SelectItem value="zh">Chinese</SelectItem>
-            <SelectItem value="bo">Tibetan</SelectItem>
-          </SelectContent>
-        </Select>
+        <ContentLanguageSelect value={language} onValueChange={setLanguage} />
       </div>
 
       {isLoading && (
-        <p className="px-4 text-muted-foreground">Loading series...</p>
+        <p className="px-4 text-muted-foreground">{t('seriesView.loadingSeries')}</p>
       )}
 
       {error && (
@@ -90,16 +79,16 @@ const SeriesView = () => {
                   className="w-fit"
                   onClick={() => navigate(`/series/${seriesId}/plan-day`)}
                 >
-                  Today&apos;s plan
+                  {t('seriesView.todaysPlan')}
                 </Button>
                 <h1
-                  className={`text-xl font-semibold text-[#3D3D3A] ${language === 'bo' ? 'tibetan-font' : ''}`}
+                  className={`text-xl font-semibold text-[#3D3D3A] ${fontClass}`}
                 >
                   {title}
                 </h1>
                 {description && (
                   <p
-                    className={`text-muted-foreground ${language === 'bo' ? 'tibetan-font' : ''}`}
+                    className={`text-muted-foreground ${fontClass}`}
                   >
                     {description}
                   </p>
@@ -108,7 +97,7 @@ const SeriesView = () => {
                   <div className="flex items-center gap-1 text-sm text-muted-foreground">
                     <Calendar className="h-4 w-4" />
                     <span>
-                      {data.total_days} {data.total_days === 1 ? 'day' : 'days'}
+                      {data.total_days} {data.total_days === 1 ? t('common.day') : t('common.days')}
                     </span>
                   </div>
                 )}
@@ -117,10 +106,10 @@ const SeriesView = () => {
           </section>
 
           <section className="px-4 pb-8 flex flex-col gap-3">
-            <h2 className="text-lg font-medium text-[#3D3D3A]">Plans</h2>
+            <h2 className="text-lg font-medium text-[#3D3D3A]">{t('seriesView.plansInSeries')}</h2>
 
             {sortedPlans.length === 0 && (
-              <p className="text-muted-foreground">No plans in this series</p>
+              <p className="text-muted-foreground">{t('seriesView.noPlansInSeries')}</p>
             )}
 
             <div className="grid grid-cols-1 gap-3">
@@ -143,11 +132,11 @@ const SeriesView = () => {
                     )}
                     <div className="min-w-0 flex-1">
                       <CardTitle className="text-base font-medium">
-                        {plan.title ?? `Plan ${index + 1}`}
+                        {plan.title ?? t('seriesView.planFallback', { index: index + 1 })}
                       </CardTitle>
                       {plan.description && (
                         <p
-                          className={`text-sm text-muted-foreground mt-1 line-clamp-2 ${language === 'bo' ? 'tibetan-font' : ''}`}
+                          className={`text-sm text-muted-foreground mt-1 line-clamp-2 ${fontClass}`}
                         >
                           {plan.description}
                         </p>
@@ -156,7 +145,7 @@ const SeriesView = () => {
                     <div className="flex items-center gap-1 text-sm text-muted-foreground shrink-0">
                       <Calendar className="h-4 w-4" />
                       <span>
-                        {plan.total_days} {plan.total_days === 1 ? 'day' : 'days'}
+                        {plan.total_days} {plan.total_days === 1 ? t('common.day') : t('common.days')}
                       </span>
                     </div>
                   </CardContent>
@@ -171,4 +160,3 @@ const SeriesView = () => {
 }
 
 export default SeriesView
-

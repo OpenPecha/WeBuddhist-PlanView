@@ -9,6 +9,7 @@ import {
   useState,
   type ReactNode,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import YouTube from 'react-youtube';
 import useSeriesData from './hooks/useSeriesData';
 
@@ -50,6 +51,7 @@ export function AudioPlayerProvider({
   seriesId?: string;
   children: ReactNode;
 }) {
+  const { t } = useTranslation();
   const seriesProgress = useSeriesData(seriesId);
   const timestamps = useTimeStamps(seriesProgress?.currentDay ?? 0);
   const { data } = useClientDetails();
@@ -88,7 +90,7 @@ export function AudioPlayerProvider({
     const player = getPlayer();
     if (!player) return;
     if (!timestamps) {
-      alert("Audio is coming soon");
+      alert(t("audio.comingSoon"));
       player.playVideo();
       return;
     }
@@ -103,7 +105,7 @@ export function AudioPlayerProvider({
         player.seekTo(startTimestamp, true);
         player.playVideo();
       });
-  }, [timestamps, startTimestamp, endTimestamp]);
+  }, [timestamps, startTimestamp, endTimestamp, t]);
 
   const handlePause = useCallback(() => {
     getPlayer()?.pauseVideo();
@@ -111,7 +113,7 @@ export function AudioPlayerProvider({
 
   const togglePlayPause = useCallback(() => {
     if(!timestamps || timestamps?.length === 0) {
-      alert("Audio is coming soon");
+      alert(t("audio.comingSoon"));
       return;
     }
     if (isPlaying) {
@@ -119,7 +121,7 @@ export function AudioPlayerProvider({
     } else {
       handlePlay();
     }
-  }, [isPlaying, handlePause, handlePlay]);
+  }, [isPlaying, handlePause, handlePlay, timestamps, t]);
 
   const handleStateChange = (event: { data: number }) => {
     setPlayerState(event.data);

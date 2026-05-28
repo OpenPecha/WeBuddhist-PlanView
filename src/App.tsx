@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom"
+import { LocaleSync } from "@/i18n/LocaleSync"
 import { FirebaseRouteAnalytics } from "@/components/FirebaseRouteAnalytics"
 import { PlanIdRedirect } from "@/pages/plan-view/PlanIdRedirect"
 import Homepage from "@/pages/home-page/Homepage"
@@ -7,10 +8,14 @@ import SeriesView from "./pages/series-view/SeriesView"
 import SeriesListing from "./pages/series-listing/SeriesListing"
 import PlanDayView from "./pages/plan-day-view/PlanDayView"
 import { PlanViewer } from "./pages/plan-view/PlanViewer"
+import { useTranslation } from "react-i18next"
 
 function App() {
+  const { i18n } = useTranslation()
+  const isTibetan = i18n.language === 'bo'
   return (
-    <div className="bg-background text-foreground">
+    <div className={`bg-background text-foreground ${isTibetan ? 'tibetan-font ' : ''}`}>
+      <LocaleSync />
       <FirebaseRouteAnalytics />
       <Routes>
         <Route path="/" element={<Homepage />} />

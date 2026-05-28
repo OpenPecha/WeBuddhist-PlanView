@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { format, parseISO, startOfDay } from "date-fns"
 import { ChevronDownIcon } from "lucide-react"
+import { useTranslation } from "react-i18next"
 import type { PlanDay } from "@/types/plan"
 import type { SeriesPlanSummary } from "@/types/series"
 import { Calendar } from "@/components/ui/atom/calendar"
@@ -15,6 +16,7 @@ import { Button } from "@/components/ui/atom/button"
 import InfoModal from "@/components/ui/molecules/modal/InfoModal"
 import useSeriesData from "./hooks/useSeriesData"
 import { getSeriesInclusiveCalendarRange } from "@/lib/series-utils"
+import { useDateLocale } from "@/i18n/use-date-locale"
 
 interface PlanHeaderProps {
   data?: PlanDay
@@ -37,10 +39,12 @@ export function PlanHeader({
   onNavigateToDate,
   seriesPlansForCalendar,
 }: PlanHeaderProps) {
+  const { t } = useTranslation()
+  const dateLocale = useDateLocale()
   const [calendarOpen, setCalendarOpen] = useState(false)
   const resolvedDate = date ?? data?.date
   const currentDate = resolvedDate ? parseISO(resolvedDate) : new Date()
-  const formattedDate = format(currentDate, "MMMM d, yyyy")
+  const formattedDate = format(currentDate, "MMMM d, yyyy", { locale: dateLocale })
   const seriesId = data?.series?.id
   const seriesProgress = useSeriesData(seriesId)
   const firstMeta = data?.series?.metadata.at(0)
@@ -77,7 +81,7 @@ export function PlanHeader({
                       <Button variant="outline" className="group shrink-0">
                         <span className="tabular-nums text-sm">
                           <span className="hidden sm:inline">{formattedDate}</span>
-                          <span className="sm:hidden">{format(currentDate, "MMM d, yyyy")}</span>
+                          <span className="sm:hidden">{format(currentDate, "MMM d, yyyy", { locale: dateLocale })}</span>
                         </span>
                         <ChevronDownIcon className="size-3.5 transition-transform group-data-[state=open]:rotate-180" />
                       </Button>
@@ -92,6 +96,7 @@ export function PlanHeader({
                         mode="single"
                         selected={currentDate}
                         defaultMonth={currentDate}
+                        locale={dateLocale}
                         disabled={(day) => {
                           const d = startOfDay(day)
                           const plansForCalendar =
@@ -135,7 +140,7 @@ export function PlanHeader({
               <div className='flex-1'>
                 <div className="flex items-center justify-between">
                 <span>
-                  Day {seriesProgress.currentDay} of {fakeTotalDays}
+                  {t('planHeader.dayOf', { current: seriesProgress.currentDay, total: fakeTotalDays })}
                 </span>
                 <span>{Math.round(seriesProgress.percent)}%</span>
                  </div>

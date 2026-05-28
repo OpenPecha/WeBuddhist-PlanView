@@ -1,0 +1,88 @@
+{
+  "common": {
+    "loading": "Loading…",
+    "error": "Error",
+    "back": "Back",
+    "previous": "Previous",
+    "next": "Next",
+    "close": "Close",
+    "day": "day",
+    "days": "days",
+    "plans": "Plans",
+    "series": "Series"
+  },
+  "header": {
+    "planViewer": "Plan Viewer"
+  },
+  "languages": {
+    "en": "English",
+    "hi": "Hindi",
+    "zh": "Chinese",
+    "bo": "Tibetan",
+    "uiLanguage": "Interface language",
+    "contentLanguage": "Language for titles"
+  },
+  "homepage": {
+    "dashboard": "Dashboard",
+    "loadingSeries": "Loading series…",
+    "loadingPlans": "Loading plans…",
+    "couldNotLoadSeries": "Could not load series.",
+    "couldNotLoadPlans": "Could not load plans.",
+    "noSeriesFound": "No series found.",
+    "noPlansFound": "No plans found.",
+    "pageOf": "Page {{page}} of {{totalPages}}",
+    "totalCount": "({{total}} total)"
+  },
+  "planListing": {
+    "noTagSpecified": "No tag specified",
+    "backToTags": "Back to Tags",
+    "loadingPlans": "Loading plans…",
+    "errorLoadingPlans": "Error loading plans",
+    "noPlansForTag": "No plans found for this tag"
+  },
+  "seriesListing": {
+    "title": "Series",
+    "selectLanguage": "Select a language",
+    "loadingSeries": "Loading series…",
+    "errorLoadingSeries": "Error loading series",
+    "noSeriesFound": "No series found"
+  },
+  "seriesView": {
+    "back": "Back",
+    "selectLanguage": "Select a language",
+    "loadingSeries": "Loading series…",
+    "todaysPlan": "Today's plan",
+    "plansInSeries": "Plans",
+    "noPlansInSeries": "No plans in this series",
+    "planFallback": "Plan {{index}}"
+  },
+  "planDayView": {
+    "noPlansInSeries": "No plans found in this series."
+  },
+  "planHeader": {
+    "dayOf": "Day {{current}} of {{total}}"
+  },
+  "footer": {
+    "registerEvent": "Register for the Event in Bodhgaya",
+    "dailyReminders": "Get daily reminders with the <bold>WeBuddhist App</bold>",
+    "googlePlay": "Google Play",
+    "getItOn": "Get it on",
+    "appStore": "App Store",
+    "downloadOnThe": "Download on the"
+  },
+  "error": {
+    "notFound": "404",
+    "noContent": "No content available",
+    "somethingWrong": "Something went wrong"
+  },
+  "infoModal": {
+    "howItWorks": "How it works"
+  },
+  "audio": {
+    "comingSoon": "Audio is coming soon",
+    "seriesImage": "Series Image",
+    "playerControls": "Audio player controls",
+    "playbackPosition": "Playback position",
+    "restart": "Restart"
+  }
+}

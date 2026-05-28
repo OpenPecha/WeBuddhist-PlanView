@@ -2,6 +2,7 @@ import { usePrimaryColor } from '@/client_details/hooks';
 import { Button } from '@/components/ui/atom/button';
 import { Progress } from '@/components/ui/atom/progress';
 import { RotateCcw } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useAudioPlayer } from './AudioPlayerContext';
 import { AudioPlayButton } from './AudioPlayButton';
 
@@ -11,6 +12,7 @@ export type AudioPlayerProps = {
 };
 
 function AudioPlayer(props: Readonly<AudioPlayerProps>) {
+  const { t } = useTranslation();
   const { imageUrl, description } = props;
   const primaryColor = usePrimaryColor();
   const {
@@ -37,7 +39,7 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
         <div className="flex items-center justify-between gap-2 relative group">
           <img
             src={imageUrl}
-            alt="Series Image"
+            alt={t("audio.seriesImage")}
             className="h-full object-contain border border-[#ECECEC] opacity-75 rounded-lg group-hover:opacity-100 transition-opacity duration-300"
           />
           <AudioPlayButton
@@ -48,14 +50,14 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
         {videoLink && (
           <div
             className="flex flex-col gap-2 rounded-lg ml-2 bg-muted/30 flex-1"
-            aria-label="Audio player controls"
+            aria-label={t("audio.playerControls")}
           >
             <div className="flex items-center justify-between gap-2 text-xs tabular-nums text-muted-foreground">
               <div
                 ref={progressRef}
                 role="slider"
                 tabIndex={0}
-                aria-label="Playback position"
+                aria-label={t("audio.playbackPosition")}
                 aria-valuemin={0}
                 aria-valuemax={progressSpan}
                 aria-valuenow={Math.max(0, currentTime - progressStart)}
@@ -84,7 +86,7 @@ function AudioPlayer(props: Readonly<AudioPlayerProps>) {
                   size="icon-sm"
                   variant="ghost"
                   onClick={handleRestart}
-                  aria-label="Restart"
+                  aria-label={t("audio.restart")}
                 >
                   <RotateCcw className="size-4" />
                 </Button>

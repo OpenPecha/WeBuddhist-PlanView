@@ -21,7 +21,6 @@ function PlanDayView() {
   const { seriesId } = useParams<{ seriesId: string }>()
   const [searchParams, setSearchParams] = useSearchParams()
   const imageURL = useImageURLWithFallback()
-
   const date =
     searchParams.get('date') ?? format(new Date(), 'yyyy-MM-dd')
 
@@ -37,7 +36,7 @@ function PlanDayView() {
   })
   const activePlan =
     series?.plans?.length
-      ? getActivePlanForDate(series.plans, new Date(date))
+      ? getActivePlanForDate(series?.plans, new Date(date))
       : undefined
 
   const {
@@ -78,8 +77,8 @@ function PlanDayView() {
     data &&
     getSeriesStepNavDates(date, {
       plans: plansForSeriesNav,
-      fallbackStartIso: data.start_date,
-      fallbackEndIso: data.end_date,
+      fallbackStartIso: data?.start_date,
+      fallbackEndIso: data?.end_date,
     })
 
   if (!isLoading && series && !activePlan) {

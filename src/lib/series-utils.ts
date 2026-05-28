@@ -28,16 +28,6 @@ export function getSeriesTitleAndDescription(
       description: match.description ?? '',
     }
   }
-
-  const name = series.name
-  if (name && Object.keys(name).length > 0) {
-    const raw =
-      name[language] ?? name.en ?? Object.values(name)[0]
-    if (!raw) return { title: '', description: '' }
-    const [title, description] = raw.split('->').map((part) => part.trim())
-    return { title: title || raw, description: description ?? '' }
-  }
-
   return { title: '', description: '' }
 }
 
@@ -56,8 +46,8 @@ export function getSeriesInclusiveCalendarRange(
   let minStart: Date | null = null
   let maxEnd: Date | null = null
   for (const plan of plans) {
-    const start = startOfDay(parseISO(plan.start_date))
-    const end = startOfDay(addDays(start, plan.total_days - 1))
+    const start = startOfDay(parseISO(plan?.start_date ?? ''))
+    const end = startOfDay(addDays(start, plan?.total_days - 1))
     if (!minStart || start < minStart) minStart = start
     if (!maxEnd || end > maxEnd) maxEnd = end
   }
@@ -113,9 +103,10 @@ export function getActivePlanForDate(
 ): SeriesPlanSummary | undefined {
   const sorted = sortSeriesPlans(plans)
   if (!sorted.length) return undefined
-
+  
   const day = startOfDay(date)
   for (const plan of sorted) {
+    if (!plan.start_date) return sorted[0]
     const start = startOfDay(parseISO(plan.start_date))
     const end = startOfDay(addDays(start, plan.total_days - 1))
     if (day >= start && day <= end) return plan

@@ -31,7 +31,7 @@ function useSeriesData(seriesId: string | undefined) {
   const firstPlan = getSeriesAnchorPlan(series.plans)
   if (!firstPlan) return null
 
-  const start = parseISO(firstPlan.start_date)
+  const start = parseISO(firstPlan?.start_date ?? '')
   const totalDays = series.total_days
   const currentDay = Math.min(
     Math.max(differenceInCalendarDays(currentDate, start) + 1, 0),

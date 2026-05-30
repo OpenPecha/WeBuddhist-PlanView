@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchAuthorById, fetchGroupById, getAboutPlan, getClientDetails, getDefaultImage, getPlanDay, getPrimaryColor, getTimestamps } from "./get_details";
+import { fetchAuthorById, fetchGroupById, getAboutPlan, getAboutPlanById, getClientDetails, getDefaultImage, getPlanDay, getPrimaryColor, getTimestamps } from "./get_details";
 import type { Author } from "@/types/author";
 import type { Group } from "@/types/group";
 import { useParams, useSearchParams } from "react-router-dom";
@@ -33,12 +33,30 @@ export function useImageURLWithFallback(){
 } 
 
 export function useAboutPlanWithFallback(isOpen: boolean){
+    const { seriesId } = useParams<{ seriesId?: string }>()
     const [params] = useSearchParams()
     const client = params.get('source') ?? undefined
+    
+    // Get series data to find the first plan
+    const { data: seriesData } = useQuery({
+        queryKey: ["series", seriesId],
+        queryFn: () => fetchSeriesById(seriesId!),
+        enabled: !!seriesId && isOpen,
+    })
+    
+    // Get the first plan's about info if we have series data
+    const firstPlan = seriesData?.plans ? 
+        [...seriesData.plans].sort((a, b) => a.display_order - b.display_order)[0] : null
+    
     const {data,error,isLoading:isPending}=useQuery({
-        queryKey:["about",client],
-        queryFn:()=>getAboutPlan(client),
-        enabled:isOpen && !!client
+        queryKey:["about", firstPlan?.id || client],
+        queryFn: () => {
+            if (firstPlan?.id) {
+                return getAboutPlanById(firstPlan.id)
+            }
+            return getAboutPlan(client)
+        },
+        enabled: isOpen && (!!firstPlan?.id || !!client)
     })
     return {data,error,isLoading:isPending}
 

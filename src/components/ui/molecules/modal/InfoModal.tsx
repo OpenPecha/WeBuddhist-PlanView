@@ -44,7 +44,7 @@ const InfoModal = () => {
             </DialogTrigger>
             <DialogContent
                 showCloseButton={false}
-                className="sm:min-w-3xl rounded-none sm:rounded-lg w-full h-screen sm:h-max overflow-y-auto max-w-full sm:max-w-3xl p-0"
+                className="sm:min-w-3xl rounded-none sm:rounded-lg w-full h-[60dvh] overflow-y-auto max-w-full sm:max-w-3xl p-0"
             >
                 <DialogHeader className="sticky top-0 z-10 border-b bg-popover ">
                    

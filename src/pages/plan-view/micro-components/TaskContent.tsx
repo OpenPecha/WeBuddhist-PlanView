@@ -62,9 +62,9 @@ export function TaskSection({ task, index, audioURL }: TaskSectionProps) {
     const subtasksWithAudio = task?.subtasks[0]?.audio_url;
     const subtasksEndMs = task?.subtasks[0]?.duration
 
-    const showTaskAudio =    subtasksWithAudio || audioURL != null && startMs != null && endMs != null
-    const start_ms=subtasksWithAudio? 0 : startMs;
-    const end_ms=subtasksWithAudio? Number(subtasksEndMs): endMs;
+    const showTaskAudio = subtasksWithAudio || (audioURL != null && startMs != null && endMs != null)
+    const start_ms = subtasksWithAudio ? 0 : startMs;
+    const end_ms = subtasksWithAudio ? Number(subtasksEndMs) : endMs;
     return (
 
         <AccordionItem value={task.id} className="border-0">
@@ -96,7 +96,14 @@ export function TaskSection({ task, index, audioURL }: TaskSectionProps) {
             <AccordionContent className="mt-4 space-y-2 border-l border-[#ECECEC] pl-5 sm:pl-6">
                 <div className="flex justify-between items-center gap-2 p-2">
                 {showTaskAudio && (
-                    <AudioPlayButton showText={true} className="w-max px-2 gap-2" src={subtasksWithAudio||audioURL} startMs={start_ms} endMs={end_ms} stopPropagation />
+                    <AudioPlayButton 
+                        showText={true} 
+                        className="w-max px-2 gap-2" 
+                        src={subtasksWithAudio || audioURL || undefined} 
+                        startMs={start_ms ?? undefined} 
+                        endMs={end_ms ?? undefined} 
+                        stopPropagation 
+                    />
                 )}
                 {showScriptDropdown && (
 

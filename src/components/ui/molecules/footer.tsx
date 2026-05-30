@@ -28,7 +28,7 @@ const Footer = () => {
 
     return (
         <footer id="we_footer" className="w-max mx-auto max-w-2xl  space-y-2  flex flex-col sm:items-center sm:justify-center mb-10">
-            <LanguageSwitcher className="w-fit" />
+            {/* <LanguageSwitcher className="w-fit" /> */}
             {signUpUrl && (
                 <a href={signUpUrl} target="_blank" rel="noopener noreferrer" className=" text-center mt-10 sm:mt-0 md:h-[40px] text-white px-4 py-2 tracking-wide w-full h-[40px] mb-10 sm:mb-20 sm:w-max mx-auto md:text-xl  bg-[#f66e00] font-[lato] hover:bg-[#f66e00]/80">
                     {t("footer.registerEvent")}

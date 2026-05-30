@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../..
 import { useNavigate } from 'react-router-dom'
 import { Calendar, User } from 'lucide-react'
 import { Badge } from '../../atom/badge'
+import { contentLanguageFontClass } from '../ContentLanguageSelect'
 
 interface Plan {
     id: string
@@ -66,7 +67,7 @@ const PlanCard = ({ plan, language }: PlanCardProps) => {
             </CardHeader>
             <CardContent className='p-4 space-y-3'>
                 <div className='flex items-start justify-between gap-2'>
-                    <CardTitle className={`text-lg line-clamp-2 ${language === 'bo' ? 'tibetan-font' : ''}`}>
+                    <CardTitle className={`text-lg line-clamp-2 ${contentLanguageFontClass(language)}`}>
                         {plan.title}
                     </CardTitle>
                     <Badge className={getDifficultyColor(plan.difficulty_level)} variant="secondary">
@@ -75,7 +76,7 @@ const PlanCard = ({ plan, language }: PlanCardProps) => {
                 </div>
 
                 {plan.description && (
-                    <CardDescription className={`line-clamp-2 ${language === 'bo' ? 'tibetan-font' : ''}`}>
+                    <CardDescription className={`line-clamp-2 ${contentLanguageFontClass(language)}`}>
                         {plan.description}
                     </CardDescription>
                 )}

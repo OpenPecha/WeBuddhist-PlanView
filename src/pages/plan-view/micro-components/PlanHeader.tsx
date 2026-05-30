@@ -50,7 +50,6 @@ export function PlanHeader({
   const firstMeta = data?.series?.metadata.at(0)
   const title = firstMeta?.title
   const description = firstMeta?.description
-  const fakeTotalDays = 200
   return (
     <header className="sm:mb-12 mb-4 flex flex-col gap-8 p-2">
       <div className="flex flex-col gap-4">
@@ -140,7 +139,7 @@ export function PlanHeader({
               <div className='flex-1'>
                 <div className="flex items-center justify-between">
                 <span>
-                  {t('planHeader.dayOf', { current: seriesProgress.currentDay, total: fakeTotalDays })}
+                  {t('planHeader.dayOf', { current: seriesProgress.currentDay, total: seriesProgress.totalDays })}
                 </span>
                 <span>{Math.round(seriesProgress.percent)}%</span>
                  </div>

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Calendar } from 'lucide-react'
 import type { SeriesListItem } from '@/types/series'
 import { getSeriesTitleAndDescription } from '@/lib/series-utils'
+import { contentLanguageFontClass } from '../ContentLanguageSelect'
 
 interface SeriesCardProps {
   series: SeriesListItem
@@ -12,16 +13,15 @@ interface SeriesCardProps {
 const SeriesCard = ({ series, language }: SeriesCardProps) => {
   const navigate = useNavigate()
   const { title, description } = getSeriesTitleAndDescription(series, language)
-
+  const fontClass = contentLanguageFontClass(language)
   const handleClick = () => {
-    navigate(`/series/${series.id}`)
+    navigate(`/series/${series.id}/plan-day`)
   }
 
   if (!title) return null
-
   return (
     <Card
-      className="cursor-pointer p-0 rounded-sm overflow-hidden"
+      className={`cursor-pointer p-0 rounded-sm overflow-hidden`}
       onClick={handleClick}
     >
       {series.image && (
@@ -35,12 +35,12 @@ const SeriesCard = ({ series, language }: SeriesCardProps) => {
         </CardHeader>
       )}
       <CardContent className="p-4 space-y-3">
-        <CardTitle className={`text-lg line-clamp-2 ${language === 'bo' ? 'tibetan-font' : ''}`}>
+        <CardTitle className={`text-lg line-clamp-2 ${fontClass} ${language === 'bo' ? 'text-2xl' : ''}`}>
           {title}
         </CardTitle>
 
         {description && (
-          <CardDescription className={`line-clamp-2 ${language === 'bo' ? 'tibetan-font' : ''}`}>
+          <CardDescription className={`line-clamp-2 ${fontClass} ${language === 'bo' ? 'text-md' : ''}`}>
             {description}
           </CardDescription>
         )}

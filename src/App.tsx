@@ -8,13 +8,10 @@ import SeriesView from "./pages/series-view/SeriesView"
 import SeriesListing from "./pages/series-listing/SeriesListing"
 import PlanDayView from "./pages/plan-day-view/PlanDayView"
 import { PlanViewer } from "./pages/plan-view/PlanViewer"
-import { useTranslation } from "react-i18next"
 
 function App() {
-  const { i18n } = useTranslation()
-  const isTibetan = i18n.language === 'bo'
   return (
-    <div className={`bg-background text-foreground ${isTibetan ? 'tibetan-font ' : ''}`}>
+    <div className="bg-background text-foreground">
       <LocaleSync />
       <FirebaseRouteAnalytics />
       <Routes>

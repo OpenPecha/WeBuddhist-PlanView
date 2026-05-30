@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { ArrowLeft, Calendar } from 'lucide-react'
+import { Calendar } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import Header from '@/components/ui/molecules/header'
 import { Button } from '@/components/ui/atom/button'
-import ContentLanguageSelect, { contentLanguageFontClass } from '@/components/ui/molecules/ContentLanguageSelect'
 import { Card, CardContent, CardTitle } from '@/components/ui/atom/card'
+import { contentLanguageFontClass } from '@/components/ui/molecules/ContentLanguageSelect'
 import { ErrorState } from '@/pages/plan-view/micro-components/Error'
 import { fetchSeriesById } from '@/pages/plan-view/micro-components/hooks/useSeriesData'
 import { getSeriesTitleAndDescription } from '@/lib/series-utils'
@@ -15,8 +15,7 @@ const SeriesView = () => {
   const { t } = useTranslation()
   const { seriesId } = useParams<{ seriesId: string }>()
   const navigate = useNavigate()
-  const [language, setLanguage] = useState('en')
-
+  const [language] = useState('en')
   const { data, isLoading, error } = useQuery({
     queryKey: ['series', seriesId],
     queryFn: () => fetchSeriesById(seriesId!),
@@ -36,19 +35,7 @@ const SeriesView = () => {
   return (
     <main className="max-w-[720px] mx-auto gap-4 flex flex-col">
       <Header />
-
-      <div className="px-4 flex flex-col gap-4">
-        <Button
-          variant="ghost"
-          onClick={() => navigate('/?tab=series')}
-          className="w-fit pl-0"
-        >
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          {t('seriesView.back')}
-        </Button>
-
-        <ContentLanguageSelect value={language} onValueChange={setLanguage} />
-      </div>
+    
 
       {isLoading && (
         <p className="px-4 text-muted-foreground">{t('seriesView.loadingSeries')}</p>

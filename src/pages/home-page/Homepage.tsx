@@ -56,6 +56,7 @@ const Homepage = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [language] = useState('en')
 
+
   const tab = parseTab(searchParams.get('tab'))
   const page = Math.max(1, Number.parseInt(searchParams.get('page') || '1', 10) || 1)
 
@@ -110,8 +111,8 @@ const Homepage = () => {
       <Header />
 
       <div className="flex flex-col gap-4 px-4">
-        <h1 className="text-xl font-semibold text-[#3D3D3A]">{t('homepage.dashboard')}</h1>
-
+        <h1 className="text-2xl font-semibold text-[#3D3D3A]">{t('homepage.dashboard')}</h1>
+        {/* <LanguageSwitcher/> */}
 
       </div>
 
@@ -130,22 +131,12 @@ const Homepage = () => {
               {t('homepage.noSeriesFound')}
             </p>
           )}
-        {tab === 'plan' &&
-          !isLoading &&
-          !error &&
-          plansQuery.data?.plans?.length === 0 && (
-            <p className="col-span-full py-8 text-center text-muted-foreground">
-              {t('homepage.noPlansFound')}
-            </p>
-          )}
+    
         {tab === 'series' &&
           seriesQuery.data?.series?.map((series) => (
             <SeriesCard key={series.id} series={series} language={language} />
           ))}
-        {tab === 'plan' &&
-          plansQuery.data?.plans?.map((plan) => (
-            <PlanCard key={plan.id} plan={plan} language={language} />
-          ))}
+     
       </div>
 
       {pagination && pagination.totalPages > 1 && (

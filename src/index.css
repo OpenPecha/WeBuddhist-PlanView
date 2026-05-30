@@ -9,12 +9,56 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0F00-0FFF; /* Tibetan Unicode range */
 }
 
 @layer utilities {
   .tibetan-font {
     font-family: "Jomolhari", ui-serif, serif;
   }
+}
+
+/* Global Tibetan font application */
+html.tibetan-font {
+  font-family: "Jomolhari", "Noto Sans Tibetan", "Microsoft Himalaya", "DDC Uchen", "Qomolangma-Uchen Sarchen", ui-serif, serif;
+}
+
+html.tibetan-font *,
+html.tibetan-font body,
+html.tibetan-font h1,
+html.tibetan-font h2,
+html.tibetan-font h3,
+html.tibetan-font h4,
+html.tibetan-font h5,
+html.tibetan-font h6,
+html.tibetan-font p,
+html.tibetan-font span,
+html.tibetan-font div,
+html.tibetan-font a,
+html.tibetan-font li,
+html.tibetan-font td,
+html.tibetan-font th,
+html.tibetan-font label {
+  font-family: "Jomolhari", "Noto Sans Tibetan", "Microsoft Himalaya", "DDC Uchen", "Qomolangma-Uchen Sarchen", ui-serif, serif !important;
+}
+
+/* Ensure form elements also use Tibetan font */
+html.tibetan-font input,
+html.tibetan-font textarea,
+html.tibetan-font select,
+html.tibetan-font button,
+html.tibetan-font option {
+  font-family: "Jomolhari", "Noto Sans Tibetan", "Microsoft Himalaya", "DDC Uchen", "Qomolangma-Uchen Sarchen", ui-serif, serif !important;
+}
+
+/* Ensure content-editable elements use Tibetan font */
+html.tibetan-font [contenteditable] {
+  font-family: "Jomolhari", "Noto Sans Tibetan", "Microsoft Himalaya", "DDC Uchen", "Qomolangma-Uchen Sarchen", ui-serif, serif !important;
+}
+
+/* Ensure proper line height for Tibetan text */
+html.tibetan-font * {
+  line-height: 1.6 !important;
 }
 
 @custom-variant dark (&:is(.dark *));

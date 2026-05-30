@@ -1,6 +1,7 @@
 import { Card, CardHeader, CardTitle } from '../../atom/card'
 import tagimage from "@/assets/images/1.png"
 import { useNavigate } from 'react-router-dom'
+import { contentLanguageFontClass } from '../ContentLanguageSelect'
 
 const TagCard = ({ tag, language }: { tag: string, language: string }) => {
     const navigate = useNavigate()
@@ -20,7 +21,7 @@ const TagCard = ({ tag, language }: { tag: string, language: string }) => {
                     src={tagimage}
                     alt={tag}
                 />
-                <CardTitle className={`p-4 text-center ${language === 'bo' ? 'tibetan-font' : ''}`}>{tag}</CardTitle>
+                <CardTitle className={`p-4 text-center ${contentLanguageFontClass(language)}`}>{tag}</CardTitle>
             </CardHeader>
         </Card>
     )

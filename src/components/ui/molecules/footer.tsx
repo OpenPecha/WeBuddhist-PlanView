@@ -1,6 +1,5 @@
 import { useGroupDetails, useSeriesDetails } from "@/client_details/hooks";
 import { AppleIcon, PlayStoreIcon } from "@/components/icons/icons"
-import LanguageSwitcher from "@/components/ui/molecules/LanguageSwitcher"
 import { useParams } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
 

@@ -37,7 +37,6 @@ function PlanDayView() {
   })
 
   const { data: group } = useGroupDetails(series?.group_id ?? undefined)
-  const imageURL =group?.banner_url ?? undefined
   const activePlan =
     series?.plans?.length
       ? getActivePlanForDate(series?.plans, new Date(date))
@@ -54,6 +53,8 @@ function PlanDayView() {
     retry: false,
     refetchOnWindowFocus: false,
   })
+  const imageURL =group?.banner_url ?? data?.image.original ?? undefined;
+
   const navigate = useNavigate()
   const error = seriesError ?? planError
   useEffect(() => {

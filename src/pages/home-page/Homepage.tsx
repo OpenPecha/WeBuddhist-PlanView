@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { useMemo, useState, type ComponentProps } from 'react'
+import { useState, type ComponentProps } from 'react'
 import api from '@/lib/api'
 import Header from '@/components/ui/molecules/header'
 import { Button } from '@/components/ui/atom/button'
@@ -9,7 +9,6 @@ import PlanCard from '@/components/ui/molecules/cards/plan-card'
 import type { SeriesListResponse } from '@/types/series'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import ContentLanguageSelect from '@/components/ui/molecules/ContentLanguageSelect'
 
 const PAGE_SIZE = 20
 
@@ -55,19 +54,11 @@ async function fetchPlansPage(
 const Homepage = () => {
   const { t } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
-  const [language, setLanguage] = useState('en')
+  const [language] = useState('en')
 
   const tab = parseTab(searchParams.get('tab'))
   const page = Math.max(1, Number.parseInt(searchParams.get('page') || '1', 10) || 1)
 
-  const setTab = (next: DashboardTab) => {
-    setSearchParams((prev) => {
-      const p = new URLSearchParams(prev)
-      p.set('tab', next)
-      p.set('page', '1')
-      return p
-    })
-  }
 
   const setPage = (nextPage: number) => {
     setSearchParams((prev) => {

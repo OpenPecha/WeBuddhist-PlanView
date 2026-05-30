@@ -1,10 +1,6 @@
-import logo from "@/assets/icon/logo.png"
-import { Separator } from "@/components/ui/atom/separator"
-import LanguageSwitcher from "@/components/ui/molecules/LanguageSwitcher"
-import { useTranslation } from "react-i18next"
+
 
 const Header = () => {
-    const { t } = useTranslation()
     return <div className="h-10"/>
     // return (
     //     <div className="flex items-center justify-between gap-2 px-4 py-2">

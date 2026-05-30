@@ -112,13 +112,7 @@ const Homepage = () => {
 
   const pagination = seriesPagination ?? plansPagination
 
-  const tabButtons: { value: DashboardTab; label: string }[] = useMemo(
-    () => [
-      { value: 'series', label: t('common.series') },
-      { value: 'plan', label: t('common.plans') },
-    ],
-    [t],
-  )
+
 
   return (
     <main className="mx-auto flex max-w-[720px] flex-col gap-4">
@@ -127,22 +121,7 @@ const Homepage = () => {
       <div className="flex flex-col gap-4 px-4">
         <h1 className="text-xl font-semibold text-[#3D3D3A]">{t('homepage.dashboard')}</h1>
 
-        <div className="flex flex-wrap items-center gap-2">
-          {tabButtons.map(({ value, label }) => (
-            <Button
-              key={value}
-              type="button"
-              variant={tab === value ? 'default' : 'outline'}
-              size="sm"
-              className="capitalize"
-              onClick={() => setTab(value)}
-            >
-              {label}
-            </Button>
-          ))}
-        </div>
 
-        <ContentLanguageSelect value={language} onValueChange={setLanguage} />
       </div>
 
       <div className="grid grid-cols-1 gap-4 px-4 pb-4 md:grid-cols-2">

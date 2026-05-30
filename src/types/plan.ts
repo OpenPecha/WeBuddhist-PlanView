@@ -8,6 +8,8 @@ export interface Subtask {
   source_text_id: string | null
   pecha_segment_id: string | null
   segment_ids: string[] | null
+  audio_url?: string | null
+  duration?: number | null
 }
 
 export interface Task {

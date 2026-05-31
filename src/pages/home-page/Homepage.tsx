@@ -104,8 +104,6 @@ const Homepage = () => {
 
   const pagination = seriesPagination ?? plansPagination
 
-
-
   return (
     <main className="mx-auto flex max-w-[720px] flex-col gap-4">
       <Header />

@@ -83,7 +83,7 @@ export function SourceReferenceContent({
              const shouldHighlight = currentTimestampIndex === index
              return     <div
                     key={index}
-                    className={`w-full min-h-12 whitespace-pre-wrap rich-html text-base font-serif p-2 ${shouldHighlight ? "font-bold" : ""}`}
+                    className={`w-full min-h-12 whitespace-pre-wrap rich-html text-xl font-serif p-2 ${shouldHighlight ? "font-bold" : ""}`}
                 >
                     {!text.trim().startsWith("<h") && (
                         <span className="font-medium">{index + 1}. </span>

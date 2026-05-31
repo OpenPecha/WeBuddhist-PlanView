@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../atom/card'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Calendar } from 'lucide-react'
 import type { SeriesListItem } from '@/types/series'
 import { getSeriesTitleAndDescription } from '@/lib/series-utils'
@@ -12,13 +12,16 @@ interface SeriesCardProps {
 
 const SeriesCard = ({ series, language }: SeriesCardProps) => {
   const navigate = useNavigate()
+  const [params,]=useSearchParams();
   const { title, description } = getSeriesTitleAndDescription(series, language)
   const fontClass = contentLanguageFontClass(language)
   const handleClick = () => {
     navigate(`/series/${series.id}/plan-day`)
   }
-
+  const lang = params.get('lang') || 'en'
+  const series_language =series.metadata?.find((m) => m.language.toLowerCase() === lang.toLowerCase())
   if (!title) return null
+  if (!series_language) return null;
   return (
     <Card
       className={`cursor-pointer p-0 rounded-sm overflow-hidden`}

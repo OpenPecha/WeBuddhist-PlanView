@@ -3,6 +3,7 @@ import { fetchAuthorById, fetchGroupById, getAboutPlan, getAboutPlanById, getCli
 import type { Author } from "@/types/author";
 import type { Group } from "@/types/group";
 import { useParams, useSearchParams } from "react-router-dom";
+import { LANG_QUERY_PARAM, parseAppLocale } from "@/i18n/locale-utils";
 import { fetchSeriesById } from "@/pages/plan-view/micro-components/hooks/useSeriesData";
 import type { SeriesDetail } from "@/types/series";
 
@@ -10,6 +11,7 @@ export function useImageURLWithFallback(){
     const { planId ,seriesId} = useParams<{ planId: string; date?: string; seriesId?: string }>()
     const [params] = useSearchParams()
     const source = params.get('source') ?? undefined
+    const language = parseAppLocale(params.get(LANG_QUERY_PARAM)) ?? 'en'
 
     const {data:imageURL}=useQuery({
         queryKey:["image",source],
@@ -24,8 +26,8 @@ export function useImageURLWithFallback(){
     })
 
     const {data:imageData}=useQuery({
-        queryKey:[planId],
-        queryFn:()=>getPlanDay(planId),
+        queryKey:[planId, language],
+        queryFn:()=>getPlanDay(planId, undefined, language),
         enabled:!!planId
     })
     return imageURL || imageData?.image.original || seriesData?.image

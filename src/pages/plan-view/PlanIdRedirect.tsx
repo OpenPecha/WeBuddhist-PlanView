@@ -1,6 +1,7 @@
 import { Navigate, useParams, useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { getPlanDay } from '@/client_details/get_details'
+import { LANG_QUERY_PARAM, parseAppLocale } from '@/i18n/locale-utils'
 import { PlanViewer } from '@/pages/plan-view/PlanViewer'
 import { PlanViewerSkeleton } from '@/pages/plan-view/micro-components/loader'
 import { ErrorState } from '@/pages/plan-view/micro-components/Error'
@@ -9,10 +10,11 @@ export function PlanIdRedirect() {
   const { planId } = useParams<{ planId: string }>()
   const [searchParams] = useSearchParams()
   const date = searchParams.get('date') ?? undefined
+  const language = parseAppLocale(searchParams.get(LANG_QUERY_PARAM)) ?? 'en'
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['planDay', planId, date],
-    queryFn: () => getPlanDay(planId, date),
+    queryKey: ['planDay', planId, date, language],
+    queryFn: () => getPlanDay(planId, date, language),
     enabled: !!planId,
     retry: false,
     refetchOnWindowFocus: false,

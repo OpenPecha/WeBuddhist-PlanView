@@ -17,6 +17,7 @@ import { PlanFooterNav } from '@/pages/plan-view/micro-components/PlanFooterNav'
 import { AudioPlayerProvider } from '@/pages/plan-view/micro-components/AudioPlayerContext'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { LANG_QUERY_PARAM, parseAppLocale } from '@/i18n/locale-utils'
 
 function PlanDayView() {
   const { t } = useTranslation()
@@ -24,6 +25,8 @@ function PlanDayView() {
   const [searchParams, setSearchParams] = useSearchParams()
   const date =
     searchParams.get('date') ?? format(new Date(), 'yyyy-MM-dd')
+  const language =
+    parseAppLocale(searchParams.get(LANG_QUERY_PARAM)) ?? 'en'
 
   const {
     data: series,
@@ -47,8 +50,8 @@ function PlanDayView() {
     isLoading: isPlanLoading,
     error: planError,
   } = useQuery<PlanDay>({
-    queryKey: ['planDay', activePlan?.id, date, seriesId],
-    queryFn: () => getPlanDay(activePlan!.id, date),
+    queryKey: ['planDay', activePlan?.id, date, seriesId, language],
+    queryFn: () => getPlanDay(activePlan!.id, date, language),
     enabled: !!activePlan?.id,
     retry: false,
     refetchOnWindowFocus: false,

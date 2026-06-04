@@ -46,10 +46,14 @@ export async function getAboutPlanById(planId: string): Promise<PlanDay> {
 
 export const getPlanDay = async (
     planId: string | undefined,
-    date?: string
+    date?: string,
+    language?: string
   ): Promise<PlanDay> => {
+    const params: { date?: string; language?: string } = {}
+    if (date) params.date = date
+    if (language) params.language = language
     const { data } = await api.get<PlanDay>(`/api/v1/plans/${planId}/daily`, {
-      params: date ? { date } : undefined,
+      params: Object.keys(params).length > 0 ? params : undefined,
     })
     return data
   }

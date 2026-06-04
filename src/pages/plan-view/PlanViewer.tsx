@@ -9,6 +9,7 @@ import { Accordion } from "@/components/ui/atom/accordion"
 import { PlanHeader } from "./micro-components/PlanHeader"
 import { PlanFooterNav } from "./micro-components/PlanFooterNav"
 import {  getPlanDay } from "@/client_details/get_details"
+import { LANG_QUERY_PARAM, parseAppLocale } from '@/i18n/locale-utils'
 import { useImageURLWithFallback } from "@/client_details/hooks"
 import {  isMobile } from 'react-device-detect';
 import AudioPlayer from "./micro-components/AudioPlayer"
@@ -20,9 +21,10 @@ export function PlanViewer() {
   const [params, setParams] = useSearchParams()
   const { planId } = useParams<{ planId: string; date?: string }>()
   const date = params.get('date') ?? undefined
+  const language = parseAppLocale(params.get(LANG_QUERY_PARAM)) ?? 'en'
   const { data, isLoading, error } = useQuery<PlanDay>({
-    queryKey: ["planDay", planId, date],
-    queryFn: () => getPlanDay(planId!, date),
+    queryKey: ["planDay", planId, date, language],
+    queryFn: () => getPlanDay(planId!, date, language),
     enabled: !!planId,
     retry: false,
     refetchOnWindowFocus: false,

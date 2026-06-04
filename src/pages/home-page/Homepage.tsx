@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { useState, type ComponentProps } from 'react'
+import { type ComponentProps } from 'react'
 import api from '@/lib/api'
 import Header from '@/components/ui/molecules/header'
 import { Button } from '@/components/ui/atom/button'

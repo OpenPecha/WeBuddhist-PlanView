@@ -21,7 +21,7 @@ const SeriesListing = () => {
   const { t } = useTranslation()
   const [params,]=useSearchParams();
   const lang = params.get('lang') 
-  const [language, setLanguage] = useState(lang)
+  const [language, setLanguage] = useState(lang ?? 'en')
   const { data, isLoading, error } = useQuery({
     queryKey: ['series-list'],
     queryFn: () => fetchSeriesList(),

@@ -16,7 +16,7 @@ const SeriesCard = ({ series, language }: SeriesCardProps) => {
   const { title, description } = getSeriesTitleAndDescription(series, language)
   const fontClass = contentLanguageFontClass(language)
   const handleClick = () => {
-    navigate(`/series/${series.id}/plan-day`)
+    navigate(`/series/${series.id}/plan-day?lang=${language}`)
   }
   const lang = params.get('lang') || 'en'
   const series_language =series.metadata?.find((m) => m.language.toLowerCase() === lang.toLowerCase())

@@ -54,7 +54,8 @@ async function fetchPlansPage(
 const Homepage = () => {
   const { t } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
-  const [language] = useState('en')
+  const language = searchParams.get('lang') || 'en'
+
 
 
   const tab = parseTab(searchParams.get('tab'))

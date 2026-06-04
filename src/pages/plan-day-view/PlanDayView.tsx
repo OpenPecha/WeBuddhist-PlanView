@@ -17,7 +17,6 @@ import { PlanFooterNav } from '@/pages/plan-view/micro-components/PlanFooterNav'
 import { AudioPlayerProvider } from '@/pages/plan-view/micro-components/AudioPlayerContext'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { LANG_QUERY_PARAM, parseAppLocale } from '@/i18n/locale-utils'
 
 function PlanDayView() {
   const { t } = useTranslation()
@@ -25,8 +24,7 @@ function PlanDayView() {
   const [searchParams, setSearchParams] = useSearchParams()
   const date =
     searchParams.get('date') ?? format(new Date(), 'yyyy-MM-dd')
-  const language =
-    parseAppLocale(searchParams.get(LANG_QUERY_PARAM)) ?? 'en'
+  const language = searchParams.get('lang') || 'en'
 
   const {
     data: series,

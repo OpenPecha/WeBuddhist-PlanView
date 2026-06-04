@@ -6,6 +6,7 @@ import Header from '@/components/ui/molecules/header'
 import SeriesCard from '@/components/ui/molecules/cards/series-card'
 import ContentLanguageSelect from '@/components/ui/molecules/ContentLanguageSelect'
 import type { SeriesListResponse } from '@/types/series'
+import { useSearchParams } from 'react-router-dom'
 
 const SERIES_PAGE_SIZE = 50
 
@@ -18,8 +19,9 @@ const fetchSeriesList = async (skip = 0, limit = SERIES_PAGE_SIZE) => {
 
 const SeriesListing = () => {
   const { t } = useTranslation()
-  const [language, setLanguage] = useState('en')
-
+  const [params,]=useSearchParams();
+  const lang = params.get('lang') 
+  const [language, setLanguage] = useState(lang)
   const { data, isLoading, error } = useQuery({
     queryKey: ['series-list'],
     queryFn: () => fetchSeriesList(),

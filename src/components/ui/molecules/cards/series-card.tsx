@@ -3,6 +3,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Calendar } from 'lucide-react'
 import type { SeriesListItem } from '@/types/series'
 import { getSeriesTitleAndDescription } from '@/lib/series-utils'
+import { getExactLocalizedMetadata } from '@/lib/metadata-utils'
+import { getImageUrl } from '@/types/image'
 import { contentLanguageFontClass } from '../ContentLanguageSelect'
 
 interface SeriesCardProps {
@@ -19,7 +21,7 @@ const SeriesCard = ({ series, language }: SeriesCardProps) => {
     navigate(`/series/${series.id}/plan-day?lang=${language}`)
   }
   const lang = params.get('lang') || 'en'
-  const series_language =series.metadata?.find((m) => m.language.toLowerCase() === lang.toLowerCase())
+  const series_language = getExactLocalizedMetadata(series.metadata, lang)
   if (!title) return null
   if (!series_language) return null;
   return (
@@ -31,7 +33,7 @@ const SeriesCard = ({ series, language }: SeriesCardProps) => {
         <CardHeader className="p-0">
           <img
             className="h-48 w-full hover:scale-105 transition-all duration-300 object-cover"
-            src={series.image}
+            src={getImageUrl(series.image, 'original')}
             alt={title}
             loading="lazy"
           />

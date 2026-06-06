@@ -6,7 +6,7 @@ import type { PlanDay } from '@/types/plan'
 import { getPlanDay } from '@/client_details/get_details'
 import { useGroupDetails } from '@/client_details/hooks'
 import { fetchSeriesById } from '@/pages/plan-view/micro-components/hooks/useSeriesData'
-import { getActivePlanForDate, getSeriesStepNavDates } from '@/lib/series-utils'
+import { getActivePlanForDate, getSeriesGroupId, getSeriesStepNavDates } from '@/lib/series-utils'
 import { PlanViewerSkeleton } from '@/pages/plan-view/micro-components/loader'
 import { TaskSection } from '@/pages/plan-view/micro-components/TaskContent'
 import { ErrorState } from '@/pages/plan-view/micro-components/Error'
@@ -15,6 +15,7 @@ import { Accordion } from '@/components/ui/atom/accordion'
 import { PlanHeader } from '@/pages/plan-view/micro-components/PlanHeader'
 import { PlanFooterNav } from '@/pages/plan-view/micro-components/PlanFooterNav'
 import { AudioPlayerProvider } from '@/pages/plan-view/micro-components/AudioPlayerContext'
+import { getImageUrl } from '@/types/image'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -37,7 +38,8 @@ function PlanDayView() {
     refetchOnWindowFocus: false,
   })
 
-  const { data: group } = useGroupDetails(series?.group_id ?? undefined)
+  const { data: groupData } = useGroupDetails(getSeriesGroupId(series))
+  const group = series?.group ?? groupData
   const activePlan =
     series?.plans?.length
       ? getActivePlanForDate(series?.plans, new Date(date))
@@ -54,7 +56,7 @@ function PlanDayView() {
     retry: false,
     refetchOnWindowFocus: false,
   })
-  const imageURL =group?.banner_url ?? data?.image.original ?? undefined;
+  const imageURL = group?.banner_url ?? getImageUrl(data?.image) ?? undefined;
 
   const navigate = useNavigate()
   const error = seriesError ?? planError
@@ -82,10 +84,7 @@ function PlanDayView() {
     ? { type: 'multiple' as const, defaultValue: firstTaskId ? [firstTaskId] : [] }
     : { type: 'single' as const, defaultValue: firstTaskId, collapsible: true }
 
-  const plansForSeriesNav =
-    series?.plans && series.plans.length > 0
-      ? series.plans
-      : data?.series?.plans
+  const plansForSeriesNav = series?.plans?.length ? series.plans : undefined
   const footerNavDates =
     data &&
     getSeriesStepNavDates(date, {

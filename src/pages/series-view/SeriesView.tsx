@@ -10,6 +10,7 @@ import { contentLanguageFontClass } from '@/components/ui/molecules/ContentLangu
 import { ErrorState } from '@/pages/plan-view/micro-components/Error'
 import { fetchSeriesById } from '@/pages/plan-view/micro-components/hooks/useSeriesData'
 import { getSeriesTitleAndDescription } from '@/lib/series-utils'
+import { getImageUrl } from '@/types/image'
 
 const SeriesView = () => {
   const { t } = useTranslation()
@@ -53,7 +54,7 @@ const SeriesView = () => {
             {data.image && (
               <div className="w-full h-48 md:h-64 overflow-hidden rounded-lg">
                 <img
-                  src={data.image}
+                  src={getImageUrl(data.image, 'original')}
                   alt={title}
                   className="w-full h-full object-cover"
                 />
@@ -108,9 +109,9 @@ const SeriesView = () => {
                 >
                   
                   <CardContent className="p-4 flex items-center justify-between gap-4">
-                    {plan.image_url ? (
+                    {plan.image ? (
                       <img
-                        src={plan.image_url}
+                        src={getImageUrl(plan.image, 'medium')}
                         alt={plan.title ?? ''}
                         className="h-full max-h-24 w-full max-w-40 rounded object-cover"
                       />

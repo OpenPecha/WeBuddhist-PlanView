@@ -15,7 +15,7 @@ export function SubtaskContent({ subtask, targetScript = null }: SubtaskContentP
             return <TextContent content={subtask.content} />
 
         case "IMAGE":
-            return <ImageContent content={subtask.content} />
+            return <ImageContent content={subtask.image_url ?? subtask.content} />
 
         case "VIDEO":
             return <VideoContent content={subtask.content} />

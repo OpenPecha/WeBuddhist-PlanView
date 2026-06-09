@@ -21,3 +21,25 @@ export function isTibetan(content: string): boolean {
   // Tibetan block: U+0F00 to U+0FFF
   return /[\u0F00-\u0FFF]/.test(content)
 }
+
+const MARKDOWN_PATTERNS = [
+  /^#{1,6}\s/m,
+  /\*\*[^*\n]+\*\*/,
+  /__[^_\n]+__/,
+  /\[[^\]\n]+\]\([^)\n]+\)/,
+  /!\[[^\]\n]*\]\([^)\n]+\)/,
+  /^>\s/m,
+  /^[-*+]\s/m,
+  /^\d+\.\s/m,
+  /```[\s\S]*?```/,
+  /`[^`\n]+`/,
+  /^([-*_]){3,}\s*$/m,
+]
+
+/**
+ * Detects if the provided content appears to be Markdown.
+ */
+export function isMarkdown(content: string): boolean {
+  if (typeof content !== "string" || !content.trim()) return false
+  return MARKDOWN_PATTERNS.some((pattern) => pattern.test(content))
+}

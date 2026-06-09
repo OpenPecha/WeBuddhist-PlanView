@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../atom/card'
+import { Card, CardContent, CardHeader, CardTitle } from '../../atom/card'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Calendar } from 'lucide-react'
 import type { SeriesListItem } from '@/types/series'
@@ -15,7 +15,7 @@ interface SeriesCardProps {
 const SeriesCard = ({ series, language }: SeriesCardProps) => {
   const navigate = useNavigate()
   const [params,]=useSearchParams();
-  const { title, description } = getSeriesTitleAndDescription(series, language)
+  const { title } = getSeriesTitleAndDescription(series, language)
   const fontClass = contentLanguageFontClass(language)
   const handleClick = () => {
     navigate(`/series/${series.id}/plan-day?lang=${language}`)
@@ -44,11 +44,7 @@ const SeriesCard = ({ series, language }: SeriesCardProps) => {
           {title}
         </CardTitle>
 
-        {description && (
-          <CardDescription className={`line-clamp-2 ${fontClass} ${language === 'bo' ? 'text-md' : ''}`}>
-            {description}
-          </CardDescription>
-        )}
+        
 
         {series.total_days > 0 && (
           <div className="flex items-center gap-1 text-sm text-muted-foreground">

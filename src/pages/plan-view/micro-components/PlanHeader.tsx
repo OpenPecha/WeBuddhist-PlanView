@@ -72,7 +72,7 @@ export function PlanHeader({
               <div className="flex items-center min-w-0">
                 <h1 className="font-serif text-xl leading-tight text-[#3D3D3A] sm:text-2xl lg:text-3xl">
                   <span className="flex flex-col gap-1 font-[lato]">
-                    {description}
+                {data.plan_title}
                   </span>
                 </h1>
               </div>

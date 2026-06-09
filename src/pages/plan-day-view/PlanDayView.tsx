@@ -125,7 +125,7 @@ function PlanDayView() {
                 <h1 className="font-serif text-2xl text-[#3D3D3A]">
                   {data.plan_description}
                 </h1>
-                <p className="text-sm text-[#9a9a9a]">{data.plan_title}</p>
+             
               </div>
             </section>
           )}

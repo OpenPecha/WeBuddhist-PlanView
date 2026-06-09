@@ -1,4 +1,5 @@
 import { useGroupDetails, useSeriesDetails } from "@/client_details/hooks";
+import { getSeriesGroupId } from '@/lib/series-utils'
 import { AppleIcon, PlayStoreIcon } from "@/components/icons/icons"
 import { useParams } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
@@ -7,8 +8,8 @@ const Footer = () => {
     const { t } = useTranslation()
     const { seriesId } = useParams<{ seriesId?: string }>()
     const { data: series } = useSeriesDetails(seriesId)
-    const { data: group } = useGroupDetails(series?.group_id ?? undefined)
-    const signUpUrl = group?.social_links?.find(link => link.platform === "SignIn")?.url
+    const { data: groupData } = useGroupDetails(getSeriesGroupId(series))
+    const signUpUrl = groupData?.social_links?.find((link) => link.platform === "SignIn")?.url
 
     const distribution = [
         {

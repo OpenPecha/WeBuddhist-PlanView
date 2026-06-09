@@ -8,8 +8,15 @@ import { Button } from '@/components/ui/atom/button'
 import { ArrowLeft } from 'lucide-react'
 import { contentLanguageFontClass } from '@/components/ui/molecules/ContentLanguageSelect'
 
-const fetchPlanListing = async (language: string, tag: string) => {
-    const { data } = await api.get('/api/v1/plans', {
+import type { PlanListItem } from '@/types/plan'
+
+interface PlansListResponse {
+  plans: PlanListItem[]
+  total?: number
+}
+
+const fetchPlanListing = async (language: string, tag: string): Promise<PlansListResponse> => {
+    const { data } = await api.get<PlansListResponse>('/api/v1/plans', {
         params: {
             language: language,
             tag: tag,
@@ -67,7 +74,7 @@ const PlanListing = () => {
                         {t('planListing.noPlansForTag')}
                     </p>
                 )}
-                {data?.plans?.map((plan: any) => (
+                {data?.plans?.map((plan: PlanListItem) => (
                     <PlanCard key={plan.id} plan={plan} language={language} />
                 ))}
             </div>

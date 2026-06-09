@@ -1,8 +1,6 @@
-export interface AuthorImage {
-  thumbnail: string
-  medium: string
-  original: string
-}
+import type { ImageSet } from './image'
+
+export type AuthorImage = ImageSet
 
 export interface AuthorSocialProfile {
   account: string

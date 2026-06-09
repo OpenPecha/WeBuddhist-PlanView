@@ -7,22 +7,27 @@ import {
   startOfDay,
 } from 'date-fns'
 import type { SeriesListItem, SeriesPlanSummary } from '@/types/series'
+import { getLocalizedMetadata } from '@/lib/metadata-utils'
+
+export function getSeriesGroupId(
+  series:
+    | Pick<SeriesListItem, 'group' | 'group_id'>
+    | null
+    | undefined,
+): string | undefined {
+  return series?.group?.id ?? series?.group_id ?? undefined
+}
 
 /**
- * Localized series header from `metadata[]` (language codes compared case-insensitively),
+ * Localized series header from metadata array, locale map, or single localized item.
  * or legacy `name` map with "title -> description" strings.
  */
 export function getSeriesTitleAndDescription(
   series: Pick<SeriesListItem, 'metadata' | 'name'>,
   language: string,
 ): { title: string; description: string } {
-  const lang = language.toLowerCase()
-
-  if (series.metadata?.length) {
-    const match =
-      series.metadata.find((m) => m.language.toLowerCase() === lang) ??
-      series.metadata.find((m) => m.language.toLowerCase() === 'en') ??
-      series.metadata[0]
+  const match = getLocalizedMetadata(series.metadata, language)
+  if (match) {
     return {
       title: match.title ?? '',
       description: match.description ?? '',

@@ -14,6 +14,9 @@ import { Progress } from "@/components/ui/atom/progress"
 // import ShareButton from "./ShareButton"
 import { Button } from "@/components/ui/atom/button"
 import InfoModal from "@/components/ui/molecules/modal/InfoModal"
+import { useSearchParams } from "react-router-dom"
+import { LANG_QUERY_PARAM, parseAppLocale } from "@/i18n/locale-utils"
+import { getLocalizedMetadata } from "@/lib/metadata-utils"
 import useSeriesData from "./hooks/useSeriesData"
 import { getSeriesInclusiveCalendarRange } from "@/lib/series-utils"
 import { useDateLocale } from "@/i18n/use-date-locale"
@@ -46,10 +49,12 @@ export function PlanHeader({
   const currentDate = resolvedDate ? parseISO(resolvedDate) : new Date()
   const formattedDate = format(currentDate, "MMMM d, yyyy", { locale: dateLocale })
   const seriesId = data?.series?.id
+  const [searchParams] = useSearchParams()
+  const language = parseAppLocale(searchParams.get(LANG_QUERY_PARAM)) ?? 'en'
   const seriesProgress = useSeriesData(seriesId)
-  const firstMeta = data?.series?.metadata
-  const title = firstMeta?.title
-  const description = firstMeta?.description
+  const seriesMeta = getLocalizedMetadata(data?.series?.metadata, language)
+  const title = seriesMeta?.title
+  const description = seriesMeta?.description
   return (
     <header className="sm:mb-12 mb-4 flex flex-col gap-8 p-2">
       <div className="flex flex-col gap-4">
@@ -102,10 +107,7 @@ export function PlanHeader({
                             seriesPlansForCalendar &&
                             seriesPlansForCalendar.length > 0
                               ? seriesPlansForCalendar
-                              : data.series?.plans &&
-                                  data.series.plans.length > 0
-                                ? data.series.plans
-                                : undefined
+                              : undefined
                           const seriesRange =
                             getSeriesInclusiveCalendarRange(
                               plansForCalendar,

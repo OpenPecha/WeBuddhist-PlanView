@@ -11,6 +11,7 @@ import { PlanFooterNav } from "./micro-components/PlanFooterNav"
 import {  getPlanDay } from "@/client_details/get_details"
 import { LANG_QUERY_PARAM, parseAppLocale } from '@/i18n/locale-utils'
 import { useImageURLWithFallback } from "@/client_details/hooks"
+import { getImageUrl } from "@/types/image"
 import {  isMobile } from 'react-device-detect';
 import AudioPlayer from "./micro-components/AudioPlayer"
 import { AudioPlayerProvider } from "./micro-components/AudioPlayerContext"
@@ -52,10 +53,7 @@ export function PlanViewer() {
   const footerNavDates =
     data &&
     getSeriesStepNavDates(date ?? data.date, {
-      plans:
-        data.series?.plans && data.series.plans.length > 0
-          ? data.series.plans
-          : undefined,
+      plans: undefined,
       fallbackStartIso: data.start_date,
       fallbackEndIso: data.end_date,
     })
@@ -123,7 +121,7 @@ export function PlanViewer() {
 
       <Footer />
        <div className="fixed bottom-0 left-0 right-0">
-       <AudioPlayer imageUrl={data?.image?.original} description={data?.plan_description} />
+       <AudioPlayer imageUrl={getImageUrl(data?.image)} description={data?.plan_description} />
        </div>
     </main>
     </AudioPlayerProvider>

@@ -1,12 +1,11 @@
 import { useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { type ComponentProps } from 'react'
 import api from '@/lib/api'
 import Header from '@/components/ui/molecules/header'
 import { Button } from '@/components/ui/atom/button'
 import SeriesCard from '@/components/ui/molecules/cards/series-card'
-import PlanCard from '@/components/ui/molecules/cards/plan-card'
 import type { SeriesListResponse } from '@/types/series'
+import type { PlansListResponse } from '@/types/plan'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 
@@ -27,12 +26,6 @@ async function fetchSeriesPage(skip: number, limit: number): Promise<SeriesListR
     params: { skip, limit },
   })
   return data
-}
-
-/** Plan list shape varies by backend; align with {@link PlanListing} when tagged. */
-interface PlansListResponse {
-  plans: ComponentProps<typeof PlanCard>['plan'][]
-  total?: number
 }
 
 async function fetchPlansPage(

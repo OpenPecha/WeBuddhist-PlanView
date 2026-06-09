@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { getImageUrl } from "@/types/image";
 import { fetchAuthorById, fetchGroupById, getAboutPlan, getAboutPlanById, getClientDetails, getDefaultImage, getPlanDay, getPrimaryColor, getTimestamps } from "./get_details";
 import type { Author } from "@/types/author";
 import type { Group } from "@/types/group";
@@ -30,7 +31,7 @@ export function useImageURLWithFallback(){
         queryFn:()=>getPlanDay(planId, undefined, language),
         enabled:!!planId
     })
-    return imageURL || imageData?.image.original || seriesData?.image
+    return imageURL || getImageUrl(imageData?.image) || getImageUrl(seriesData?.image)
 
 } 
 

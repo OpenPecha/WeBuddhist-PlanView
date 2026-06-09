@@ -1,3 +1,7 @@
+import type { ImageSet } from './image'
+import type { LocalizedMetadataItem } from '@/lib/metadata-utils'
+import type { PlanTag } from './tag'
+
 export type ContentType = "TEXT" | "IMAGE" | "VIDEO" | "SOURCE_REFERENCE"
 
 export interface Subtask {
@@ -10,6 +14,9 @@ export interface Subtask {
   segment_ids: string[] | null
   audio_url?: string | null
   duration?: number | null
+  image_url?: string | null
+  start_ms?: number | null
+  end_ms?: number | null
 }
 
 export interface Task {
@@ -22,7 +29,7 @@ export interface Task {
   end_ms?: number | null
 }
 
-export interface PlanSeriesMetadata {
+export interface PlanDaySeries {
   id: string
   title: string
   description: string
@@ -47,23 +54,19 @@ export interface PlanSeriesPlan {
 
 export interface PlanSeries {
   id: string
-  metadata: PlanSeriesMetadata
-  image: string
   image_key: string
   author_id: string
   featured: boolean
   status: string
   plans: PlanSeriesPlan[]
   total_days: number
+  metadata: LocalizedMetadataItem
+  image: ImageSet
 }
 
 export interface PlanDay {
-  image: {
-    thumbnail: string
-    medium: string
-    original: string
-  }
-  series?: PlanSeries
+  image: ImageSet
+  series?: PlanDaySeries
   plan_id: string
   plan_title: string
   plan_description: string
@@ -78,6 +81,36 @@ export interface PlanDay {
   next_plan_id: string | null
   tasks: Task[]
   audio_url?: string | null
+  audio_duration_ms?: number | null
+}
+
+export interface PlanListAuthor {
+  id: string
+  firstname: string
+  lastname: string
+  image: ImageSet | null
+}
+
+export interface PlanListItem {
+  id: string
+  title: string
+  description: string
+  language: string
+  difficulty_level: string
+  image: ImageSet
+  total_days: number
+  tags: PlanTag[]
+  author: PlanListAuthor
+  start_date: string | null
+  display_order?: number
+  group_id?: string | null
+}
+
+export interface PlansListResponse {
+  plans: PlanListItem[]
+  skip?: number
+  limit?: number
+  total?: number
 }
 
 export interface PlanError {

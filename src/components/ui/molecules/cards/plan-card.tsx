@@ -4,30 +4,11 @@ import { Calendar, User } from 'lucide-react'
 import { Badge } from '../../atom/badge'
 import { contentLanguageFontClass } from '../ContentLanguageSelect'
 
-interface Plan {
-    id: string
-    title: string
-    description: string
-    language: string
-    difficulty_level: string
-    image: {
-        thumbnail: string
-        medium: string
-        original: string
-    }
-    total_days: number
-    tags: string[]
-    author: {
-        id: string
-        firstname: string
-        lastname: string
-        image: string | null
-    }
-    start_date: string | null
-}
+import type { PlanListItem } from '@/types/plan'
+import { getImageUrl } from '@/types/image'
 
 interface PlanCardProps {
-    plan: Plan
+    plan: PlanListItem
     language: string
 }
 
@@ -60,7 +41,7 @@ const PlanCard = ({ plan, language }: PlanCardProps) => {
             <CardHeader className='p-0'>
                 <img
                     className="h-48 w-full hover:scale-105 transition-all duration-300 object-cover"
-                    src={plan.image.original}
+                    src={getImageUrl(plan.image, 'original')}
                     alt={plan.title}
                     loading="lazy"
                 />

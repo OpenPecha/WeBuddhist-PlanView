@@ -47,7 +47,7 @@ export interface PlanSeriesPlan {
 
 export interface PlanSeries {
   id: string
-  metadata: PlanSeriesMetadata[]
+  metadata: PlanSeriesMetadata
   image: string
   image_key: string
   author_id: string

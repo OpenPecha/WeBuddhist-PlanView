@@ -47,7 +47,7 @@ export function PlanHeader({
   const formattedDate = format(currentDate, "MMMM d, yyyy", { locale: dateLocale })
   const seriesId = data?.series?.id
   const seriesProgress = useSeriesData(seriesId)
-  const firstMeta = data?.series?.metadata.at(0)
+  const firstMeta = data?.series?.metadata
   const title = firstMeta?.title
   const description = firstMeta?.description
   return (

@@ -54,7 +54,6 @@ export function PlanHeader({
   const seriesProgress = useSeriesData(seriesId)
   const seriesMeta = getLocalizedMetadata(data?.series?.metadata, language)
   const title = seriesMeta?.title
-  const description = seriesMeta?.description
   return (
     <header className="sm:mb-12 mb-4 flex flex-col gap-8 p-2">
       <div className="flex flex-col gap-4">

@@ -15,7 +15,6 @@ import { Accordion } from '@/components/ui/atom/accordion'
 import { PlanHeader } from '@/pages/plan-view/micro-components/PlanHeader'
 import { PlanFooterNav } from '@/pages/plan-view/micro-components/PlanFooterNav'
 import { AudioPlayerProvider } from '@/pages/plan-view/micro-components/AudioPlayerContext'
-import { getImageUrl } from '@/types/image'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 

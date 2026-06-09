@@ -34,6 +34,7 @@ export interface PlanDaySeries {
   title: string
   description: string
   language: string
+  metadata: LocalizedMetadataItem
 }
 
 export interface PlanSeriesPlan {

@@ -14,7 +14,7 @@ export const fetchSeriesById = async (seriesId: string, language?: string): Prom
   return data;
 }
 
-function useSeriesData(seriesId: string | undefined, language: string) {
+function useSeriesData(seriesId: string | undefined, language?: string) {
   const [params] = useSearchParams();
 
   const { data: series } = useQuery({

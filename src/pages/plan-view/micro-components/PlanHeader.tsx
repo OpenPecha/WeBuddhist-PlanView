@@ -51,7 +51,7 @@ export function PlanHeader({
   const seriesId = data?.series?.id
   const [searchParams] = useSearchParams()
   const language = parseAppLocale(searchParams.get(LANG_QUERY_PARAM)) ?? 'en'
-  const seriesProgress = useSeriesData(seriesId)
+  const seriesProgress = useSeriesData(seriesId,language)
   const seriesMeta = getLocalizedMetadata(data?.series?.metadata, language)
   const title = seriesMeta?.title
   return (

@@ -10,9 +10,9 @@ import { useSearchParams } from 'react-router-dom'
 
 const SERIES_PAGE_SIZE = 50
 
-const fetchSeriesList = async (skip = 0, limit = SERIES_PAGE_SIZE) => {
+const fetchSeriesList = async (skip = 0, limit = SERIES_PAGE_SIZE, language = 'en') => {
   const { data } = await api.get<SeriesListResponse>('/api/v1/series', {
-    params: { skip, limit },
+    params: { skip, limit, language },
   })
   return data
 }
@@ -23,8 +23,8 @@ const SeriesListing = () => {
   const lang = params.get('lang') 
   const [language, setLanguage] = useState(lang ?? 'en')
   const { data, isLoading, error } = useQuery({
-    queryKey: ['series-list'],
-    queryFn: () => fetchSeriesList(),
+    queryKey: ['series-list', language],
+    queryFn: () => fetchSeriesList(0, SERIES_PAGE_SIZE, language),
   })
 
   return (

@@ -31,8 +31,8 @@ function PlanDayView() {
     isLoading: isSeriesLoading,
     error: seriesError,
   } = useQuery({
-    queryKey: ['series', seriesId],
-    queryFn: () => fetchSeriesById(seriesId!),
+    queryKey: ['series', seriesId, language],
+    queryFn: () => fetchSeriesById(seriesId!, language),
     enabled: !!seriesId,
     refetchOnWindowFocus: false,
   })

@@ -5,16 +5,14 @@ import { useQuery } from '@tanstack/react-query'
 import type { SeriesDetail } from '@/types/series'
 import { getSeriesAnchorPlan } from '@/lib/series-utils'
 
-export const fetchSeriesById = async (seriesId: string, language?: string): Promise<SeriesDetail> => {
-  // If language is provided, add it as a query param; else, omit it.
-  const url = language
-    ? `/api/v1/series/${seriesId}?language=${language}`
-    : `/api/v1/series/${seriesId}`;
-  const { data } = await api.get<SeriesDetail>(url);
-  return data;
+export const fetchSeriesById = async (seriesId: string, language = 'en'): Promise<SeriesDetail> => {
+  const { data } = await api.get<SeriesDetail>(`/api/v1/series/${seriesId}`, {
+    params: { language },
+  })
+  return data
 }
 
-function useSeriesData(seriesId: string | undefined, language?: string) {
+function useSeriesData(seriesId: string | undefined, language = 'en') {
   const [params] = useSearchParams();
 
   const { data: series } = useQuery({

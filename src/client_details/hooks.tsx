@@ -21,8 +21,8 @@ export function useImageURLWithFallback(){
     })
     
     const {data:seriesData}=useQuery({
-        queryKey:["series",seriesId],
-        queryFn:()=>fetchSeriesById(seriesId!),
+        queryKey:["series",seriesId, language],
+        queryFn:()=>fetchSeriesById(seriesId!, language),
         enabled:!!seriesId
     })
 
@@ -39,11 +39,12 @@ export function useAboutPlanWithFallback(isOpen: boolean){
     const { seriesId } = useParams<{ seriesId?: string }>()
     const [params] = useSearchParams()
     const client = params.get('source') ?? undefined
+    const language = parseAppLocale(params.get(LANG_QUERY_PARAM)) ?? 'en'
     
     // Get series data to find the first plan
     const { data: seriesData } = useQuery({
-        queryKey: ["series", seriesId],
-        queryFn: () => fetchSeriesById(seriesId!),
+        queryKey: ["series", seriesId, language],
+        queryFn: () => fetchSeriesById(seriesId!, language),
         enabled: !!seriesId && isOpen,
     })
     
@@ -77,9 +78,12 @@ export function useClientDetails(){
 }
 
 export function useSeriesDetails(seriesId: string | undefined) {
+    const [params] = useSearchParams()
+    const language = parseAppLocale(params.get(LANG_QUERY_PARAM)) ?? 'en'
+
     return useQuery<SeriesDetail>({
-        queryKey: ["series", seriesId],
-        queryFn: () => fetchSeriesById(seriesId!),
+        queryKey: ["series", seriesId, language],
+        queryFn: () => fetchSeriesById(seriesId!, language),
         enabled: !!seriesId,
         refetchOnWindowFocus: false,
     })

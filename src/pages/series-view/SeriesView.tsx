@@ -18,8 +18,8 @@ const SeriesView = () => {
   const navigate = useNavigate()
   const [language] = useState('en')
   const { data, isLoading, error } = useQuery({
-    queryKey: ['series', seriesId],
-    queryFn: () => fetchSeriesById(seriesId!),
+    queryKey: ['series', seriesId, language],
+    queryFn: () => fetchSeriesById(seriesId!, language),
     enabled: !!seriesId,
     refetchOnWindowFocus: false,
   })

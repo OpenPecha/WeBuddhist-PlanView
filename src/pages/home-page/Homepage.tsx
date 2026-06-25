@@ -21,9 +21,13 @@ function parseTab(raw: string | null): DashboardTab {
   return 'series'
 }
 
-async function fetchSeriesPage(skip: number, limit: number): Promise<SeriesListResponse> {
+async function fetchSeriesPage(
+  skip: number,
+  limit: number,
+  language = 'en',
+): Promise<SeriesListResponse> {
   const { data } = await api.get<SeriesListResponse>('/api/v1/series', {
-    params: { skip, limit },
+    params: { skip, limit, language },
   })
   return data
 }
@@ -64,8 +68,8 @@ const Homepage = () => {
   }
 
   const seriesQuery = useQuery({
-    queryKey: ['dashboard-series', page],
-    queryFn: () => fetchSeriesPage((page - 1) * PAGE_SIZE, PAGE_SIZE),
+    queryKey: ['dashboard-series', language, page],
+    queryFn: () => fetchSeriesPage((page - 1) * PAGE_SIZE, PAGE_SIZE, language),
     enabled: tab === 'series',
   })
 
